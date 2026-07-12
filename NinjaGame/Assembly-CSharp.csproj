@@ -62,8 +62,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\AdonStuff\Scripts\State Machine\ChaseState.cs" />
+    <Compile Include="Assets\AdonStuff\Scripts\Platform\TransitionalPlatform.cs" />
     <Compile Include="Assets\AdonStuff\Scripts\State Machine\EnemyState.cs" />
     <Compile Include="Assets\AdonStuff\Scripts\State Machine\WanderState.cs" />
+    <Compile Include="Assets\AdonStuff\Scripts\Platform\Platform.cs" />
     <Compile Include="Assets\AdonStuff\Scripts\State Machine\EnemyStateMachine.cs" />
   </ItemGroup>
   <ItemGroup>
