@@ -61,12 +61,17 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\6000.4.0f1\Editor\Data\Tools\BuildPipeline\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\AdonStuff\Scripts\State Machine\ChaseState.cs" />
     <Compile Include="Assets\AdonStuff\Scripts\Platform\TransitionalPlatform.cs" />
-    <Compile Include="Assets\AdonStuff\Scripts\State Machine\EnemyState.cs" />
-    <Compile Include="Assets\AdonStuff\Scripts\State Machine\WanderState.cs" />
+    <Compile Include="Assets\AdonStuff\Scripts\Platform\PlatformTransition.cs" />
+    <Compile Include="Assets\AdonStuff\Scripts\Enemy\Core\EnemyMovement.cs" />
+    <Compile Include="Assets\AdonStuff\Scripts\Platform\PlatformNavigator.cs" />
+    <Compile Include="Assets\AdonStuff\Scripts\Enemy\Core\PlatformTracker.cs" />
     <Compile Include="Assets\AdonStuff\Scripts\Platform\Platform.cs" />
-    <Compile Include="Assets\AdonStuff\Scripts\State Machine\EnemyStateMachine.cs" />
+    <Compile Include="Assets\AdonStuff\Scripts\Enemy\State Machine\ChaseState.cs" />
+    <Compile Include="Assets\AdonStuff\Scripts\Platform\PlatformGraph.cs" />
+    <Compile Include="Assets\AdonStuff\Scripts\Enemy\State Machine\EnemyStateMachine.cs" />
+    <Compile Include="Assets\AdonStuff\Scripts\Enemy\State Machine\WanderState.cs" />
+    <Compile Include="Assets\AdonStuff\Scripts\Enemy\State Machine\EnemyState.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

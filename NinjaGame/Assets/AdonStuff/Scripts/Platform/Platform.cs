@@ -1,9 +1,11 @@
-using UnityEditor.UI;
+using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
 /// The base class for what makes a platform a platform
 /// </summary>
+/// <remarks>To create a readable platform to the graph, this platform reference must be
+/// under the Platforms GameObject</remarks>
 public class Platform : MonoBehaviour
 {
     /// <summary>
@@ -14,24 +16,29 @@ public class Platform : MonoBehaviour
     private Bounds bounds;
 
     /// <summary>
-    /// Whether or not the platform has transtional properites; as in, it can change from
-    /// one platform to another
+    /// A reference to the TransitionalPlatform component, if a platform contains one
     /// </summary>
-    /// <remarks>To create a platform with a transitional component, you have to just simply add
-    /// the component to the scene, and add the respective platforms to be linked to the current 
-    /// one</remarks>
-    private bool containsTransition;
-
+    private TransitionalPlatform transitionalComp;
 
     /// <summary>
-    /// Returns whether a platform contains transitional properties
+    /// Returns the TransitionalPlatform reference
     /// </summary>
-    /// <remarks>Used in the searching algorithm to get from one location to another</remarks>
-    public bool ContainsTransition
+    public TransitionalPlatform TransitionalRef
     {
         get
         {
-            return this.containsTransition;
+            return this.transitionalComp;
+        }
+    }
+
+    /// <summary>
+    /// Returns a reference to the bounds of the platform
+    /// </summary>
+    public Bounds Bounds
+    {
+        get
+        {
+            return this.bounds;
         }
     }
 
@@ -39,18 +46,23 @@ public class Platform : MonoBehaviour
     /// <summary>
     /// Basically a miniature constructor of the platform
     /// </summary>
-    public void Start()
-    {
+    public void Awake()
+    { 
+        // Always gotta check if we done messed up a bit early
+        if (!IsPlacedCorrectly())
+        {
+            Debug.LogWarning($"Platform {name} is not in the correct spot in the hierarchy. " +
+                $"It needs to be under the Platform GO. Pls and ty :pray:");
+        }
+
         this.bounds = this.GetComponent<Collider2D>().bounds;
-        this.containsTransition = CheckIfTransitionalPlatform();
+        this.transitionalComp = GetComponent<TransitionalPlatform>();
 
         // Made for debugging purposes. Will remove in post
-        if (containsTransition)
+        if (transitionalComp != null)
         {
             SpriteRenderer renderer = GetComponentInChildren<SpriteRenderer>();
-
-            if (renderer != null)
-                renderer.color = Color.blue;
+            renderer.color = Color.blue;
         }
     }
 
@@ -70,11 +82,13 @@ public class Platform : MonoBehaviour
     }
 
     /// <summary>
-    /// Checks if there is any additional transitional platform on the prefab 
+    /// Checks whether the Platform is placed correctly in the scene
     /// </summary>
-    /// <returns>whether there is a transitional platform component</returns>
-    private bool CheckIfTransitionalPlatform()
+    /// <returns>whether or not the Platform is placed uner the correct GO</returns>
+    /// <remarks>To ensure that the PlatformGraph can read the platform, ensure that this GO
+    /// is marked under the Platforms GO :pray:</remarks>
+    private bool IsPlacedCorrectly()
     {
-        return this.GetComponent<TransitionalPlatform>() != null;
+        return this.GetComponentInParent<PlatformGraph>() != null;
     }
 }

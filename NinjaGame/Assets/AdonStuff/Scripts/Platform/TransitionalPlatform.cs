@@ -17,6 +17,19 @@ public class TransitionalPlatform : MonoBehaviour
 
 
     /// <summary>
+    /// Returns a sharable copy of all of the connected copies of the platform's the 
+    /// TransitionalPlatform is connected to
+    /// </summary>
+    public IReadOnlyList<Platform> ConnectedPlatforms
+    {
+        get
+        {
+            return this.connectedPlatforms;
+        }
+    }
+
+
+    /// <summary>
     /// Acts as a failsafe for the developers in case anything messes up
     /// </summary>
     public void Start()
@@ -31,15 +44,5 @@ public class TransitionalPlatform : MonoBehaviour
         {
             Debug.LogWarning($"Platform {name} contains a connection to itself. Please remove.");
         }
-    }
-
-    /// <summary>
-    /// Checks whether the current platform connects to another 
-    /// </summary>
-    /// <param name="otherPlatform">the other platform to get to</param>
-    /// <returns>whether the current platform connects to otherPlatform/returns>
-    public bool CanReach(Platform otherPlatform)
-    {
-        return this.connectedPlatforms.Contains(otherPlatform);
     }
 }
