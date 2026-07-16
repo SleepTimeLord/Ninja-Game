@@ -368,11 +368,16 @@ public class Dash : JState
     }
 }
 
+/// <summary>
+/// Hidden state makes you hide in the hiding
+/// spot you interacted with.
+/// </summary>
 public class Hidden : JState
 {
     public event Action OnPlayerHide;
     public event Action OnPlayerLeave;
     readonly PlayerContext ctx;
+    Animator hAnimator;
 
     public Hidden(JStateMachine m, JState parent, PlayerContext ctx) : base (m, parent)
     {
@@ -381,16 +386,42 @@ public class Hidden : JState
 
     protected override void OnEnter()
     {
+        // makes the player hidden by disabling his sprite renderer
+        // then it makes the player a child of the trash and sets his
+        // pos to the trash so the camera centers on the hiding spot
+        hAnimator = ctx.nearestInteractable.GetComponentInChildren<Animator>();
+        hAnimator.Play("Ninja_Hiding");
         OnPlayerHide?.Invoke();
+        ctx.sr.enabled = false;
+        ctx.rb.linearVelocity = Vector2.zero;
+        ctx.tr.SetParent(ctx.nearestInteractable.transform);
+        ctx.tr.localPosition = new Vector3(.5f,0,0);
     }
 
+    // only way to exit this state is to jump out or attack
     protected override void OnExit()
     {
+        // reenables hiding spot and removes player as a child of the hiding spot
+        hAnimator.Play("Trash_Reg");
         OnPlayerLeave?.Invoke();
+        ctx.sr.enabled = true;
+        ctx.isHidden = false;
+        ctx.tr.SetParent(null);
     }
 
     protected override JState GetTransition()
     {
+        // handles jump and if he did jump then go to the airborne state
+        if (ctx.pressedJump)
+        {
+            ctx.sr.enabled = true;
+            ctx.pressedJump = false;
+            ctx.rb.linearVelocity = new Vector2(ctx.rb.linearVelocity.x, 0f);
+            ctx.rb.AddForce(Vector2.up * ctx.jumpForce, ForceMode2D.Impulse);
+            ctx.jumpCount++;
+            return ((NinjaRoot)Parent).Airborne;
+        }
+
         return null;
     }
 }
@@ -408,6 +439,7 @@ public class NinjaRoot : JState
     public readonly Dash Dash;
     public readonly WallCling WallCling;
     public readonly WallJump WallJump;
+    public readonly Hidden Hidden;
     readonly PlayerContext ctx;
 
     public NinjaRoot(JStateMachine m, PlayerContext ctx) : base(m, null)
@@ -418,6 +450,7 @@ public class NinjaRoot : JState
         Dash = new Dash(m, this, ctx);
         WallCling = new WallCling(m, this, ctx);
         WallJump = new WallJump(m, this, ctx);
+        Hidden = new Hidden(m, this, ctx);
     }
 
     // always start on the ground
@@ -425,7 +458,7 @@ public class NinjaRoot : JState
 
     protected override JState GetTransition()
     {
-        if (ctx.pressedDash)
+        if (ctx.pressedDash && !ctx.isHidden)
         {
             ctx.pressedDash = false;
             if (Time.time >= ctx.nextTimeReady) return Dash;
@@ -437,13 +470,17 @@ public class NinjaRoot : JState
         // this prevents dashing and walljump to be cancelled or interupted
         if (ActiveChild == Dash || (ActiveChild == WallJump)) return null; 
 
-        // we do ActiveChild != Child so it doesn't keep going in and out
-        if (ctx.isGrounded && ActiveChild != Grounded) return Grounded;
+        if (ctx.isHidden && ActiveChild != Hidden) return Hidden;
+
+        if (!ctx.isHidden)
+        {
+            // we do ActiveChild != Child so it doesn't keep going in and out
+            if (ctx.isGrounded && ActiveChild != Grounded) return Grounded;
+            if (!ctx.isGrounded && !ctx.isTouchingWall && ActiveChild != Airborne) return Airborne;
+        }
         
         if (ctx.isTouchingWall && !ctx.isGrounded && ActiveChild != WallCling) return WallCling;
-        
-        if (!ctx.isGrounded && !ctx.isTouchingWall && ActiveChild != Airborne) return Airborne;
-
+    
         return null;
     }
 }

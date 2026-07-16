@@ -164,7 +164,7 @@ public class CharacterController : MonoBehaviour
 
     public void HandleHiding()
     {
-        
+        ctx.isHidden = true;
     }
     
     /// <summary>
@@ -198,12 +198,11 @@ public class CharacterController : MonoBehaviour
 
     public void OnDash(InputAction.CallbackContext context)
     {
-        if (context.started) ctx.pressedDash = true;
+        if (context.started && !ctx.isHidden) ctx.pressedDash = true;
     }
 
     public void OnInteract(InputAction.CallbackContext context)
     {
-        
         if (ctx.nearestInteractable != null && context.started)
         {
             ICharacterInteractable interactable = ctx.nearestInteractable.GetComponent<ICharacterInteractable>();
@@ -270,6 +269,7 @@ public class PlayerContext
     public bool isRight;
     public float previousWallDirection = 0f;
     public bool isHidden = false;
+    public bool isAttacking = false;
     public GameObject nearestInteractable;
     [Header("Animations")]
     public string currentAnimState;
