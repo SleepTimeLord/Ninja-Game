@@ -9,14 +9,15 @@ public class EnemyMovement : MonoBehaviour
 {
     [Header("Physics Components")]
     /// <summary>
-    /// A reference to the collider that the enemy has
-    /// </summary>
-    [SerializeField] Collider2D enemyCollider;
-
-    /// <summary>
     /// A reference to the Rigidbody2D the enemy has
     /// </summary>
     [SerializeField] Rigidbody2D rb;
+
+    [Header("Necessary nodes")]
+    ///<summary>
+    /// The enemy the movement is assisting with
+    /// </summary>
+    [SerializeField] Enemy enemy;
 
     /// <summary>
     /// The path that the enemy needs to take to get to its destination from its current point
@@ -198,7 +199,7 @@ public class EnemyMovement : MonoBehaviour
     {
         this.specialTransitionStartPoint = currentPosition;
         this.rb.gravityScale = 0;
-        this.enemyCollider.enabled = false;
+        this.enemy.SpriteCollider.enabled = false;
     }
 
     /// <summary>
@@ -207,7 +208,7 @@ public class EnemyMovement : MonoBehaviour
     private void EndTransition()
     {
         this.rb.gravityScale = 1;
-        this.enemyCollider.enabled = true;
+        this.enemy.SpriteCollider.enabled = true;
     }
 
     /// <summary>
@@ -253,7 +254,7 @@ public class EnemyMovement : MonoBehaviour
         float extendsScale = shouldConsiderJumpHeight ? 2 : 1;
 
         return basedOnWhatPos +
-            (Vector2.up * this.enemyCollider.bounds.extents.y) * extendsScale;
+            (Vector2.up * this.enemy.SpriteCollider.bounds.extents.y) * extendsScale;
     }
 
     /// <summary>

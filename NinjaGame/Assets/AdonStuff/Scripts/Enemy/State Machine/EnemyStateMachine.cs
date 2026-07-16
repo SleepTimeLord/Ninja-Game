@@ -28,6 +28,11 @@ public class EnemyStateMachine : MonoBehaviour
     /// </summary>
     private WanderState wander;
 
+    /// <summary>
+    /// A reference to the dead state
+    /// </summary>
+    private DeadState dead;
+
     
     /// <summary>
     /// The actions that occur in the initialization of an enemy
@@ -38,6 +43,7 @@ public class EnemyStateMachine : MonoBehaviour
         // Initialize the states first
         this.chase = new ChaseState(this, this.enemy);
         this.wander = new WanderState(this, this.enemy);
+        this.dead = new DeadState(this, this.enemy);
 
         // Then, wait for everything to be ready
         StartCoroutine(WaitUntilReady());
@@ -75,6 +81,7 @@ public class EnemyStateMachine : MonoBehaviour
             yield return null;
         }
 
+        Debug.Log("Boutta change into initial wander");
         ChangeState(this.wander);
     }
 }

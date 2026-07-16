@@ -29,7 +29,7 @@ public class PlatformTracker : MonoBehaviour
     /// <param name="collision">the object that the enemy collided on</param>
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Platform platform = collision.gameObject.GetComponent<Platform>();
+        Platform platform = collision.gameObject.GetComponentInParent<Platform>();
 
         if (platform != null)
         {

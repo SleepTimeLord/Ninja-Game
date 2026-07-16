@@ -163,4 +163,25 @@ public class PlatformGraph : MonoBehaviour
             this.adjacencyList[fromWhichPlatform].Add(newTransition);
         }
     }
+
+    /// <summary>
+    /// Prints the graph for debugging purposes
+    /// </summary>
+    private void PrintGraph()
+    {
+        foreach (KeyValuePair<Platform, List<PlatformTransition>> entry in this.adjacencyList)
+        {
+            Platform key = entry.Key;
+
+            Debug.Log($"{key.name}:");
+
+            foreach (PlatformTransition transition in entry.Value)
+            {
+                Debug.Log(
+                    $"\t{transition.DestinationPlatform.name} " +
+                    $"({transition.Transition}) " +
+                    $"Target: {transition.TargetPosition}");
+            }
+        }
+    }
 }
