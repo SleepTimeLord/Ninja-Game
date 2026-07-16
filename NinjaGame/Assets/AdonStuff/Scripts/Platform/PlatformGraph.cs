@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using static PlatformTransition;
 
@@ -20,20 +21,8 @@ public class PlatformGraph : MonoBehaviour
     /// </summary>
     private Dictionary<Platform, List<PlatformTransition>> adjacencyList;
 
-    
-    /// <summary>
-    /// A sharable reference to the platforms for navigators to use
-    /// </summary>
-    public IReadOnlyList<Platform> Platforms
-    {
-        get
-        {
-            return this.platforms;
-        }
-    } 
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    public void Start()
+    public void Awake()
     {
         BuildGraph();
     }
@@ -45,10 +34,7 @@ public class PlatformGraph : MonoBehaviour
     /// <returns>the transitions that a platform contains</returns>
     public IEnumerable<PlatformTransition> GetTransitions(Platform basedOnWhichPlatform)
     {
-        foreach (PlatformTransition transition in this.adjacencyList[basedOnWhichPlatform])
-        {
-            yield return transition;
-        }
+        return this.adjacencyList[basedOnWhichPlatform];
     }
 
     /// <summary>
@@ -118,7 +104,7 @@ public class PlatformGraph : MonoBehaviour
                     }
 
                     PlatformTransition transition = new PlatformTransition(current,
-                        potentialNeighbor, potentialNeighbor.Bounds.center, TransitionType.WALK);
+                        potentialNeighbor, potentialNeighbor.TopCenter, TransitionType.WALK);
 
                     this.adjacencyList[current].Add(transition);
                 }
@@ -173,7 +159,7 @@ public class PlatformGraph : MonoBehaviour
             }
 
             PlatformTransition newTransition = new PlatformTransition(fromWhichPlatform, 
-                transitionalAdjacency, transitionalAdjacency.Bounds.center, transitionType);
+                transitionalAdjacency, transitionalAdjacency.TopCenter, transitionType);
             this.adjacencyList[fromWhichPlatform].Add(newTransition);
         }
     }

@@ -3,12 +3,17 @@ using UnityEngine;
 /// <summary>
 /// A state within an enemy
 /// </summary>
-public abstract class EnemyState : MonoBehaviour
+public abstract class EnemyState
 {
     /// <summary>
     /// A reference to the state machine the state is connected to
     /// </summary>
     protected EnemyStateMachine stateMachine;
+
+    /// <summary>
+    /// The enemy that the state is representing
+    /// </summary>
+    protected Enemy enemy;
 
 
     /// <summary>
@@ -16,9 +21,11 @@ public abstract class EnemyState : MonoBehaviour
     /// </summary>
     /// <param name="stateMachine">a reference to the state machine the state will be 
     /// connected to</param>
-    protected EnemyState(EnemyStateMachine stateMachine)
+    /// <param name="enemy">the enemy the state is doing all of this for</param>
+    protected EnemyState(EnemyStateMachine stateMachine, Enemy enemy)
     {
         this.stateMachine = stateMachine;
+        this.enemy = enemy;
     }
 
 

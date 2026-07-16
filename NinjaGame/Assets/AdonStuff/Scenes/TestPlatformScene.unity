@@ -824,51 +824,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8c057d58f6b6d144d840e487a55cead0, type: 3}
---- !u!1 &1805710493
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1805710495}
-  - component: {fileID: 1805710494}
-  m_Layer: 0
-  m_Name: Platform Navigator
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1805710494
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1805710493}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 817eed545bb6b2a4182375e504658cfe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlatformNavigator
-  graph: {fileID: 1352350141}
---- !u!4 &1805710495
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1805710493}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.21418, y: -0.22043, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1976026606
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -877,6 +832,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3548780605335652559, guid: 2104ebdc1e5452f4e8f0e0ed2bf7b1aa, type: 3}
+      propertyPath: graph
+      value: 
+      objectReference: {fileID: 1352350141}
     - target: {fileID: 5228679784376420059, guid: 2104ebdc1e5452f4e8f0e0ed2bf7b1aa, type: 3}
       propertyPath: m_Name
       value: Enemy
@@ -887,7 +846,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6328634033612185682, guid: 2104ebdc1e5452f4e8f0e0ed2bf7b1aa, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.2540064
+      value: -3.0040064
       objectReference: {fileID: 0}
     - target: {fileID: 6328634033612185682, guid: 2104ebdc1e5452f4e8f0e0ed2bf7b1aa, type: 3}
       propertyPath: m_LocalPosition.z
@@ -921,6 +880,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8346546086120633570, guid: 2104ebdc1e5452f4e8f0e0ed2bf7b1aa, type: 3}
+      propertyPath: graph
+      value: 
+      objectReference: {fileID: 1352350141}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -968,4 +931,3 @@ SceneRoots:
   - {fileID: 265495173}
   - {fileID: 1976026606}
   - {fileID: 1352350142}
-  - {fileID: 1805710495}

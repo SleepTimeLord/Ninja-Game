@@ -32,7 +32,7 @@ public class TransitionalPlatform : MonoBehaviour
     /// <summary>
     /// Acts as a failsafe for the developers in case anything messes up
     /// </summary>
-    public void Start()
+    public void Awake()
     {
         /*
          * This platform's connected platforms shouldn't contain the platform itself,

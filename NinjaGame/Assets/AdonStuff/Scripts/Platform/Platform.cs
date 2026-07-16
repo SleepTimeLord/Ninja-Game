@@ -9,13 +9,6 @@ using UnityEngine;
 public class Platform : MonoBehaviour
 {
     /// <summary>
-    /// The boundaries of the platform
-    /// </summary>
-    /// <remarks>This is primarily used to ensure that there's a reference to the min, max, and 
-    /// center of the platform</remarks>
-    private Bounds bounds;
-
-    /// <summary>
     /// A reference to the TransitionalPlatform component, if a platform contains one
     /// </summary>
     private TransitionalPlatform transitionalComp;
@@ -38,7 +31,23 @@ public class Platform : MonoBehaviour
     {
         get
         {
-            return this.bounds;
+            return this.GetComponent<Collider2D>().bounds;
+        }
+    }
+
+    /// <summary>
+    /// Returns the center of the highest part of the platform
+    /// </summary>
+    public Vector2 TopCenter
+    {
+        get
+        {
+            Bounds bounds = this.Bounds;
+
+            return new Vector2(
+                bounds.center.x,
+                bounds.max.y
+            );
         }
     }
 
@@ -55,7 +64,6 @@ public class Platform : MonoBehaviour
                 $"It needs to be under the Platform GO. Pls and ty :pray:");
         }
 
-        this.bounds = this.GetComponent<Collider2D>().bounds;
         this.transitionalComp = GetComponent<TransitionalPlatform>();
 
         // Made for debugging purposes. Will remove in post
@@ -74,9 +82,9 @@ public class Platform : MonoBehaviour
     public Vector2 GetValidPoint()
     {
         float randomX = Random.Range(
-            this.bounds.min.x,
-            this.bounds.max.x);
-        float randomY = this.bounds.max.y;
+            this.Bounds.min.x,
+            this.Bounds.max.x);
+        float randomY = this.Bounds.max.y;
 
         return new Vector2(randomX, randomY);
     }

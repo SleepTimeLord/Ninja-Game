@@ -22,6 +22,7 @@ public class PlatformTracker : MonoBehaviour
         }
     }
 
+
     /// <summary>
     /// Checks whether a new platform has been walked on and updates it if so
     /// </summary>

@@ -7,28 +7,23 @@ using UnityEngine;
 public class WanderState : EnemyState
 {
     /// <summary>
-    /// A reference to the navigator that the enemies all share
-    /// </summary>
-    private PlatformNavigator navigator;
-
-    /// <summary>
-    /// A reference to the graph that the enemies all share
-    /// </summary>
-    private PlatformGraph graph;
-
-    /// <summary>
-    /// Whether or not the enemy is wandering
-    /// </summary>
-    private bool isWandering;
-
-    /// <summary>
     /// The approximate time it takes, in seconds, before the enemy tries to find another place
     /// to wander to again
     /// </summary>
-    private const float TimeBetweenPathCreationMedian = 5f;
+    private const float TimeBetweenPathCreationMedian = 3f;
 
-    public WanderState(EnemyStateMachine stateMachine) 
-        : base(stateMachine)
+    /// <summary>
+    /// The time the enemy has left to being idle
+    /// </summary>
+    private float idleTimer;
+
+    /// <summary>
+    /// Whether or not the enemy is currently staying still between wandering paths
+    /// </summary>
+    private bool isIdle;
+
+    public WanderState(EnemyStateMachine stateMachine, Enemy enemy) 
+        : base(stateMachine, enemy)
     {
     }
 
@@ -43,10 +38,10 @@ public class WanderState : EnemyState
     /// </summary>
     public override void Enter()
     {
-        this.isWandering = false;
-
-        // The only thing that this state is doing initially is finding a random spot to go to
-        GetRandomPath();
+        this.idleTimer = 0f;
+        this.isIdle = false;
+        // using a temp. value for wandering. just for now
+        this.enemy.Wander(0f);
     }
 
     public override void Exit()
@@ -56,18 +51,45 @@ public class WanderState : EnemyState
 
     public override void Update()
     {
-        throw new System.NotImplementedException();
+        // First, check whether or not the enemy actually needs to update its movement
+        if (this.enemy.HasPath)
+        {
+            this.enemy.Tick(true);
+            return;
+        }
+
+        /*
+         * At this point, we know that the enemy isn't moving, so we need to check whether or not 
+         * its idle
+         */
+        if (!this.isIdle)
+        {
+            Debug.Log("Bro stopped and needs to have the timer started");
+            this.isIdle = true;
+            this.idleTimer = GetIdleTime();
+        }
+
+        // Almost immediately after, we can begin decreasing it
+        this.idleTimer -= Time.deltaTime;
+
+        // Now, we can check whether or not we want to wander
+        if (this.idleTimer <= 0f)
+        {
+            this.isIdle = false;
+
+            // Once again, a temp value here is used
+            Debug.Log("Making him wander again");
+            this.enemy.Wander(0f);
+        }
     }
 
-
     /// <summary>
-    /// Get a path to a random point 
+    /// Gets a random amount of time that the enemy will be idle for
     /// </summary>
-    private void GetRandomPath()
+    /// <returns>the time that the enemy will be idle for</returns>
+    private float GetIdleTime()
     {
-        Platform platformDestination = this.graph.GetRandomPlatform();
-        Vector2 pointDestination = platformDestination.GetValidPoint();
-
-        //List<Platform> path = this.navigator.SearchPath();
+        return Random.Range((TimeBetweenPathCreationMedian * 0.5f), 
+            TimeBetweenPathCreationMedian * 1.5f);
     }
 }

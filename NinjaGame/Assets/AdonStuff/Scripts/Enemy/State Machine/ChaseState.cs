@@ -5,8 +5,8 @@ using UnityEngine;
 /// </summary>
 public class ChaseState : EnemyState
 {
-    public ChaseState(EnemyStateMachine stateMachine)
-        : base(stateMachine)
+    public ChaseState(EnemyStateMachine stateMachine, Enemy enemy)
+        : base(stateMachine, enemy)
     {
         
     }

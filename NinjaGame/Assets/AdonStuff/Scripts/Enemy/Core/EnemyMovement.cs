@@ -7,6 +7,17 @@ using UnityEngine;
 /// </summary>
 public class EnemyMovement : MonoBehaviour
 {
+    [Header("Physics Components")]
+    /// <summary>
+    /// A reference to the collider that the enemy has
+    /// </summary>
+    [SerializeField] Collider2D enemyCollider;
+
+    /// <summary>
+    /// A reference to the Rigidbody2D the enemy has
+    /// </summary>
+    [SerializeField] Rigidbody2D rb;
+
     /// <summary>
     /// The path that the enemy needs to take to get to its destination from its current point
     /// </summary>
@@ -41,6 +52,20 @@ public class EnemyMovement : MonoBehaviour
 
 
     /// <summary>
+    /// Returns whether the enemy is actively pursuing a path
+    /// </summary>
+    public bool HasPath
+    {
+        get
+        {
+            return this.currentPath.Count > 0 ||
+               this.currentPathPlatformStep != null ||
+               this.finalDestination != Vector2.zero;
+        }
+    }
+
+
+    /// <summary>
     /// Called by the state machine to set a particular path 
     /// </summary>
     /// <param name="path">the path that the enemy is taking</param>
@@ -52,79 +77,105 @@ public class EnemyMovement : MonoBehaviour
     }
 
     /// <summary>
-    /// 
+    /// Called every frame to handle movement with the enemy
     /// </summary>
-    /// <param name="speed"></param>
+    /// <param name="speed">the speed the enemy needs to go</param>
+    /// <param name="currentPlatform">The platform the enemy is on</param>
     public void UpdateMovement(float speed, Platform currentPlatform)
     {
         // How lenient the enemy has to be away from the target before it's considered complete
-        const float TargetLeniency = 0.1f;
+        const float TargetLeniency = 0.5f;
+
         Vector2 currentPosition = this.transform.position;
 
         // First, check whether or not movement is necessarily needed
-        if (this.finalDestination == Vector2.zero)
+        if (!HasPath)
         {
+            Debug.Log("There's no path, meaning that there's nothing more to do at the moment");
             return;
         }
-        // Next, check whether or not the movement has been complete
-        else if (Vector2.Distance(currentPosition, this.finalDestination) < TargetLeniency || 
-            this.transitionProgress >= 1f)
-        {
-            ClearPathParams();
-            return;
-        }
+
         /*
-         * Next, check whether or not it's necessary to just move to the exact position, which
-         * occurs only when the platform has been met
-         */
-        else if (currentPlatform == this.currentPathPlatformStep.DestinationPlatform)
-        {
-            UpdateWalk(this.finalDestination, speed);
-            return;
-        }
-        // Where the real meat starts to come in. Movement now needs to be considered exactly
-        else
+         * We know that there is a path at this point, so it means we can now check whether we have
+         * an active step the enemy is taking
+         */ 
+        if (this.currentPathPlatformStep != null)
         {
             /*
-             * To make sure we actually have a target to go to. If it's not just simply a walk,
-             * then it needs to have its transitionProgress reset
+             * The enemy's target after considering the enemy's height without considering drops or
+             * jumps
              */
-            if (this.currentPathPlatformStep == null)
-            {
-                this.currentPathPlatformStep = this.currentPath.Dequeue();
+            Vector2 baseEnemyTarget = GetTargetPosition(
+                this.currentPathPlatformStep.TargetPosition);
 
-                if (!(this.currentPathPlatformStep.Transition is
-                    PlatformTransition.TransitionType.WALK))
-                {
-                    /*
-                     * The start-point needs to be defined here, as it's the true start-time
-                     * for the special transition
-                     */
-                    this.specialTransitionStartPoint = this.transform.position;
-                }
-            }
-
-            // Now, what happens next is entirely dependent on the movement
+            /*
+             * When there is a path left, it means we need to actually consider what exact 
+             * transition is going on
+             */
             switch (this.currentPathPlatformStep.Transition)
             {
+                /*
+                 * Walking is as simple as the last conditional-it just needs to have its walking
+                 * updated if the enemy isn't already on the platform it needs to be on
+                 */
                 case PlatformTransition.TransitionType.WALK:
-                    UpdateWalk(this.currentPathPlatformStep.TargetPosition, speed);
-                    break;
+                    Debug.Log($"Walking to {baseEnemyTarget}");
+                    this.UpdateWalk(baseEnemyTarget, speed);
+
+                    if (EnemyCloseEnoughToTarget(TargetLeniency, baseEnemyTarget, currentPosition))
+                    {
+                        break;
+                    }
+                    return;
+                /*
+                 * Jumping and dropping are fairly similar. We need to check whether or not they're
+                 * in the middle of their transition, and if so, update it. It's also worth 
+                 * checking for whether or not the transition is complete, to which settings need
+                 * to be reset
+                 */
                 case PlatformTransition.TransitionType.JUMP:
                 case PlatformTransition.TransitionType.DROP:
+                    // A jump will have a more dramatic parabola, with a greater height
+                    float peakHeight = this.currentPathPlatformStep.Transition ==
+                        PlatformTransition.TransitionType.DROP ? 3f : 1f;
+                    Vector2 newTransitionPosition = GetTargetPosition(
+                        this.currentPathPlatformStep.TargetPosition, true);
+
+                    // Check for time BEFORE iterating it to ensure correct values
+                    if (this.transitionProgress >= 1)
+                    {
+                        EndTransition();
+                        this.transitionProgress = 0f;
+                        break;
+                    }
+                    else if (this.transitionProgress == 0)
+                    {
+                        StartTransition(currentPosition);
+                    }
+
+                    // Then update the transition's progress
                     this.transitionProgress += Time.deltaTime / TransitionDuration;
 
-                    // AKA the vertex of the parabola
-                    float peakHeight = this.currentPathPlatformStep.Transition == 
-                        PlatformTransition.TransitionType.DROP ? 3f : 1f;
+                    Vector2 newDropPosition = UpdateArc(this.specialTransitionStartPoint,
+                        newTransitionPosition, this.transitionProgress, peakHeight);
 
-                    Vector2 newDropPosition = UpdateArc(this.transform.position,
-                        this.currentPathPlatformStep.TargetPosition, this.transitionProgress, 
-                        peakHeight);
-
+                    Debug.Log($"Jumping/dropping to {newDropPosition}");
                     this.transform.position = newDropPosition;
-                    break;
+                    return;
             }
+        }
+
+        /*
+         * At this point, a new transition needs to be assigned because the last one finished. 
+         * If there isn't any more transitions left, it means the path has ended, and things can be reset
+         */
+        if (!this.currentPath.TryDequeue(out this.currentPathPlatformStep))
+        {
+            this.ClearPathParams();
+        }
+        else
+        {
+            Debug.Log("Finished previous state");
         }
     }
 
@@ -133,11 +184,30 @@ public class EnemyMovement : MonoBehaviour
     /// </summary>
     private void ClearPathParams()
     {
-        this.currentPath.Clear();
         this.currentPathPlatformStep = null;
         this.finalDestination = Vector2.zero;
-        this.transitionProgress = -1f;
+        this.transitionProgress = -0f;
         this.specialTransitionStartPoint = Vector2.zero;
+    }
+
+    /// <summary>
+    /// Allows the enemy to be able to be fully manipulated by the jump physics
+    /// </summary>
+    /// <param name="currentPosition">The position the enemy starts in</param>
+    private void StartTransition(Vector2 currentPosition)
+    {
+        this.specialTransitionStartPoint = currentPosition;
+        this.rb.gravityScale = 0;
+        this.enemyCollider.enabled = false;
+    }
+
+    /// <summary>
+    /// Allows the enemy to feel the effects of gravity and collide with other objects
+    /// </summary>
+    private void EndTransition()
+    {
+        this.rb.gravityScale = 1;
+        this.enemyCollider.enabled = true;
     }
 
     /// <summary>
@@ -168,5 +238,34 @@ public class EnemyMovement : MonoBehaviour
         position.y += Mathf.Sin(time * Mathf.PI) * peakHeight;
 
         return position;
+    }
+
+    /// <summary>
+    /// Calculates the position a platform should consider the target based on its position
+    /// </summary>
+    /// <param name="basedOnWhatPos">the position the platform is on</param>
+    /// <param name="shouldConsiderJumpHeight">whether or not there should be extra room for the 
+    /// enemy to jump all the way up above the platform</param>
+    /// <returns>the position the enemy should expect to wait for</returns>
+    private Vector2 GetTargetPosition(Vector2 basedOnWhatPos, 
+        bool shouldConsiderJumpHeight = false)
+    {
+        float extendsScale = shouldConsiderJumpHeight ? 2 : 1;
+
+        return basedOnWhatPos +
+            (Vector2.up * this.enemyCollider.bounds.extents.y) * extendsScale;
+    }
+
+    /// <summary>
+    /// Finds out whether the enemy is close enough to the target to move onto the next 
+    /// </summary>
+    /// <param name="targetLeniency">how close the enemy should be to the target</param>
+    /// <param name="targetPosition">the current position of the target</param>
+    /// <param name="currentPosition">the current position of the enemy</param>
+    /// <returns>whether or not the enemy is close enough to the target</returns>
+    private bool EnemyCloseEnoughToTarget(float targetLeniency, Vector2 targetPosition, 
+        Vector2 currentPosition)
+    {
+        return Vector2.Distance(currentPosition, targetPosition) <= targetLeniency;
     }
 }

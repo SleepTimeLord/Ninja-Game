@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6328634033612185682}
   - component: {fileID: 8115475093516537753}
+  - component: {fileID: 3548780605335652559}
+  - component: {fileID: 2227252627378684159}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -59,7 +61,36 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
+--- !u!114 &3548780605335652559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5228679784376420059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55c4bb4d1019bda4c8ecd14029f36c6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Enemy
+  platformTracker: {fileID: 4775831658779423738}
+  movement: {fileID: 2915336073948124020}
+  navigator: {fileID: 8346546086120633570}
+  graph: {fileID: 0}
+--- !u!114 &2227252627378684159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5228679784376420059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a831bac42b02c34caea50f5b041cff9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyStateMachine
+  enemy: {fileID: 3548780605335652559}
 --- !u!1 &8545803219910266801
 GameObject:
   m_ObjectHideFlags: 0
@@ -71,7 +102,9 @@ GameObject:
   - component: {fileID: 298894718414535169}
   - component: {fileID: 2065089001968789026}
   - component: {fileID: 1238148435623986577}
-  - component: {fileID: 6309143371715205687}
+  - component: {fileID: 4775831658779423738}
+  - component: {fileID: 2915336073948124020}
+  - component: {fileID: 8346546086120633570}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Enemy
@@ -190,40 +223,42 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1, y: 2}
   m_Direction: 0
---- !u!70 &6309143371715205687
-CapsuleCollider2D:
+--- !u!114 &4775831658779423738
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8545803219910266801}
   m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 2}
-  m_Direction: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df05d17709b99ec479e995bb2e5a71bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlatformTracker
+--- !u!114 &2915336073948124020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8545803219910266801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01408ee8673bb6640981e6f90b2381e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyMovement
+  enemyCollider: {fileID: 1238148435623986577}
+  rb: {fileID: 8115475093516537753}
+--- !u!114 &8346546086120633570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8545803219910266801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 817eed545bb6b2a4182375e504658cfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlatformNavigator
+  graph: {fileID: 0}
