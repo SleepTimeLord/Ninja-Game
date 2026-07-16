@@ -248,8 +248,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01408ee8673bb6640981e6f90b2381e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyMovement
-  enemyCollider: {fileID: 1238148435623986577}
   rb: {fileID: 8115475093516537753}
+  enemy: {fileID: 3548780605335652559}
 --- !u!114 &8346546086120633570
 MonoBehaviour:
   m_ObjectHideFlags: 0

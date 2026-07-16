@@ -120,7 +120,7 @@ public class EnemyMovement : MonoBehaviour
                  * updated if the enemy isn't already on the platform it needs to be on
                  */
                 case PlatformTransition.TransitionType.WALK:
-                    Debug.Log($"Walking to {baseEnemyTarget}");
+                    //Debug.Log($"Walking to {baseEnemyTarget}");
                     this.UpdateWalk(baseEnemyTarget, speed);
 
                     if (EnemyCloseEnoughToTarget(TargetLeniency, baseEnemyTarget, currentPosition))
@@ -160,7 +160,7 @@ public class EnemyMovement : MonoBehaviour
                     Vector2 newDropPosition = UpdateArc(this.specialTransitionStartPoint,
                         newTransitionPosition, this.transitionProgress, peakHeight);
 
-                    Debug.Log($"Jumping/dropping to {newDropPosition}");
+                    //Debug.Log($"Jumping/dropping to {newDropPosition}");
                     this.transform.position = newDropPosition;
                     return;
             }
@@ -176,7 +176,7 @@ public class EnemyMovement : MonoBehaviour
         }
         else
         {
-            Debug.Log("Finished previous state");
+            Debug.Log("Finished previous path. Moving onto next.");
         }
     }
 

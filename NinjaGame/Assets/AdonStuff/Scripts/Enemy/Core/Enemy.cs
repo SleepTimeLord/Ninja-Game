@@ -100,7 +100,7 @@ public class Enemy : MonoBehaviour
         // First, a location to wander to should be calculated
         Platform targetPlatform = this.graph.GetRandomPlatform();
         Vector2 trueTargetLocation = targetPlatform.GetValidPoint();
-        Debug.Log($"Target Platform: {targetPlatform.name}");
+        Debug.Log($"Starting from platform {this.CurrentPlatform} to {targetPlatform.name}");
 
         // Next, we can use this random platform to create a path
         List<PlatformTransition> platformPath = this.navigator.SearchPath(this.CurrentPlatform, targetPlatform);

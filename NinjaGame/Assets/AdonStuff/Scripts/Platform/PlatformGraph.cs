@@ -22,7 +22,7 @@ public class PlatformGraph : MonoBehaviour
     private Dictionary<Platform, List<PlatformTransition>> adjacencyList;
 
 
-    public void Awake()
+    public void Start()
     {
         BuildGraph();
     }
@@ -60,6 +60,7 @@ public class PlatformGraph : MonoBehaviour
         this.adjacencyList = new Dictionary<Platform, List<PlatformTransition>>();
 
         GetAdjacencies();
+        PrintGraph();
     }
 
     /// <summary>
@@ -69,7 +70,7 @@ public class PlatformGraph : MonoBehaviour
     {
         // The tolerance, in pixels, for what is considered an adjacent platform
         const float xTolerance = 1f;
-        const float yTolerance = 0.5f;
+        const float yTolerance = 1f;
 
         foreach (Platform current in this.platforms)
         {
@@ -88,9 +89,8 @@ public class PlatformGraph : MonoBehaviour
 
                 Bounds currentBounds = current.Bounds;
                 Bounds neighborBounds = potentialNeighbor.Bounds;
-
                 bool isLevel = Mathf.Abs(
-                    currentBounds.center.y - neighborBounds.center.y) <= yTolerance;
+                    currentBounds.max.y - neighborBounds.max.y) <= yTolerance;
                 bool isLeftAdjacent = Mathf.Abs(
                     currentBounds.min.x - neighborBounds.max.x) <= xTolerance;
                 bool isRightAdjacent = Mathf.Abs(

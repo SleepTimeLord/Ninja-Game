@@ -39,6 +39,8 @@ public class PlatformNavigator : MonoBehaviour
                 break;
             }
 
+            Debug.Log($"Visiting {current.name}");
+
             // Visit each of the transitions, and jolt them down
             foreach (PlatformTransition transition in this.graph.GetTransitions(current))
             {
@@ -55,8 +57,17 @@ public class PlatformNavigator : MonoBehaviour
             }
         }
 
-        // Once the search is done, the path can be made and returned
-        return MakePath(cameFromSet, currentPlatform, goalPlatform);
+        if (!visitedPlatforms.Contains(goalPlatform))
+        {
+            Debug.LogWarning(
+                $"No path exists from {currentPlatform.name} to {goalPlatform.name}");
+
+            return null;
+        }
+        else
+        {
+            return MakePath(cameFromSet, currentPlatform, goalPlatform);
+        }
     }
 
     /// <summary>
