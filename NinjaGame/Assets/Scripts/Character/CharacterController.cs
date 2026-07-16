@@ -195,6 +195,16 @@ public class CharacterController : MonoBehaviour
     {
         if (context.started) ctx.pressedDash = true;
     }
+
+    public void OnInteract()
+    {
+        if (ctx.nearestInteractable != null)
+        {
+            ICharacterInteractable interactable = ctx.nearestInteractable.GetComponent<ICharacterInteractable>();
+
+            interactable.Interact();
+        }
+    }
     #endregion
 }
 
@@ -253,6 +263,7 @@ public class PlayerContext
     public byte jumpCount;
     public bool isRight;
     public float previousWallDirection = 0f;
+    public GameObject nearestInteractable;
     [Header("Animations")]
     public string currentAnimState;
     public string idle = "Ninja_Idle";
