@@ -8,14 +8,17 @@ TagManager:
   - Enemy
   - Platform
   - JumpThruPlatform
+  - EnemyHurtBox
+  - Wall
+  - Phased
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - JumpThruPlatform
   - Water
   - UI
-  - 
+  - Ground
   - 
   - 
   - 

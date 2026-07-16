@@ -1,0 +1,420 @@
+fileFormatVersion: 2
+guid: 6dbce01e0e2339c47a24c78acfbf71f0
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 319090945079655271
+    second: RIGHTrobojump_0
+  - first:
+      213: -7801029223964443346
+    second: RIGHTrobojump_1
+  - first:
+      213: -2761319212369443997
+    second: RIGHTrobojump_2
+  - first:
+      213: -2642651962778540562
+    second: RIGHTrobojump_3
+  - first:
+      213: 4248897599276676869
+    second: RIGHTrobojump_4
+  - first:
+      213: 3866743656791931298
+    second: RIGHTrobojump_5
+  - first:
+      213: 5663237373954149071
+    second: RIGHTrobojump_6
+  - first:
+      213: 7743112875415922137
+    second: RIGHTrobojump_7
+  - first:
+      213: 2841099489723319800
+    second: RIGHTrobojump_8
+  - first:
+      213: 2758878085210107232
+    second: RIGHTrobojump_9
+  - first:
+      213: -4964010367876332311
+    second: RIGHTrobojump_10
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: RIGHTrobojump_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2400
+        width: 800
+        height: 800
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 76b34802683ad6400800000000000000
+      internalID: 319090945079655271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RIGHTrobojump_1
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 2400
+        width: 800
+        height: 800
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e2d782f904d2db390800000000000000
+      internalID: -7801029223964443346
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RIGHTrobojump_2
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 2400
+        width: 800
+        height: 800
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36302437ec2dda9d0800000000000000
+      internalID: -2761319212369443997
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RIGHTrobojump_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1600
+        width: 800
+        height: 800
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee5a89d8a0a635bd0800000000000000
+      internalID: -2642651962778540562
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RIGHTrobojump_4
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 1600
+        width: 800
+        height: 800
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 50775ebdadd17fa30800000000000000
+      internalID: 4248897599276676869
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RIGHTrobojump_5
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 1600
+        width: 800
+        height: 800
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a9f3947ede69a530800000000000000
+      internalID: 3866743656791931298
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RIGHTrobojump_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 800
+        width: 800
+        height: 800
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fcac041f26cd79e40800000000000000
+      internalID: 5663237373954149071
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RIGHTrobojump_7
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 800
+        width: 800
+        height: 800
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d56beaa220157b60800000000000000
+      internalID: 7743112875415922137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RIGHTrobojump_8
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 800
+        width: 800
+        height: 800
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8f58080eeec9d6720800000000000000
+      internalID: 2841099489723319800
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RIGHTrobojump_9
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 800
+        height: 800
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06dee875001894620800000000000000
+      internalID: 2758878085210107232
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RIGHTrobojump_10
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 0
+        width: 800
+        height: 800
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e40061feda4c1bb0800000000000000
+      internalID: -4964010367876332311
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 42b047dc3c0c3e54e8f7872f88f5eef3
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceOnImport
+        value: False
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":800.0,"y":800.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      RIGHTrobojump_0: 319090945079655271
+      RIGHTrobojump_1: -7801029223964443346
+      RIGHTrobojump_10: -4964010367876332311
+      RIGHTrobojump_2: -2761319212369443997
+      RIGHTrobojump_3: -2642651962778540562
+      RIGHTrobojump_4: 4248897599276676869
+      RIGHTrobojump_5: 3866743656791931298
+      RIGHTrobojump_6: 5663237373954149071
+      RIGHTrobojump_7: 7743112875415922137
+      RIGHTrobojump_8: 2841099489723319800
+      RIGHTrobojump_9: 2758878085210107232
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

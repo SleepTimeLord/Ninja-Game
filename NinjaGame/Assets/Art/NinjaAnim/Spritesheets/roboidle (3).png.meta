@@ -1,0 +1,756 @@
+fileFormatVersion: 2
+guid: 79b8db4ddec33a8488010ac7c1a08a4a
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 8150624914498301763
+    second: roboidle (3)_0
+  - first:
+      213: -3384342950764604095
+    second: roboidle (3)_1
+  - first:
+      213: 1147595659881257622
+    second: roboidle (3)_2
+  - first:
+      213: -7149038358728286024
+    second: roboidle (3)_3
+  - first:
+      213: 4409947495608094318
+    second: roboidle (3)_4
+  - first:
+      213: -5303243907540942386
+    second: roboidle (3)_5
+  - first:
+      213: 5524980642504184744
+    second: roboidle (3)_6
+  - first:
+      213: 1301025207889004758
+    second: roboidle (3)_7
+  - first:
+      213: -3564761297959159378
+    second: roboidle (3)_8
+  - first:
+      213: -3396447148855336579
+    second: roboidle (3)_9
+  - first:
+      213: -2026996621543140844
+    second: roboidle (3)_10
+  - first:
+      213: -3663550849708412638
+    second: roboidle (3)_11
+  - first:
+      213: 8169397146929950575
+    second: roboidle (3)_12
+  - first:
+      213: 675648489191582735
+    second: roboidle (3)_13
+  - first:
+      213: 309129752320929089
+    second: roboidle (3)_14
+  - first:
+      213: -654050238881887496
+    second: roboidle (3)_15
+  - first:
+      213: -5460632560557587426
+    second: roboidle (3)_16
+  - first:
+      213: 8433195238796968802
+    second: roboidle (3)_17
+  - first:
+      213: -1339524686174311299
+    second: roboidle (3)_18
+  - first:
+      213: 675906791591398199
+    second: roboidle (3)_19
+  - first:
+      213: -4980637675793822039
+    second: roboidle (3)_20
+  - first:
+      213: -79929823811917981
+    second: roboidle (3)_21
+  - first:
+      213: 1290094289261447592
+    second: roboidle (3)_22
+  - first:
+      213: 2055785738589220147
+    second: roboidle (3)_23
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: roboidle (3)_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3200
+        width: 800
+        height: 800
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 34fae160d26dc1170800000000000000
+      internalID: 8150624914498301763
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: roboidle (3)_1
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 3200
+        width: 800
+        height: 800
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 145149d64066801d0800000000000000
+      internalID: -3384342950764604095
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: roboidle (3)_2
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 3200
+        width: 800
+        height: 800
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 69a90052c241def00800000000000000
+      internalID: 1147595659881257622
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: roboidle (3)_3
+      rect:
+        serializedVersion: 2
+        x: 2400
+        y: 3200
+        width: 800
+        height: 800
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b0eb5e6d7389cc90800000000000000
+      internalID: -7149038358728286024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: roboidle (3)_4
+      rect:
+        serializedVersion: 2
+        x: 3200
+        y: 3200
+        width: 800
+        height: 800
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e6e08d1e1e7433d30800000000000000
+      internalID: 4409947495608094318
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: roboidle (3)_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 2400
+        width: 800
+        height: 800
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ec184cd83c71766b0800000000000000
+      internalID: -5303243907540942386
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: roboidle (3)_6
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 2400
+        width: 800
+        height: 800
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a31f5b2f9cacac40800000000000000
+      internalID: 5524980642504184744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: roboidle (3)_7
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 2400
+        width: 800
+        height: 800
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d88d00988b2e0210800000000000000
+      internalID: 1301025207889004758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: roboidle (3)_8
+      rect:
+        serializedVersion: 2
+        x: 2400
+        y: 2400
+        width: 800
+        height: 800
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea975168c7c678ec0800000000000000
+      internalID: -3564761297959159378
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: roboidle (3)_9
+      rect:
+        serializedVersion: 2
+        x: 3200
+        y: 2400
+        width: 800
+        height: 800
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d71e61230556dd0d0800000000000000
+      internalID: -3396447148855336579
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: roboidle (3)_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1600
+        width: 800
+        height: 800
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 412110cef49aed3e0800000000000000
+      internalID: -2026996621543140844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: roboidle (3)_11
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 1600
+        width: 800
+        height: 800
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 221bc8a99e3782dc0800000000000000
+      internalID: -3663550849708412638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: roboidle (3)_12
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 1600
+        width: 800
+        height: 800
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f6f69dbfb678f5170800000000000000
+      internalID: 8169397146929950575
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: roboidle (3)_13
+      rect:
+        serializedVersion: 2
+        x: 2400
+        y: 1600
+        width: 800
+        height: 800
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f0c2b4f98b2606900800000000000000
+      internalID: 675648489191582735
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: roboidle (3)_14
+      rect:
+        serializedVersion: 2
+        x: 3200
+        y: 1600
+        width: 800
+        height: 800
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 14de7943fdf3a4400800000000000000
+      internalID: 309129752320929089
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: roboidle (3)_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 800
+        width: 800
+        height: 800
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8fa8f26e5c85ce6f0800000000000000
+      internalID: -654050238881887496
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: roboidle (3)_16
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 800
+        width: 800
+        height: 800
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e14880b2e9fe734b0800000000000000
+      internalID: -5460632560557587426
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: roboidle (3)_17
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 800
+        width: 800
+        height: 800
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2634202836ab80570800000000000000
+      internalID: 8433195238796968802
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: roboidle (3)_18
+      rect:
+        serializedVersion: 2
+        x: 2400
+        y: 800
+        width: 800
+        height: 800
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d7ca6b0256d096de0800000000000000
+      internalID: -1339524686174311299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: roboidle (3)_19
+      rect:
+        serializedVersion: 2
+        x: 3200
+        y: 800
+        width: 800
+        height: 800
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 73b441655ad416900800000000000000
+      internalID: 675906791591398199
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: roboidle (3)_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 800
+        height: 800
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9aec1632c6831eab0800000000000000
+      internalID: -4980637675793822039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: roboidle (3)_21
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 0
+        width: 800
+        height: 800
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3672bbcaf3804eef0800000000000000
+      internalID: -79929823811917981
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: roboidle (3)_22
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 0
+        width: 800
+        height: 800
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a9403ebbe557e110800000000000000
+      internalID: 1290094289261447592
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: roboidle (3)_23
+      rect:
+        serializedVersion: 2
+        x: 2400
+        y: 0
+        width: 800
+        height: 800
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 33daceabc3e978c10800000000000000
+      internalID: 2055785738589220147
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: c839dd5f70508434c9a26e0d72124a80
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":800.0,"y":800.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      roboidle (3)_0: 8150624914498301763
+      roboidle (3)_1: -3384342950764604095
+      roboidle (3)_10: -2026996621543140844
+      roboidle (3)_11: -3663550849708412638
+      roboidle (3)_12: 8169397146929950575
+      roboidle (3)_13: 675648489191582735
+      roboidle (3)_14: 309129752320929089
+      roboidle (3)_15: -654050238881887496
+      roboidle (3)_16: -5460632560557587426
+      roboidle (3)_17: 8433195238796968802
+      roboidle (3)_18: -1339524686174311299
+      roboidle (3)_19: 675906791591398199
+      roboidle (3)_2: 1147595659881257622
+      roboidle (3)_20: -4980637675793822039
+      roboidle (3)_21: -79929823811917981
+      roboidle (3)_22: 1290094289261447592
+      roboidle (3)_23: 2055785738589220147
+      roboidle (3)_3: -7149038358728286024
+      roboidle (3)_4: 4409947495608094318
+      roboidle (3)_5: -5303243907540942386
+      roboidle (3)_6: 5524980642504184744
+      roboidle (3)_7: 1301025207889004758
+      roboidle (3)_8: -3564761297959159378
+      roboidle (3)_9: -3396447148855336579
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
