@@ -410,7 +410,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TransitionalPlatform
   connectedPlatforms:
-  - {fileID: 484460529}
+  - {fileID: 1968461868}
 --- !u!114 &186721311
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1206,7 +1206,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &484460527
 Transform:
   m_ObjectHideFlags: 0
@@ -4770,7 +4770,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TransitionalPlatform
   connectedPlatforms:
-  - {fileID: 484460529}
+  - {fileID: 186721311}
 --- !u!1 &2078862385
 GameObject:
   m_ObjectHideFlags: 0
@@ -5124,6 +5124,34 @@ PrefabInstance:
     - target: {fileID: 7335379561185577533, guid: ce2b9af390de48d4dbe19f0de8418742, type: 3}
       propertyPath: ctx.jumpForce
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8704498355466722849, guid: ce2b9af390de48d4dbe19f0de8418742, type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8704498355466722849, guid: ce2b9af390de48d4dbe19f0de8418742, type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8704498355466722849, guid: ce2b9af390de48d4dbe19f0de8418742, type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1565995468}
+    - target: {fileID: 8704498355466722849, guid: ce2b9af390de48d4dbe19f0de8418742, type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8704498355466722849, guid: ce2b9af390de48d4dbe19f0de8418742, type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnInteract
+      objectReference: {fileID: 0}
+    - target: {fileID: 8704498355466722849, guid: ce2b9af390de48d4dbe19f0de8418742, type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: CharacterController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8704498355466722849, guid: ce2b9af390de48d4dbe19f0de8418742, type: 3}
+      propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}

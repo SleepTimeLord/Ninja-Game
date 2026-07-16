@@ -1,13 +1,16 @@
 using UnityEngine;
-using UnityEngine.TextCore.Text;
+using System;
 
 public class JTrashcanTrigger : MonoBehaviour, ICharacterInteractable
 {
+    public event Action OnPlayerHide;
+
     // put player in
     public CharacterController cc;
+
     public void Interact()
     {
-        
+        cc.HandleHiding();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

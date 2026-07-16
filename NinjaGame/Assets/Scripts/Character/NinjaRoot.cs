@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using System;
 // statmachine for the ninja
 
 
@@ -365,6 +365,33 @@ public class Dash : JState
         // doesnt exit dashstate until dash time is finished
         if (Time.time < dashEndTime) return null;
         return ctx.isGrounded ? ((NinjaRoot)Parent).Grounded : ((NinjaRoot)Parent).Airborne;
+    }
+}
+
+public class Hidden : JState
+{
+    public event Action OnPlayerHide;
+    public event Action OnPlayerLeave;
+    readonly PlayerContext ctx;
+
+    public Hidden(JStateMachine m, JState parent, PlayerContext ctx) : base (m, parent)
+    {
+        this.ctx = ctx;
+    }
+
+    protected override void OnEnter()
+    {
+        OnPlayerHide?.Invoke();
+    }
+
+    protected override void OnExit()
+    {
+        OnPlayerLeave?.Invoke();
+    }
+
+    protected override JState GetTransition()
+    {
+        return null;
     }
 }
 

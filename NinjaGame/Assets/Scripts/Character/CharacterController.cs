@@ -161,6 +161,11 @@ public class CharacterController : MonoBehaviour
             Physics2D.IgnoreCollision(ctx.collider2d, hit, passesThru);
         }
     }
+
+    public void HandleHiding()
+    {
+        
+    }
     
     /// <summary>
     /// Debugging
@@ -196,9 +201,10 @@ public class CharacterController : MonoBehaviour
         if (context.started) ctx.pressedDash = true;
     }
 
-    public void OnInteract()
+    public void OnInteract(InputAction.CallbackContext context)
     {
-        if (ctx.nearestInteractable != null)
+        
+        if (ctx.nearestInteractable != null && context.started)
         {
             ICharacterInteractable interactable = ctx.nearestInteractable.GetComponent<ICharacterInteractable>();
 
@@ -263,6 +269,7 @@ public class PlayerContext
     public byte jumpCount;
     public bool isRight;
     public float previousWallDirection = 0f;
+    public bool isHidden = false;
     public GameObject nearestInteractable;
     [Header("Animations")]
     public string currentAnimState;
