@@ -28,6 +28,12 @@ public class Enemy : MonoBehaviour
     /// </summary>
     [SerializeField] private PlatformGraph graph;
 
+    [Header("Sprite & Others")]
+    /// <summary>
+    /// A reference to an enemy's collider
+    /// </summary>
+    [SerializeField] private Collider2D spriteCollider;
+
     /// <summary>
     /// How fast the enemy is moving while chasing the player
     /// </summary>
@@ -47,6 +53,14 @@ public class Enemy : MonoBehaviour
         get
         {
             return this.movement.HasPath;
+        }
+    }
+
+    public Collider2D SpriteCollider
+    {
+        get
+        {
+            return this.spriteCollider;
         }
     }
 
@@ -111,5 +125,20 @@ public class Enemy : MonoBehaviour
         {
             this.movement.UpdateMovement(ChaseSpeed, this.CurrentPlatform);
         }
+    }
+
+    public void SetRespawnPoint(Vector2 respawnPoint)
+    {
+        this.transform.position = respawnPoint;
+    }
+
+    /// <summary>
+    /// Finds a respawn point based on a platform
+    /// </summary>
+    /// <returns>a random respawn point</returns>
+    public Vector2 GetRandomRespawnPoint()
+    {
+        Platform randomPlatform = this.graph.GetRandomPlatform();
+        return randomPlatform.GetValidPoint();
     }
 }

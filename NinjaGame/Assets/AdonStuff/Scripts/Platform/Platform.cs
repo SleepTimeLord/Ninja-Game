@@ -9,6 +9,11 @@ using UnityEngine;
 public class Platform : MonoBehaviour
 {
     /// <summary>
+    /// A reference to the platform's collider
+    /// </summary>
+    [SerializeField] private Collider2D platformCollider;
+
+    /// <summary>
     /// A reference to the TransitionalPlatform component, if a platform contains one
     /// </summary>
     private TransitionalPlatform transitionalComp;
@@ -31,7 +36,7 @@ public class Platform : MonoBehaviour
     {
         get
         {
-            return this.GetComponent<Collider2D>().bounds;
+            return this.platformCollider.bounds;
         }
     }
 
