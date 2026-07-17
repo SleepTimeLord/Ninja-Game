@@ -24,7 +24,7 @@ public class CharacterController : MonoBehaviour
 
     string lastPath;
     JStateMachine machine;
-    public JState root;
+    public NinjaRoot root;
 
     void Awake()
     {
@@ -245,12 +245,12 @@ public class CharacterController : MonoBehaviour
 
     public void OnDash(InputAction.CallbackContext context)
     {
-        if (context.started && !ctx.isHidden) ctx.pressedDash = true;
+        if (context.started && !ctx.isHidden && Time.time >= ctx.nextTimeReady) ctx.pressedDash = true;
     }
 
     public void OnInteract(InputAction.CallbackContext context)
     {
-        if (ctx.isHidden && context.started) ctx.isAttacking = true;
+        if (ctx.isHidden && context.started && Time.time >= ctx.attackNextTimeReady) ctx.isAttacking = true;
         else if (!ctx.isHidden && ctx.nearestInteractable != null && context.started)
         {
             ICharacterInteractable interactable = ctx.nearestInteractable.GetComponent<ICharacterInteractable>();
