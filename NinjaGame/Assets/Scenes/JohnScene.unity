@@ -798,6 +798,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Platform
   platformCollider: {fileID: 187040324}
+--- !u!1 &216547378 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3751978745742448696, guid: ce2b9af390de48d4dbe19f0de8418742, type: 3}
+  m_PrefabInstance: {fileID: 8552320677933953417}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &246872244
 GameObject:
   m_ObjectHideFlags: 0
@@ -3448,6 +3453,7 @@ MonoBehaviour:
     sr: {fileID: 986108964}
     collider2d: {fileID: 1565995471}
     animator: {fileID: 986108963}
+    platformTracker: {fileID: 1565995472}
     health: 100
     maxHealth: 100
     healthSlider: {fileID: 819002487}
@@ -3478,6 +3484,7 @@ MonoBehaviour:
     phaseThruPlatform: JumpThruPlatform
     wallTag: Wall
     moveInput: {x: 0, y: 0}
+    currentPos: {x: 0, y: 0}
     nextTimeReady: 0
     attackNextTimeReady: 0
     isGrounded: 0
@@ -5621,6 +5628,18 @@ CapsuleCollider2D:
   m_CorrespondingSourceObject: {fileID: 3876496174642352766, guid: ce2b9af390de48d4dbe19f0de8418742, type: 3}
   m_PrefabInstance: {fileID: 8552320677933953417}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1565995472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 216547378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df05d17709b99ec479e995bb2e5a71bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlatformTracker
 --- !u!1 &1642131647
 GameObject:
   m_ObjectHideFlags: 0
@@ -7569,6 +7588,9 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 911636690}
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3751978745742448696, guid: ce2b9af390de48d4dbe19f0de8418742, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1565995472}
     - targetCorrespondingSourceObject: {fileID: 9073268127621710080, guid: ce2b9af390de48d4dbe19f0de8418742, type: 3}
       insertIndex: -1
       addedObject: {fileID: 986108966}

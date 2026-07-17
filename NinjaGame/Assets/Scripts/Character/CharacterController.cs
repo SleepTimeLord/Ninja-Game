@@ -24,7 +24,7 @@ public class CharacterController : MonoBehaviour
 
     string lastPath;
     JStateMachine machine;
-    JState root;
+    public JState root;
 
     void Awake()
     {
@@ -52,6 +52,8 @@ public class CharacterController : MonoBehaviour
         HandleWallDetection();
         HandlePhaseThruPlatforms();
 
+        ctx.currentPos = ctx.tr.position;
+
         // for statemachine on update i did fixed time because
         // we using physics so its better to just use fixedUpdate time
         // instead of update
@@ -67,6 +69,15 @@ public class CharacterController : MonoBehaviour
             lastPath = path;
         }
     }
+
+    public Platform CurrentPlatform
+    {
+        get
+        {
+            return this.ctx.platformTracker.CurrentPlatform;
+        }
+    }
+
     
     /// <summary>
     /// HandleSlashActivation/Deactivation is used
@@ -245,6 +256,7 @@ public class PlayerContext
     public SpriteRenderer sr;
     public Collider2D collider2d;
     public Animator animator;
+    [SerializeField] public PlatformTracker platformTracker;
     [Header("Player Health Settings")]
     public float health = 100f;
     public float maxHealth = 100f;
@@ -284,6 +296,7 @@ public class PlayerContext
     public string wallTag = "Wall";
     [Header("Live States")]
     public Vector2 moveInput;
+    public Vector2 currentPos;
     public float nextTimeReady = 0f;
     public float attackNextTimeReady = 0f;
     public bool isGrounded = false;

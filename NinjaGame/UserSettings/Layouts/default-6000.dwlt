@@ -119,7 +119,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 112}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 47
+  controlID: 53
   draggingID: 0
 --- !u!114 &6
 MonoBehaviour:
@@ -145,7 +145,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 112}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 48
+  controlID: 54
   draggingID: 0
 --- !u!114 &7
 MonoBehaviour:
@@ -171,7 +171,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 56}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 49
+  controlID: 55
   draggingID: 0
 --- !u!114 &8
 MonoBehaviour:
@@ -254,7 +254,7 @@ MonoBehaviour:
   - {fileID: 19}
   - {fileID: 12}
   m_Selected: 0
-  m_LastSelected: 0
+  m_LastSelected: 2
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -322,7 +322,7 @@ MonoBehaviour:
   m_LockTracker:
     m_IsLocked: 0
   m_LastSelectedObjectID:
-    m_Data: -154798
+    m_Data: 0
 --- !u!114 &13
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -436,7 +436,7 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 43
+    y: 0
     width: 1920
     height: 36
   m_SerializedDataModeController:
@@ -701,8 +701,8 @@ MonoBehaviour:
     m_TextWithWhitespace: "Game\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 307
-    y: 79
+    x: 308
+    y: 24
     width: 1057
     height: 555
   m_SerializedDataModeController:
@@ -751,7 +751,7 @@ MonoBehaviour:
     m_VAllowExceedBaseRangeMax: 1
     m_ScaleWithWindow: 0
     m_HSlider: 0
-    m_VSlider: 0
+    m_VSlider: 1
     m_IgnoreScrollWheelUntilClicked: 0
     m_EnableMouseInput: 1
     m_EnableSliderZoomHorizontal: 0
@@ -764,18 +764,18 @@ MonoBehaviour:
       y: 21
       width: 1057
       height: 534
-    m_Scale: {x: 0.49444443, y: 0.49444443}
-    m_Translation: {x: 528.5, y: 267}
+    m_Scale: {x: 0.540293, y: 0.540293}
+    m_Translation: {x: 528.5, y: 260.1383}
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
-      x: -1068.8765
-      y: -540
-      width: 2137.753
-      height: 1080
+      x: -978.173
+      y: -481.47638
+      width: 1956.346
+      height: 988.35266
     m_MinimalGUI: 1
   m_defaultScale: 0.49444443
   m_LastWindowPixelSize: {x: 1057, y: 555}
@@ -807,7 +807,7 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 79
+    y: 24
     width: 306
     height: 555
   m_SerializedDataModeController:
@@ -830,17 +830,9 @@ MonoBehaviour:
       m_LastClickedID:
         m_Data: 0
       m_ExpandedIDs:
-      - m_Data: -160116
-      - m_Data: -154840
-      - m_Data: -154798
-      - m_Data: -154686
-      - m_Data: -143132
-      - m_Data: -143100
-      - m_Data: -143068
-      - m_Data: -137566
-      - m_Data: -1344
-      - m_Data: -1342
-      - m_Data: 86784
+      - m_Data: -1350
+      - m_Data: -1348
+      - m_Data: 52494
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1518,9 +1510,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: 1325.5933, y: 604.42444, z: -0.000107354055}
+    m_Target: {x: -4.4400983, y: 1.1375419, z: -0.00009247056}
     speed: 2
-    m_Value: {x: 1325.5933, y: 604.42444, z: -0.000107354055}
+    m_Value: {x: -4.4400983, y: 1.1375419, z: -0.00009247056}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1571,9 +1563,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 912.7455
+    m_Target: 4.6877594
     speed: 2
-    m_Value: 912.7455
+    m_Value: 4.6877594
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -1629,7 +1621,7 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 660
+    y: 605
     width: 1365
     height: 374
   m_SerializedDataModeController:
@@ -1656,7 +1648,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/TextMesh Pro/Resources/Fonts & Materials
+    - Assets/AdonStuff/Scripts/Enemy/Core
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -1666,32 +1658,27 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/TextMesh Pro/Resources/Fonts & Materials
+  - Assets/AdonStuff/Scripts/Enemy/Core
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Projects\Ninja-Game\NinjaGame
   m_LockTracker:
     m_IsLocked: 0
   m_LastLocalAssetsSearchArea: 1
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 30}
+    scrollPos: {x: 0, y: 0}
     m_SelectedIDs:
-    - m_Data: 85572
+    - m_Data: 53586
     m_LastClickedID:
-      m_Data: 85572
+      m_Data: 53586
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 52834
-    - m_Data: 52836
-    - m_Data: 52838
-    - m_Data: 52840
-    - m_Data: 52842
-    - m_Data: 52844
-    - m_Data: 52846
-    - m_Data: 57966
-    - m_Data: 59932
-    - m_Data: 85566
-    - m_Data: 85584
-    - m_Data: 1000000000
+    - m_Data: 53150
+    - m_Data: 53152
+    - m_Data: 53154
+    - m_Data: 53156
+    - m_Data: 53158
+    - m_Data: 53160
+    - m_Data: 53162
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1725,13 +1712,13 @@ MonoBehaviour:
       m_Data: 0
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 52834
-    - m_Data: 52836
-    - m_Data: 52838
-    - m_Data: 52840
-    - m_Data: 52842
-    - m_Data: 52844
-    - m_Data: 52846
+    - m_Data: 53150
+    - m_Data: 53152
+    - m_Data: 53154
+    - m_Data: 53156
+    - m_Data: 53158
+    - m_Data: 53160
+    - m_Data: 53162
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1759,9 +1746,10 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: []
+    m_SelectedInstanceIDs:
+    - m_Data: 52656
     m_LastClickedEntityId:
-      m_Data: 0
+      m_Data: 52656
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs:
     - m_Data: 54582
@@ -1856,8 +1844,8 @@ MonoBehaviour:
     m_TextWithWhitespace: "Inspector\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 1366
-    y: 79
+    x: 1367
+    y: 24
     width: 553
     height: 955
   m_SerializedDataModeController:
