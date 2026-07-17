@@ -32,8 +32,6 @@ public class CharacterController : MonoBehaviour
         root = new NinjaRoot(null, ctx);
         var builder = new JStateMachineBuilder(root);
         machine = builder.Build();
-
-        ctx.ModifyHealth(-14);
     }
 
     static string StatePath(JState s)
@@ -78,7 +76,28 @@ public class CharacterController : MonoBehaviour
         }
     }
 
-    
+    // debugging
+    // private void OnCollisionEnter2D(Collision2D collision)
+    // {
+    //     if (collision.gameObject.CompareTag("Enemy"))
+    //     {
+    //         TakeDamage(50, collision.gameObject.transform.position);
+    //     }
+    // }
+
+
+    /// <summary>
+    /// Call this from the character controller if you want 
+    /// the player to take damage. Make sure the amount is 
+    /// always positive and damagePos helps determine the 
+    /// direction that the player will be knocked back
+    /// </summary>
+    public void TakeDamage(float amount, Vector2 damagePos)
+    {
+        ctx.damagePos = damagePos;
+        ctx.ModifyHealth(-amount);
+    }
+
     /// <summary>
     /// HandleSlashActivation/Deactivation is used
     /// as an Animation event in the "Ninja_SneakAttack"
@@ -288,6 +307,10 @@ public class PlayerContext
     [Header("Sneak Attack Settings")]
     public float sneakAttackCooldown = 5f;
     public float sneakAttackDuration = 0.30f;
+    [Header("Take Damage Settings")]
+    public float damagedDuration = 0.3f;
+    public float knockbackStrenth = 0.4f;
+    public Vector2 damagePos;
     public GameObject slashGO;
     [Header("Collision & Layers Settings")]
     public string groundTag = "Platform";
@@ -307,6 +330,8 @@ public class PlayerContext
     public float previousWallDirection = 0f;
     public bool isHidden = false;
     public bool isAttacking = false;
+    public bool isDamaged = false;
+    public bool isDead = false;
     public GameObject nearestInteractable;
     [Header("Animations")]
     public string currentAnimState;
@@ -322,6 +347,8 @@ public class PlayerContext
     public string wsL = "Ninja_WS_L";
     public string wsR = "Ninja_WS_R";
     public string sneakAttack = "Ninja_SneakAttack";
+    public string ninjaDamaged = "Ninja_Damaged";
+    public string ninjaDeath = "Ninja_Death";
 
     public void ChangeAnimationState(string newState, bool canPlayAgain)
     {
@@ -339,8 +366,11 @@ public class PlayerContext
 
     public void ModifyHealth(float amount)
     {
+        if (amount < 0) isDamaged = true;
         health = Mathf.Clamp(health + amount, 0, maxHealth);
         healthSlider.maxValue = maxHealth;
         healthSlider.value = health;
+
+        if (health == 0) isDead = true;
     }
 }

@@ -479,6 +479,95 @@ public class SneakAttack : JState
 }
 
 /// <summary>
+/// SneakAttack state makes the ninja get 
+/// knocked back and prevents them from taking
+/// damage until knockback is finished
+/// </summary>
+public class TakeDamage : JState
+{
+    readonly PlayerContext ctx;
+    float damagedEndTime;
+
+    public TakeDamage(JStateMachine m, JState parent, PlayerContext ctx) : base (m, parent)
+    {
+        this.ctx = ctx;
+    }
+
+    protected override void OnEnter()
+    {
+        // player cant be attacked in this state
+        ctx.modelGo.tag = "Undamagable";
+        // direction to be knocked back in
+        Vector2 knockbackDir = (ctx.currentPos - ctx.damagePos).normalized;
+        ctx.ChangeAnimationState(ctx.ninjaDamaged, false);
+
+        
+        // Apply the force
+        ctx.rb.AddForce(knockbackDir * ctx.knockbackStrenth, ForceMode2D.Impulse);
+        
+        // start timer for damage knockback time
+        damagedEndTime = Time.time + ctx.damagedDuration;
+    }
+
+    protected override void OnExit()
+    {
+        ctx.tr.gameObject.tag = "Player";
+    }
+
+    protected override JState GetTransition()
+    {
+        // keep them trapped in this state until the timer ends
+        if (Time.time < damagedEndTime) return null;
+
+        // once the timer ends goes to grounded state or airborne
+        return ctx.isGrounded ? ((NinjaRoot)Parent).Grounded : ((NinjaRoot)Parent).Airborne;
+    }
+}
+
+/// <summary>
+/// Death state makes the ninja explode
+/// after, it goes to the lose screen
+/// </summary>
+public class Death : JState
+{
+    readonly PlayerContext ctx;
+    float deathEndTime;
+
+    public Death(JStateMachine m, JState parent, PlayerContext ctx) : base (m, parent)
+    {
+        this.ctx = ctx;
+    }
+
+    protected override void OnEnter()
+    {
+        // makes it so that you are undamagable and physics is paused
+        // so you dont get launched when localScale goes up to 11
+        ctx.modelGo.tag = "Undamagable";
+        ctx.rb.simulated = false;
+        ctx.rb.transform.localScale = new Vector3(11,11,11);
+        // makes the ninja explode
+        ctx.ChangeAnimationState(ctx.ninjaDeath, false);
+        
+        // time before it switches to the lose screen
+        deathEndTime = Time.time + 1f;
+    }
+
+    protected override void OnExit()
+    {
+        ctx.tr.gameObject.tag = "Player";
+    }
+
+    protected override JState GetTransition()
+    {
+        // keep them trapped in this state until the timer ends
+        if (Time.time < deathEndTime) return null;
+
+        // once the timer ends go to death screen
+        return null;
+    }
+}
+
+/// <summary>
 /// NinjaRoot state is the root state and is the parent to
 /// the Grounded, Airborne, WallCling, Dash, and WallJump States
 /// this state basically is used for handling which state to go to.
@@ -492,6 +581,8 @@ public class NinjaRoot : JState
     public readonly WallJump WallJump;
     public readonly Hidden Hidden;
     public readonly SneakAttack SneakAttack;
+    public readonly TakeDamage TakeDamage;
+    public readonly Death Death;
     readonly PlayerContext ctx;
 
     public NinjaRoot(JStateMachine m, PlayerContext ctx) : base(m, null)
@@ -504,29 +595,45 @@ public class NinjaRoot : JState
         WallJump = new WallJump(m, this, ctx);
         Hidden = new Hidden(m, this, ctx);
         SneakAttack = new SneakAttack(m, this, ctx);
+        TakeDamage = new TakeDamage(m, this, ctx);
+        Death = new Death(m, this, ctx);
     }
 
     // always start on the ground
     protected override JState GetInitialState() => Grounded;
 
-    protected override JState GetTransition()
+protected override JState GetTransition()
     {
-        if (ctx.pressedDash && !ctx.isHidden)
+        // if dead, transition to Death and block everything else
+        if (ctx.isDead)
+        {
+            // if we aren't in the Death state yet, transition to it
+            // if we already are, return null to stay in it
+            return ActiveChild != Death ? Death : null;
+        }
+
+        if (ctx.pressedDash && !ctx.isHidden && ActiveChild != TakeDamage)
         {
             ctx.pressedDash = false;
             if (Time.time >= ctx.nextTimeReady) return Dash;
         }
 
-        // maybe implement this later
-        bool touchingPrevWall = ctx.isTouchingWall && (ctx.previousWallDirection == ctx.wallDirection);
-
-        // this prevents dashing and walljump to be cancelled or interupted
-        if (ActiveChild == Dash || (ActiveChild == WallJump) || (ActiveChild == SneakAttack)) return null; 
+        // this prevents dashing, walljump, sneak attack, and damage from being cancelled
+        if (ActiveChild == Dash || ActiveChild == WallJump || ActiveChild == SneakAttack || ActiveChild == TakeDamage) 
+        {
+            return null; 
+        }
 
         if (ctx.isHidden && ActiveChild != Hidden)
         {
             if (ctx.nearestInteractable == null) ctx.isHidden = false;
             else return Hidden;
+        }
+
+        if (ctx.isDamaged)
+        {
+            ctx.isDamaged = false;
+            return TakeDamage;
         }
 
         if (!ctx.isHidden)

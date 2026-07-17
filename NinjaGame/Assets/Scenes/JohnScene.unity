@@ -3476,6 +3476,9 @@ MonoBehaviour:
     leftSideOffset: 0.2
     sneakAttackCooldown: 1
     sneakAttackDuration: 0.5
+    damagedDuration: 0.4
+    knockbackStrenth: 7
+    damagePos: {x: 0, y: 0}
     slashGO: {fileID: 911636688}
     groundTag: Platform
     groundLayer:
@@ -3495,6 +3498,8 @@ MonoBehaviour:
     previousWallDirection: 0
     isHidden: 0
     isAttacking: 0
+    isDamaged: 0
+    isDead: 0
     nearestInteractable: {fileID: 0}
     currentAnimState: 
     idle: Ninja_Idle
@@ -3509,6 +3514,8 @@ MonoBehaviour:
     wsL: Ninja_WS_L
     wsR: Ninja_WS_R
     sneakAttack: Ninja_SneakAttack
+    ninjaDamaged: Ninja_Damaged
+    ninjaDeath: Ninja_Death
 --- !u!114 &986108967
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7454,6 +7461,10 @@ PrefabInstance:
       propertyPath: m_FlipX
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2369216412836635578, guid: ce2b9af390de48d4dbe19f0de8418742, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3751978745742448696, guid: ce2b9af390de48d4dbe19f0de8418742, type: 3}
       propertyPath: m_Name
       value: Ninja
@@ -7577,6 +7588,10 @@ PrefabInstance:
     - target: {fileID: 8704498355466722849, guid: ce2b9af390de48d4dbe19f0de8418742, type: 3}
       propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 9073268127621710080, guid: ce2b9af390de48d4dbe19f0de8418742, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}

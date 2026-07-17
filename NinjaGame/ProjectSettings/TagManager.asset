@@ -11,6 +11,7 @@ TagManager:
   - EnemyHurtBox
   - Wall
   - Phased
+  - Undamagable
   layers:
   - Default
   - TransparentFX

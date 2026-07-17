@@ -6,6 +6,7 @@ public class SlashTrigger : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
+            // put the enemy death trigger here!!!!
             Debug.Log("enemy dead");
         }
     }
