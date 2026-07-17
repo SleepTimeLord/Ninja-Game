@@ -27,10 +27,6 @@ public class CharacterController : MonoBehaviour
 
     void Awake()
     {
-        ctx.rb = GetComponent<Rigidbody2D>();
-        ctx.tr = transform;
-        ctx.collider2d = GetComponent<Collider2D>();
-
         // initializes statemachine
         root = new NinjaRoot(null, ctx);
         var builder = new JStateMachineBuilder(root);
@@ -49,8 +45,8 @@ public class CharacterController : MonoBehaviour
 
     void FixedUpdate()
     {
-        IsGrounded();
-        DetectWall();
+        HandleGrounded();
+        HandleWallDetection();
         HandlePhaseThruPlatforms();
 
         // for statemachine on update i did fixed time because
@@ -68,10 +64,28 @@ public class CharacterController : MonoBehaviour
             lastPath = path;
         }
     }
+    
+    /// <summary>
+    /// HandleSlashActivation/Deactivation is used
+    /// as an Animation event in the "Ninja_SneakAttack"
+    /// Animation
+    /// </summary>
+    public void HandleSlashActivation()
+    {
+        Debug.Log("Activated slash go");
+        ctx.slashGO.SetActive(true);
+    }
+
+    public void HandleSlashDeactivation()
+    {
+        Debug.Log("Deactivated slash go");
+        ctx.slashGO.SetActive(false);
+    }
+    
     /// <summary>
     /// if is on ground... its pretty self explainatory
     /// </summary>
-    private void IsGrounded()
+    private void HandleGrounded()
     {
         if (ctx.collider2d == null) return;
 
@@ -89,7 +103,7 @@ public class CharacterController : MonoBehaviour
     /// makes a box collider in the direction player is going
     /// and checks if touching wall.
     /// </summary>
-    private void DetectWall()
+    private void HandleWallDetection()
     {
         
         Bounds charBounds = ctx.collider2d.bounds;
@@ -203,12 +217,15 @@ public class CharacterController : MonoBehaviour
 
     public void OnInteract(InputAction.CallbackContext context)
     {
-        if (ctx.nearestInteractable != null && context.started)
+        if (ctx.isHidden && context.started) ctx.isAttacking = true;
+        else if (!ctx.isHidden && ctx.nearestInteractable != null && context.started)
         {
             ICharacterInteractable interactable = ctx.nearestInteractable.GetComponent<ICharacterInteractable>();
 
             interactable.Interact();
         }
+
+
     }
     #endregion
 }
@@ -221,11 +238,11 @@ public class CharacterController : MonoBehaviour
 [Serializable]
 public class PlayerContext
 {
-    [HideInInspector] public Rigidbody2D rb;
-    [HideInInspector] public Transform tr;
+    public Rigidbody2D rb;
+    public Transform tr;
     public GameObject modelGo;
     public SpriteRenderer sr;
-    [HideInInspector] public Collider2D collider2d;
+    public Collider2D collider2d;
     public Animator animator;
 
     [Header("Player Movement Settings")]
@@ -252,16 +269,19 @@ public class PlayerContext
     public float wallJumpTime = 1f;
     public float rightSideOffset = .5f;
     public float leftSideOffset = 1f;
-
+    [Header("Sneak Attack Settings")]
+    public float sneakAttackCooldown = 5f;
+    public float sneakAttackDuration = 0.30f;
+    public GameObject slashGO;
     [Header("Collision & Layers Settings")]
     public string groundTag = "Platform";
     public LayerMask groundLayer;
     public string phaseThruPlatform = "JumpThruPlatform";
     public string wallTag = "Wall";
-
     [Header("Live States")]
     public Vector2 moveInput;
     public float nextTimeReady = 0f;
+    public float attackNextTimeReady = 0f;
     public bool isGrounded = false;
     public bool isTouchingWall = false;
     public float wallDirection = 0f;
@@ -284,6 +304,7 @@ public class PlayerContext
     public string dashR = "Ninja_Dash_Right";
     public string wsL = "Ninja_WS_L";
     public string wsR = "Ninja_WS_R";
+    public string sneakAttack = "Ninja_SneakAttack";
 
     public void ChangeAnimationState(string newState, bool canPlayAgain)
     {

@@ -422,10 +422,62 @@ public class Hidden : JState
             return ((NinjaRoot)Parent).Airborne;
         }
 
+        if (ctx.isAttacking)
+        {
+            ctx.isAttacking = false;
+
+            if (Time.time >= ctx.attackNextTimeReady) return((NinjaRoot)Parent).SneakAttack;
+        }
+
         return null;
     }
 }
 
+/// <summary>
+/// SneakAttack state jump out of your hiding
+/// spot and do big slash that kills all the 
+/// enemies around the slash
+/// </summary>
+public class SneakAttack : JState
+{
+    readonly PlayerContext ctx;
+    float attackEndTime;
+
+    public SneakAttack(JStateMachine m, JState parent, PlayerContext ctx) : base (m, parent)
+    {
+        this.ctx = ctx;
+    }
+
+    protected override void OnEnter()
+    {
+        // plays slashing animation
+        ctx.ChangeAnimationState(ctx.sneakAttack, false);
+
+        // starts the timer for cooldown for dashing
+        ctx.attackNextTimeReady = Time.time + ctx.sneakAttackCooldown;
+        attackEndTime = Time.time + ctx.sneakAttackDuration;
+        // flip character to left to keep it consistant with character model
+        // also slightly brings character model to the left so its in line with the hiding spot
+        ctx.FlipCharacter(false);
+        ctx.modelGo.transform.localPosition = new Vector3(0.5f,0f,0);
+    }
+
+    protected override void OnExit()
+    {
+        // make it resets the model and attack == false 
+        // set the slashing GO to false in case animation event doesnt trigger
+        ctx.isAttacking = false;
+        ctx.modelGo.transform.localPosition = Vector3.zero;
+        ctx.slashGO.SetActive(false); 
+    }
+
+    protected override JState GetTransition()
+    {
+        // doesnt exit sneak attack state until finished
+        if (Time.time < attackEndTime) return null;
+        return ctx.isGrounded ? ((NinjaRoot)Parent).Grounded : ((NinjaRoot)Parent).Airborne;
+    }
+}
 
 /// <summary>
 /// NinjaRoot state is the root state and is the parent to
@@ -440,6 +492,7 @@ public class NinjaRoot : JState
     public readonly WallCling WallCling;
     public readonly WallJump WallJump;
     public readonly Hidden Hidden;
+    public readonly SneakAttack SneakAttack;
     readonly PlayerContext ctx;
 
     public NinjaRoot(JStateMachine m, PlayerContext ctx) : base(m, null)
@@ -451,6 +504,7 @@ public class NinjaRoot : JState
         WallCling = new WallCling(m, this, ctx);
         WallJump = new WallJump(m, this, ctx);
         Hidden = new Hidden(m, this, ctx);
+        SneakAttack = new SneakAttack(m, this, ctx);
     }
 
     // always start on the ground
@@ -468,9 +522,13 @@ public class NinjaRoot : JState
         bool touchingPrevWall = ctx.isTouchingWall && (ctx.previousWallDirection == ctx.wallDirection);
 
         // this prevents dashing and walljump to be cancelled or interupted
-        if (ActiveChild == Dash || (ActiveChild == WallJump)) return null; 
+        if (ActiveChild == Dash || (ActiveChild == WallJump) || (ActiveChild == SneakAttack)) return null; 
 
-        if (ctx.isHidden && ActiveChild != Hidden) return Hidden;
+        if (ctx.isHidden && ActiveChild != Hidden)
+        {
+            if (ctx.nearestInteractable == null) ctx.isHidden = false;
+            else return Hidden;
+        }
 
         if (!ctx.isHidden)
         {

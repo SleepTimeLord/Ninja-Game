@@ -25,6 +25,9 @@ public class JTrashcanTrigger : MonoBehaviour, ICharacterInteractable
 
     private void OnTriggerExit2D(Collider2D other) 
     {
-        cc.ctx.nearestInteractable = null;
+        if (other.gameObject.CompareTag("Player"))
+        {
+            cc.ctx.nearestInteractable = null;
+        }
     }
 }

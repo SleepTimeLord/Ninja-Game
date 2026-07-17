@@ -57,6 +57,7 @@
     <Compile Include="Assets\AdonStuff\Scripts\Enemy\Core\Enemy.cs" />
     <Compile Include="Assets\Scripts\Character\ICharacterInteractable.cs" />
     <Compile Include="Assets\AdonStuff\Scripts\Platform\PlatformNavigator.cs" />
+    <Compile Include="Assets\Scripts\Character\SlashTrigger.cs" />
     <Compile Include="Assets\AdonStuff\Scripts\Enemy\Core\PlatformTracker.cs" />
     <Compile Include="Assets\AdonStuff\Scripts\Platform\Platform.cs" />
     <Compile Include="Assets\Scripts\JohnStateMachine\JStateMachine.cs" />
