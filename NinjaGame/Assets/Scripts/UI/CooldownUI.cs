@@ -7,7 +7,7 @@ public enum AbilityType
     SneakAttack
 }
 
-public class DashCooldownUI : MonoBehaviour
+public class CooldownUI : MonoBehaviour
 {
     [Header("References")]
     public CharacterController cc;

@@ -53,11 +53,11 @@
     <Compile Include="Assets\AdonStuff\Scripts\Platform\TransitionalPlatform.cs" />
     <Compile Include="Assets\AdonStuff\Scripts\Platform\PlatformTransition.cs" />
     <Compile Include="Assets\Scripts\JohnStateMachine\JTransitionSequencer.cs" />
+    <Compile Include="Assets\Scripts\UI\CooldownUI.cs" />
     <Compile Include="Assets\AdonStuff\Scripts\Enemy\Core\EnemyMovement.cs" />
     <Compile Include="Assets\AdonStuff\Scripts\Enemy\Core\Enemy.cs" />
     <Compile Include="Assets\Scripts\Character\ICharacterInteractable.cs" />
     <Compile Include="Assets\AdonStuff\Scripts\Platform\PlatformNavigator.cs" />
-    <Compile Include="Assets\Scripts\UI\DashCooldownUI.cs" />
     <Compile Include="Assets\Scripts\Character\SlashTrigger.cs" />
     <Compile Include="Assets\AdonStuff\Scripts\Enemy\Core\PlatformTracker.cs" />
     <Compile Include="Assets\AdonStuff\Scripts\Platform\Platform.cs" />
@@ -73,6 +73,7 @@
     <Compile Include="Assets\Scripts\HidingSpots\JTrashcanTrigger.cs" />
     <Compile Include="Assets\AdonStuff\Scripts\Enemy\State Machine\EnemyState.cs" />
     <Compile Include="Assets\Scripts\Character\NinjaRoot.cs" />
+    <Compile Include="Assets\Scripts\SceneController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

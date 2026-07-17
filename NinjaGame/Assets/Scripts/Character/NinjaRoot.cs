@@ -273,6 +273,7 @@ public class WallCling : JState
         // freeze x position so doesnt move from the wall and 
         // changes the animation and flips the character depending on
         // which side you are on
+        ctx.jumpCount = 1;
         ctx.rb.constraints |= RigidbodyConstraints2D.FreezePositionX;
         ctx.ChangeAnimationState(ctx.wallDirection > 0 ? ctx.wsR : ctx.wsL, false);
         ctx.FlipCharacter(ctx.wallDirection > 0 ? false : true);
