@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 
 /// <summary>
@@ -31,6 +32,8 @@ public class CharacterController : MonoBehaviour
         root = new NinjaRoot(null, ctx);
         var builder = new JStateMachineBuilder(root);
         machine = builder.Build();
+
+        ctx.ModifyHealth(-14);
     }
 
     static string StatePath(JState s)
@@ -202,7 +205,7 @@ public class CharacterController : MonoBehaviour
     #region input system methods
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (context.started) ctx.pressedJump = true;
+        if (context.started && ctx.avaliableJumps > ctx.jumpCount) ctx.pressedJump = true;
     }
 
     public void OnMovement(InputAction.CallbackContext context)
@@ -224,8 +227,6 @@ public class CharacterController : MonoBehaviour
 
             interactable.Interact();
         }
-
-
     }
     #endregion
 }
@@ -244,7 +245,10 @@ public class PlayerContext
     public SpriteRenderer sr;
     public Collider2D collider2d;
     public Animator animator;
-
+    [Header("Player Health Settings")]
+    public float health = 100f;
+    public float maxHealth = 100f;
+    public Slider healthSlider;
     [Header("Player Movement Settings")]
     public float speed = 8f;
     public float startAcceleration = 60f;
@@ -318,5 +322,12 @@ public class PlayerContext
     {
         isRight = flip;
         sr.flipX = flip;
+    }
+
+    public void ModifyHealth(float amount)
+    {
+        health = Mathf.Clamp(health + amount, 0, maxHealth);
+        healthSlider.maxValue = maxHealth;
+        healthSlider.value = health;
     }
 }

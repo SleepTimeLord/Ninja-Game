@@ -161,11 +161,11 @@ public class Grounded : JState
     protected override JState GetTransition()
     {
         // handles jump and if he did jump then go to the airborne state
-        bool wantsJump = ctx.pressedJump;
-        if (wantsJump) ctx.pressedJump = false;
 
-        if (wantsJump && ctx.jumpCount < ctx.avaliableJumps)
+
+        if (ctx.pressedJump && ctx.jumpCount < ctx.avaliableJumps)
         {
+            ctx.pressedJump = false;
             ctx.rb.linearVelocity = new Vector2(ctx.rb.linearVelocity.x, 0f);
             ctx.rb.AddForce(Vector2.up * ctx.jumpForce, ForceMode2D.Impulse);
             ctx.jumpCount++;
@@ -202,11 +202,9 @@ public class Airborne : JState
     protected override JState GetTransition()
     {
         // handles the double jump and uses the airJumpForce instead of the normal jump force
-        bool wantsJump = ctx.pressedJump;
-        if (wantsJump) ctx.pressedJump = false;
-
-        if (wantsJump && ctx.jumpCount < ctx.avaliableJumps)
+        if (ctx.pressedJump && ctx.jumpCount < ctx.avaliableJumps)
         {
+            ctx.pressedJump = false;
             ctx.ChangeAnimationState(ctx.isRight ? ctx.jumpingR : ctx.jumpingL, true);
             ctx.rb.linearVelocity = new Vector2(ctx.rb.linearVelocity.x, 0f);
             ctx.rb.AddForce(Vector2.up * ctx.airJumpForce, ForceMode2D.Impulse);
@@ -396,6 +394,7 @@ public class Hidden : JState
         ctx.rb.linearVelocity = Vector2.zero;
         ctx.tr.SetParent(ctx.nearestInteractable.transform);
         ctx.tr.localPosition = new Vector3(.5f,0,0);
+        ctx.jumpCount = 0;
     }
 
     // only way to exit this state is to jump out or attack
