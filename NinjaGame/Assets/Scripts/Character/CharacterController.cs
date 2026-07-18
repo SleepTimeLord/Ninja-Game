@@ -152,7 +152,7 @@ public class CharacterController : MonoBehaviour
         // makes a box collider that is in front of the character collider
         Vector2 checkCenter = new Vector2(charBounds.center.x + direction * (charBounds.extents.x + 0.1f), charBounds.center.y);
         Vector2 checkSize = new Vector2(0.15f, charBounds.size.y * 0.9f);
-        Collider2D hit = Physics2D.OverlapBox(checkCenter, checkSize, 0);
+        Collider2D hit = Physics2D.OverlapBox(checkCenter, checkSize, 0f, ctx.wallLayer);
 
         // toggles true if touching wall
         ctx.isTouchingWall = hit != null && hit.gameObject.CompareTag(ctx.wallTag);
@@ -315,6 +315,7 @@ public class PlayerContext
     [Header("Collision & Layers Settings")]
     public string groundTag = "Platform";
     public LayerMask groundLayer;
+    public LayerMask wallLayer;
     public string phaseThruPlatform = "JumpThruPlatform";
     public string wallTag = "Wall";
     [Header("Live States")]
