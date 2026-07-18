@@ -106,7 +106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30695aa030a72b8448293884a670832f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Trashcan
-  interactable: {fileID: 2470809278044673768}
+  tracker: {fileID: 3312456436641108211}
 --- !u!1 &3227828374410022665
 GameObject:
   m_ObjectHideFlags: 0
@@ -118,7 +118,6 @@ GameObject:
   - component: {fileID: 8076920363951130340}
   - component: {fileID: 7219364056148743251}
   - component: {fileID: 3551996570657181924}
-  - component: {fileID: 2470809278044673768}
   - component: {fileID: 3312456436641108211}
   m_Layer: 0
   m_Name: trashcan_0
@@ -223,20 +222,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &2470809278044673768
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3227828374410022665}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 374ce3401d9a1ce46bc2f16b34540324, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyInteractable
-  tracker: {fileID: 3312456436641108211}
-  spriteTransform: {fileID: 8076920363951130340}
 --- !u!114 &3312456436641108211
 MonoBehaviour:
   m_ObjectHideFlags: 0
