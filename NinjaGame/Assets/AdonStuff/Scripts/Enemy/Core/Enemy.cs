@@ -204,14 +204,4 @@ public class Enemy : MonoBehaviour
             this.movement.UpdateMovement(ChaseSpeed, this.CurrentPlatform);
         }
     }
-
-    /// <summary>
-    /// The actions to occur once the enemy dies
-    /// </summary>
-    public void Die()
-    {
-        this.movement.ClearPathParams();
-        this.gameObject.SetActive(false);
-        this.enabled = false;
-    }
 }

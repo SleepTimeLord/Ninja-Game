@@ -1,21 +1,13 @@
-using System;
 using UnityEngine;
 
 public class SlashTrigger : MonoBehaviour
 {
-    /// <summary>
-    /// Invoked once the player hits an enemy
-    /// </summary>
-    public event Action<Enemy> EnemyHit;
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            Enemy confirmedEnemy = collision.GetComponentInParent<Enemy>();
-            Debug.Log(confirmedEnemy == null);
-
-            this.EnemyHit.Invoke(confirmedEnemy);
+            // put the enemy death trigger here!!!!
+            Debug.Log("enemy dead");
         }
     }
 }

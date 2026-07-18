@@ -70,6 +70,13 @@ public class Platform : MonoBehaviour
         }
 
         this.transitionalComp = GetComponent<TransitionalPlatform>();
+
+        // Made for debugging purposes. Will remove in post
+        if (transitionalComp != null)
+        {
+            SpriteRenderer renderer = GetComponentInChildren<SpriteRenderer>();
+            renderer.color = Color.blue;
+        }
     }
 
     /// <summary>
