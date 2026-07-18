@@ -76,10 +76,10 @@
     <Compile Include="Assets\AdonStuff\Scripts\Platform\Platform.cs" />
     <Compile Include="Assets\Scripts\JohnStateMachine\JStateMachine.cs" />
     <Compile Include="Assets\AdonStuff\Scripts\Enemy\State Machine\ChaseState.cs" />
-    <Compile Include="Assets\AdonStuff\Scripts\Interactable\EnemyInteractable.cs" />
     <Compile Include="Assets\Scripts\NextScene.cs" />
     <Compile Include="Assets\InputSystem_Actions.cs" />
     <Compile Include="Assets\Scripts\Character\CharacterController.cs" />
+    <Compile Include="Assets\AdonStuff\Scripts\Interactable\TrashcanContainer.cs" />
     <Compile Include="Assets\AdonStuff\Scripts\Platform\PlatformGraph.cs" />
     <Compile Include="Assets\Scripts\JohnStateMachine\JStateMachineBuilder.cs" />
     <Compile Include="Assets\AdonStuff\Scripts\Enemy\State Machine\EnemyStateMachine.cs" />
