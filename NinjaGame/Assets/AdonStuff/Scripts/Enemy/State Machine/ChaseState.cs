@@ -5,15 +5,21 @@ using UnityEngine;
 /// </summary>
 public class ChaseState : EnemyState
 {
-    public ChaseState(EnemyStateMachine stateMachine, Enemy enemy)
-        : base(stateMachine, enemy)
+    /// <summary>
+    /// Determines whether or not an enemy can get out of the state
+    /// </summary>
+    public override bool CanExit
     {
-        
+        get
+        {
+            return !this.enemy.IsInTransition;
+        }
     }
 
-    public override void CheckForTransition()
+    public ChaseState(Enemy enemy)
+        : base(enemy)
     {
-        throw new System.NotImplementedException();
+        
     }
 
     public override void Enter()

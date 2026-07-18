@@ -65,6 +65,20 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Returns whether a special transition is in progress
+    /// </summary>
+    public bool IsInTransition
+    {
+        get
+        {
+            return this.currentPathPlatformStep != null &&
+                (this.currentPathPlatformStep.Transition == 
+                PlatformTransition.TransitionType.JUMP ||
+                 this.currentPathPlatformStep.Transition == PlatformTransition.TransitionType.DROP);
+        }
+    }
+
 
     /// <summary>
     /// Called by the state machine to set a particular path 
@@ -183,11 +197,11 @@ public class EnemyMovement : MonoBehaviour
     /// <summary>
     /// Resets each path parameter to be blank, ready for another path
     /// </summary>
-    private void ClearPathParams()
+    public void ClearPathParams()
     {
         this.currentPathPlatformStep = null;
         this.finalDestination = Vector2.zero;
-        this.transitionProgress = -0f;
+        this.transitionProgress = 0f;
         this.specialTransitionStartPoint = Vector2.zero;
     }
 

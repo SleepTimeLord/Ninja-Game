@@ -22,17 +22,22 @@ public class Enemy : MonoBehaviour
     /// </summary>
     [SerializeField] private PlatformNavigator navigator;
 
-    [Header("Platform-Specifics")]
     /// <summary>
-    /// A reference to the graph used in the main game
+    /// A reference to the enemy's state machine
     /// </summary>
-    [SerializeField] private PlatformGraph graph;
+    [SerializeField] private EnemyStateMachine stateMachine;
 
     [Header("Sprite & Others")]
     /// <summary>
     /// A reference to an enemy's collider
     /// </summary>
     [SerializeField] private Collider2D spriteCollider;
+
+
+    /// <summary>
+    /// The scale of which the enemy should search
+    /// </summary>
+    public float searchScale;
 
     /// <summary>
     /// How fast the enemy is moving while chasing the player
@@ -43,6 +48,16 @@ public class Enemy : MonoBehaviour
     /// How fast the enemy is moving while wandering to a random spot
     /// </summary>
     private const float WanderSpeed = 2f;
+
+    /// <summary>
+    /// The reference to the current platform graph
+    /// </summary>
+    private PlatformGraph currentGraph;
+
+    /// <summary>
+    /// A reference to the manager controlling the enemy
+    /// </summary>
+    private EnemyManager manager;
 
 
     /// <summary>
@@ -75,6 +90,51 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Returns whether or not an enemy is in the middle of a transition
+    /// </summary>
+    public bool IsInTransition
+    {
+        get
+        {
+            return this.movement.IsInTransition;
+        }
+    }
+
+
+    /// <summary>
+    /// The actions the prefab should take when it's (re)introduced into the world
+    /// </summary>
+    /// <param name="graph">a reference to the platform graph that's being used by the 
+    /// manager</param>
+    /// <param name="isInWanderState">whether or not the initial state for the enemy will consist
+    /// of it wandering</param>
+    /// <param name="spawnPosition">The v</param>
+    public void Initialize(PlatformGraph graph, bool isInWanderState, Vector2 spawnPosition)
+    {
+        this.currentGraph = graph;
+        this.navigator.Graph = graph;
+
+        // The paths are reset and the init spawn position is given BEFORE the state changes
+        ResetEnemy(spawnPosition);
+
+        // Then the initial platform is found
+        this.platformTracker.FindPlatformBelow();
+
+        // Finally, start the behavior
+        this.stateMachine.ChangeState(
+            isInWanderState ? this.stateMachine.WanderState : this.stateMachine.ChaseState);
+    }
+
+    /// <summary>
+    /// Ensures that everything is reset to its default values
+    /// </summary>
+    /// <param name="spawnPosition">the position to which the enemy</param>
+    public void ResetEnemy(Vector2 spawnPosition)
+    {
+        this.movement.ClearPathParams();
+        this.transform.position = spawnPosition;
+    }
 
     /// <summary>
     /// Called by the wander state to kickstart the exclusive process involving wandering
@@ -87,26 +147,41 @@ public class Enemy : MonoBehaviour
          * For an enemy to wander it needs to first determine whether it's searching or 
          * if it's not. This is determined with a random value spin.
          */
-        // NOTE: This hasn't been implemented, so it's not too necessary yet
         /// <summary>
-        /// The odds of the enemy searching
+        /// The base odds of the enemy searching
         /// </summary>
-        const float BaseSearchChance = 0.55f;
+        const float BaseSearchChance = 0.35f;
 
-        /*
-         * There are (mainly) two parts to wandering: Going to a location, and waiting there.
-         * That will be determined here.
-         */
-        // First, a location to wander to should be calculated
-        Platform targetPlatform = this.graph.GetRandomPlatform();
-        Vector2 trueTargetLocation = targetPlatform.GetValidPoint();
-        Debug.Log($"Starting from platform {this.CurrentPlatform} to {targetPlatform.name}");
+        // Clamped so that the chance is never above 100
+        float searchChance = Mathf.Clamp01(BaseSearchChance * searchScale);
 
-        // Next, we can use this random platform to create a path
-        List<PlatformTransition> platformPath = this.navigator.SearchPath(this.CurrentPlatform, targetPlatform);
+        if (Random.value <= searchChance)
+        {
+            Debug.Log("Search successful");
+            return;
+        }
+        else
+        {
+            /*
+             * There are (mainly) two parts to wandering: Going to a location, and waiting there.
+             * That will be determined here.
+             */
+            // First, a location to wander to should be calculated
+            Platform targetPlatform = this.currentGraph.GetRandomPlatform();
+            Vector2 trueTargetLocation = targetPlatform.GetValidPoint();
+            Debug.Log($"Starting from platform {this.CurrentPlatform} to {targetPlatform.name}");
 
-        // Then we set that path for movement to begin
-        this.movement.SetPath(platformPath, trueTargetLocation);
+            if (this.CurrentPlatform == null)
+            {
+                Debug.LogWarning("The current platform is null");
+            }
+
+            // Next, we can use this random platform to create a path
+            List<PlatformTransition> platformPath = this.navigator.SearchPath(this.CurrentPlatform, targetPlatform);
+
+            // Then we set that path for movement to begin
+            this.movement.SetPath(platformPath, trueTargetLocation);
+        }
 
         // There isn't any more to do here, as the rest is handled directly in the WanderState
     }
@@ -115,8 +190,11 @@ public class Enemy : MonoBehaviour
     /// Called every frame. Updates the movement algorithm
     /// </summary>
     /// <param name="isInWanderState">whether or not the enemy is wandering</param>
-    public void Tick(bool isInWanderState)
-    { 
+    /// <param name="updatedSearchScale">the new search scale that should be reapplied</param>
+    public void Tick(bool isInWanderState, float updatedSearchScale)
+    {
+        this.searchScale = updatedSearchScale;
+
         if (isInWanderState)
         {
             this.movement.UpdateMovement(WanderSpeed, this.CurrentPlatform);
@@ -125,20 +203,5 @@ public class Enemy : MonoBehaviour
         {
             this.movement.UpdateMovement(ChaseSpeed, this.CurrentPlatform);
         }
-    }
-
-    public void SetRespawnPoint(Vector2 respawnPoint)
-    {
-        this.transform.position = respawnPoint;
-    }
-
-    /// <summary>
-    /// Finds a respawn point based on a platform
-    /// </summary>
-    /// <returns>a random respawn point</returns>
-    public Vector2 GetRandomRespawnPoint()
-    {
-        Platform randomPlatform = this.graph.GetRandomPlatform();
-        return randomPlatform.GetValidPoint();
     }
 }

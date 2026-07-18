@@ -6,14 +6,21 @@ using UnityEngine;
 public abstract class EnemyState
 {
     /// <summary>
-    /// A reference to the state machine the state is connected to
-    /// </summary>
-    protected EnemyStateMachine stateMachine;
-
-    /// <summary>
     /// The enemy that the state is representing
     /// </summary>
     protected Enemy enemy;
+
+
+    /// <summary>
+    /// Whether or not the enemy can exit a state at any given moment
+    /// </summary>
+    public virtual bool CanExit
+    {
+        get
+        {
+            return true;
+        }
+    }
 
 
     /// <summary>
@@ -22,9 +29,8 @@ public abstract class EnemyState
     /// <param name="stateMachine">a reference to the state machine the state will be 
     /// connected to</param>
     /// <param name="enemy">the enemy the state is doing all of this for</param>
-    protected EnemyState(EnemyStateMachine stateMachine, Enemy enemy)
+    protected EnemyState(Enemy enemy)
     {
-        this.stateMachine = stateMachine;
         this.enemy = enemy;
     }
 
@@ -43,9 +49,4 @@ public abstract class EnemyState
     /// The actions to occur before the state exits into another
     /// </summary>
     public abstract void Exit();
-
-    /// <summary>
-    /// The requirements for the Exit method to be called by the enemy
-    /// </summary>
-    public abstract void CheckForTransition();
 }
