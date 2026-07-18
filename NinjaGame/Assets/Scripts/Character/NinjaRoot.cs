@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using System;
 // statmachine for the ninja
 
 
@@ -161,11 +161,11 @@ public class Grounded : JState
     protected override JState GetTransition()
     {
         // handles jump and if he did jump then go to the airborne state
-        bool wantsJump = ctx.pressedJump;
-        if (wantsJump) ctx.pressedJump = false;
 
-        if (wantsJump && ctx.jumpCount < ctx.avaliableJumps)
+
+        if (ctx.pressedJump && ctx.jumpCount < ctx.avaliableJumps)
         {
+            ctx.pressedJump = false;
             ctx.rb.linearVelocity = new Vector2(ctx.rb.linearVelocity.x, 0f);
             ctx.rb.AddForce(Vector2.up * ctx.jumpForce, ForceMode2D.Impulse);
             ctx.jumpCount++;
@@ -202,11 +202,9 @@ public class Airborne : JState
     protected override JState GetTransition()
     {
         // handles the double jump and uses the airJumpForce instead of the normal jump force
-        bool wantsJump = ctx.pressedJump;
-        if (wantsJump) ctx.pressedJump = false;
-
-        if (wantsJump && ctx.jumpCount < ctx.avaliableJumps)
+        if (ctx.pressedJump && ctx.jumpCount < ctx.avaliableJumps)
         {
+            ctx.pressedJump = false;
             ctx.ChangeAnimationState(ctx.isRight ? ctx.jumpingR : ctx.jumpingL, true);
             ctx.rb.linearVelocity = new Vector2(ctx.rb.linearVelocity.x, 0f);
             ctx.rb.AddForce(Vector2.up * ctx.airJumpForce, ForceMode2D.Impulse);
@@ -368,6 +366,206 @@ public class Dash : JState
     }
 }
 
+/// <summary>
+/// Hidden state makes you hide in the hiding
+/// spot you interacted with.
+/// </summary>
+public class Hidden : JState
+{
+    public event Action OnPlayerHide;
+    public event Action OnPlayerLeave;
+    readonly PlayerContext ctx;
+    Animator hAnimator;
+
+    public Hidden(JStateMachine m, JState parent, PlayerContext ctx) : base (m, parent)
+    {
+        this.ctx = ctx;
+    }
+
+    protected override void OnEnter()
+    {
+        // makes the player hidden by disabling his sprite renderer
+        // then it makes the player a child of the trash and sets his
+        // pos to the trash so the camera centers on the hiding spot
+        hAnimator = ctx.nearestInteractable.GetComponentInChildren<Animator>();
+        hAnimator.Play("Ninja_Hiding");
+        OnPlayerHide?.Invoke();
+        ctx.sr.enabled = false;
+        ctx.rb.linearVelocity = Vector2.zero;
+        ctx.tr.SetParent(ctx.nearestInteractable.transform);
+        ctx.tr.localPosition = new Vector3(.5f,0,0);
+        ctx.jumpCount = 0;
+    }
+
+    // only way to exit this state is to jump out or attack
+    protected override void OnExit()
+    {
+        // reenables hiding spot and removes player as a child of the hiding spot
+        hAnimator.Play("Trash_Reg");
+        OnPlayerLeave?.Invoke();
+        ctx.sr.enabled = true;
+        ctx.isHidden = false;
+        ctx.tr.SetParent(null);
+    }
+
+    protected override JState GetTransition()
+    {
+        // handles jump and if he did jump then go to the airborne state
+        if (ctx.pressedJump)
+        {
+            ctx.sr.enabled = true;
+            ctx.pressedJump = false;
+            ctx.rb.linearVelocity = new Vector2(ctx.rb.linearVelocity.x, 0f);
+            ctx.rb.AddForce(Vector2.up * ctx.jumpForce, ForceMode2D.Impulse);
+            ctx.jumpCount++;
+            return ((NinjaRoot)Parent).Airborne;
+        }
+
+        if (ctx.isAttacking)
+        {
+            ctx.isAttacking = false;
+
+            if (Time.time >= ctx.attackNextTimeReady) return((NinjaRoot)Parent).SneakAttack;
+        }
+
+        return null;
+    }
+}
+
+/// <summary>
+/// SneakAttack state jump out of your hiding
+/// spot and do big slash that kills all the 
+/// enemies around the slash
+/// </summary>
+public class SneakAttack : JState
+{
+    readonly PlayerContext ctx;
+    float attackEndTime;
+
+    public SneakAttack(JStateMachine m, JState parent, PlayerContext ctx) : base (m, parent)
+    {
+        this.ctx = ctx;
+    }
+
+    protected override void OnEnter()
+    {
+        // plays slashing animation
+        ctx.ChangeAnimationState(ctx.sneakAttack, false);
+
+        // starts the timer for cooldown for dashing
+        ctx.attackNextTimeReady = Time.time + ctx.sneakAttackCooldown;
+        attackEndTime = Time.time + ctx.sneakAttackDuration;
+        // flip character to left to keep it consistant with character model
+        // also slightly brings character model to the left so its in line with the hiding spot
+        ctx.FlipCharacter(false);
+        ctx.modelGo.transform.localPosition = new Vector3(0.5f,0f,0);
+    }
+
+    protected override void OnExit()
+    {
+        // make it resets the model and attack == false 
+        // set the slashing GO to false in case animation event doesnt trigger
+        ctx.isAttacking = false;
+        ctx.modelGo.transform.localPosition = Vector3.zero;
+        ctx.slashGO.SetActive(false); 
+    }
+
+    protected override JState GetTransition()
+    {
+        // doesnt exit sneak attack state until finished
+        if (Time.time < attackEndTime) return null;
+        return ctx.isGrounded ? ((NinjaRoot)Parent).Grounded : ((NinjaRoot)Parent).Airborne;
+    }
+}
+
+/// <summary>
+/// SneakAttack state makes the ninja get 
+/// knocked back and prevents them from taking
+/// damage until knockback is finished
+/// </summary>
+public class TakeDamage : JState
+{
+    readonly PlayerContext ctx;
+    float damagedEndTime;
+
+    public TakeDamage(JStateMachine m, JState parent, PlayerContext ctx) : base (m, parent)
+    {
+        this.ctx = ctx;
+    }
+
+    protected override void OnEnter()
+    {
+        // player cant be attacked in this state
+        ctx.modelGo.tag = "Undamagable";
+        // direction to be knocked back in
+        Vector2 knockbackDir = (ctx.currentPos - ctx.damagePos).normalized;
+        ctx.ChangeAnimationState(ctx.ninjaDamaged, false);
+
+        
+        // Apply the force
+        ctx.rb.AddForce(knockbackDir * ctx.knockbackStrenth, ForceMode2D.Impulse);
+        
+        // start timer for damage knockback time
+        damagedEndTime = Time.time + ctx.damagedDuration;
+    }
+
+    protected override void OnExit()
+    {
+        ctx.tr.gameObject.tag = "Player";
+    }
+
+    protected override JState GetTransition()
+    {
+        // keep them trapped in this state until the timer ends
+        if (Time.time < damagedEndTime) return null;
+
+        // once the timer ends goes to grounded state or airborne
+        return ctx.isGrounded ? ((NinjaRoot)Parent).Grounded : ((NinjaRoot)Parent).Airborne;
+    }
+}
+
+/// <summary>
+/// Death state makes the ninja explode
+/// after, it goes to the lose screen
+/// </summary>
+public class Death : JState
+{
+    readonly PlayerContext ctx;
+    float deathEndTime;
+
+    public Death(JStateMachine m, JState parent, PlayerContext ctx) : base (m, parent)
+    {
+        this.ctx = ctx;
+    }
+
+    protected override void OnEnter()
+    {
+        // makes it so that you are undamagable and physics is paused
+        // so you dont get launched when localScale goes up to 11
+        ctx.modelGo.tag = "Undamagable";
+        ctx.rb.simulated = false;
+        ctx.rb.transform.localScale = new Vector3(11,11,11);
+        // makes the ninja explode
+        ctx.ChangeAnimationState(ctx.ninjaDeath, false);
+        
+        // time before it switches to the lose screen
+        deathEndTime = Time.time + 1f;
+    }
+
+    protected override void OnExit()
+    {
+        ctx.tr.gameObject.tag = "Player";
+    }
+
+    protected override JState GetTransition()
+    {
+        // keep them trapped in this state until the timer ends
+        if (Time.time < deathEndTime) return null;
+
+        // once the timer ends go to death screen
+        return null;
+    }
+}
 
 /// <summary>
 /// NinjaRoot state is the root state and is the parent to
@@ -381,6 +579,10 @@ public class NinjaRoot : JState
     public readonly Dash Dash;
     public readonly WallCling WallCling;
     public readonly WallJump WallJump;
+    public readonly Hidden Hidden;
+    public readonly SneakAttack SneakAttack;
+    public readonly TakeDamage TakeDamage;
+    public readonly Death Death;
     readonly PlayerContext ctx;
 
     public NinjaRoot(JStateMachine m, PlayerContext ctx) : base(m, null)
@@ -391,32 +593,58 @@ public class NinjaRoot : JState
         Dash = new Dash(m, this, ctx);
         WallCling = new WallCling(m, this, ctx);
         WallJump = new WallJump(m, this, ctx);
+        Hidden = new Hidden(m, this, ctx);
+        SneakAttack = new SneakAttack(m, this, ctx);
+        TakeDamage = new TakeDamage(m, this, ctx);
+        Death = new Death(m, this, ctx);
     }
 
     // always start on the ground
     protected override JState GetInitialState() => Grounded;
 
-    protected override JState GetTransition()
+protected override JState GetTransition()
     {
-        if (ctx.pressedDash)
+        // if dead, transition to Death and block everything else
+        if (ctx.isDead)
+        {
+            // if we aren't in the Death state yet, transition to it
+            // if we already are, return null to stay in it
+            return ActiveChild != Death ? Death : null;
+        }
+
+        if (ctx.pressedDash && !ctx.isHidden && ActiveChild != TakeDamage)
         {
             ctx.pressedDash = false;
             if (Time.time >= ctx.nextTimeReady) return Dash;
         }
 
-        // maybe implement this later
-        bool touchingPrevWall = ctx.isTouchingWall && (ctx.previousWallDirection == ctx.wallDirection);
+        // this prevents dashing, walljump, sneak attack, and damage from being cancelled
+        if (ActiveChild == Dash || ActiveChild == WallJump || ActiveChild == SneakAttack || ActiveChild == TakeDamage) 
+        {
+            return null; 
+        }
 
-        // this prevents dashing and walljump to be cancelled or interupted
-        if (ActiveChild == Dash || (ActiveChild == WallJump)) return null; 
+        if (ctx.isHidden && ActiveChild != Hidden)
+        {
+            if (ctx.nearestInteractable == null) ctx.isHidden = false;
+            else return Hidden;
+        }
 
-        // we do ActiveChild != Child so it doesn't keep going in and out
-        if (ctx.isGrounded && ActiveChild != Grounded) return Grounded;
+        if (ctx.isDamaged)
+        {
+            ctx.isDamaged = false;
+            return TakeDamage;
+        }
+
+        if (!ctx.isHidden)
+        {
+            // we do ActiveChild != Child so it doesn't keep going in and out
+            if (ctx.isGrounded && ActiveChild != Grounded) return Grounded;
+            if (!ctx.isGrounded && !ctx.isTouchingWall && ActiveChild != Airborne) return Airborne;
+        }
         
         if (ctx.isTouchingWall && !ctx.isGrounded && ActiveChild != WallCling) return WallCling;
-        
-        if (!ctx.isGrounded && !ctx.isTouchingWall && ActiveChild != Airborne) return Airborne;
-
+    
         return null;
     }
 }

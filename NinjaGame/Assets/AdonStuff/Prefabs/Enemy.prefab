@@ -51,7 +51,7 @@ Rigidbody2D:
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: f31b1f6aa3e64464ead408011b288eaf, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -77,7 +77,7 @@ MonoBehaviour:
   platformTracker: {fileID: 4775831658779423738}
   movement: {fileID: 2915336073948124020}
   navigator: {fileID: 8346546086120633570}
-  graph: {fileID: 0}
+  stateMachine: {fileID: 2227252627378684159}
   spriteCollider: {fileID: 1238148435623986577}
 --- !u!114 &2227252627378684159
 MonoBehaviour:
@@ -248,8 +248,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01408ee8673bb6640981e6f90b2381e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyMovement
-  enemyCollider: {fileID: 1238148435623986577}
   rb: {fileID: 8115475093516537753}
+  enemy: {fileID: 3548780605335652559}
 --- !u!114 &8346546086120633570
 MonoBehaviour:
   m_ObjectHideFlags: 0

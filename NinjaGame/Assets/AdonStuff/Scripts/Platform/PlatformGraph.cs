@@ -21,10 +21,28 @@ public class PlatformGraph : MonoBehaviour
     /// </summary>
     private Dictionary<Platform, List<PlatformTransition>> adjacencyList;
 
+    /// <summary>
+    /// Whether or not the entire graph is loaded in
+    /// </summary>
+    private bool isInitialized;
 
-    public void Awake()
+    
+    /// <summary>
+    /// Returns whether the graph is loaded in yet
+    /// </summary>
+    public bool IsInitialized
+    {
+        get
+        {
+            return this.isInitialized;
+        }
+    }
+
+
+    public void Start()
     {
         BuildGraph();
+        this.isInitialized = true;
     }
 
     /// <summary>
@@ -60,6 +78,7 @@ public class PlatformGraph : MonoBehaviour
         this.adjacencyList = new Dictionary<Platform, List<PlatformTransition>>();
 
         GetAdjacencies();
+        //PrintGraph();
     }
 
     /// <summary>
@@ -69,7 +88,7 @@ public class PlatformGraph : MonoBehaviour
     {
         // The tolerance, in pixels, for what is considered an adjacent platform
         const float xTolerance = 1f;
-        const float yTolerance = 0.5f;
+        const float yTolerance = 1f;
 
         foreach (Platform current in this.platforms)
         {
@@ -88,9 +107,8 @@ public class PlatformGraph : MonoBehaviour
 
                 Bounds currentBounds = current.Bounds;
                 Bounds neighborBounds = potentialNeighbor.Bounds;
-
                 bool isLevel = Mathf.Abs(
-                    currentBounds.center.y - neighborBounds.center.y) <= yTolerance;
+                    currentBounds.max.y - neighborBounds.max.y) <= yTolerance;
                 bool isLeftAdjacent = Mathf.Abs(
                     currentBounds.min.x - neighborBounds.max.x) <= xTolerance;
                 bool isRightAdjacent = Mathf.Abs(

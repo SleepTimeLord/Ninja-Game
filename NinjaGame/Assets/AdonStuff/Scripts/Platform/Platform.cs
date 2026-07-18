@@ -61,7 +61,7 @@ public class Platform : MonoBehaviour
     /// Basically a miniature constructor of the platform
     /// </summary>
     public void Awake()
-    { 
+    {
         // Always gotta check if we done messed up a bit early
         if (!IsPlacedCorrectly())
         {
@@ -86,9 +86,14 @@ public class Platform : MonoBehaviour
     /// <remarks>used when an enemy is finding a place to pathfind to</remarks>
     public Vector2 GetValidPoint()
     {
+        ///<summary>
+        /// How much the bounds should offset from the left and right-most point
+        /// </summary>
+        const float BoundsOffset = 0.75f;
+
         float randomX = Random.Range(
-            this.Bounds.min.x,
-            this.Bounds.max.x);
+            this.Bounds.min.x + BoundsOffset,
+            this.Bounds.max.x - BoundsOffset);
         float randomY = this.Bounds.max.y;
 
         return new Vector2(randomX, randomY);

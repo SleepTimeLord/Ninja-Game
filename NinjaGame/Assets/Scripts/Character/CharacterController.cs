@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 
 /// <summary>
@@ -23,14 +24,10 @@ public class CharacterController : MonoBehaviour
 
     string lastPath;
     JStateMachine machine;
-    JState root;
+    public NinjaRoot root;
 
     void Awake()
     {
-        ctx.rb = GetComponent<Rigidbody2D>();
-        ctx.tr = transform;
-        ctx.collider2d = GetComponent<Collider2D>();
-
         // initializes statemachine
         root = new NinjaRoot(null, ctx);
         var builder = new JStateMachineBuilder(root);
@@ -49,9 +46,11 @@ public class CharacterController : MonoBehaviour
 
     void FixedUpdate()
     {
-        IsGrounded();
-        DetectWall();
+        HandleGrounded();
+        HandleWallDetection();
         HandlePhaseThruPlatforms();
+
+        ctx.currentPos = ctx.tr.position;
 
         // for statemachine on update i did fixed time because
         // we using physics so its better to just use fixedUpdate time
@@ -68,10 +67,58 @@ public class CharacterController : MonoBehaviour
             lastPath = path;
         }
     }
+
+    public Platform CurrentPlatform
+    {
+        get
+        {
+            return this.ctx.platformTracker.CurrentPlatform;
+        }
+    }
+
+    // debugging
+    // private void OnCollisionEnter2D(Collision2D collision)
+    // {
+    //     if (collision.gameObject.CompareTag("Enemy"))
+    //     {
+    //         TakeDamage(50, collision.gameObject.transform.position);
+    //     }
+    // }
+
+
+    /// <summary>
+    /// Call this from the character controller if you want 
+    /// the player to take damage. Make sure the amount is 
+    /// always positive and damagePos helps determine the 
+    /// direction that the player will be knocked back
+    /// </summary>
+    public void TakeDamage(float amount, Vector2 damagePos)
+    {
+        ctx.damagePos = damagePos;
+        ctx.ModifyHealth(-amount);
+    }
+
+    /// <summary>
+    /// HandleSlashActivation/Deactivation is used
+    /// as an Animation event in the "Ninja_SneakAttack"
+    /// Animation
+    /// </summary>
+    public void HandleSlashActivation()
+    {
+        Debug.Log("Activated slash go");
+        ctx.slashGO.SetActive(true);
+    }
+
+    public void HandleSlashDeactivation()
+    {
+        Debug.Log("Deactivated slash go");
+        ctx.slashGO.SetActive(false);
+    }
+    
     /// <summary>
     /// if is on ground... its pretty self explainatory
     /// </summary>
-    private void IsGrounded()
+    private void HandleGrounded()
     {
         if (ctx.collider2d == null) return;
 
@@ -89,7 +136,7 @@ public class CharacterController : MonoBehaviour
     /// makes a box collider in the direction player is going
     /// and checks if touching wall.
     /// </summary>
-    private void DetectWall()
+    private void HandleWallDetection()
     {
         
         Bounds charBounds = ctx.collider2d.bounds;
@@ -161,6 +208,11 @@ public class CharacterController : MonoBehaviour
             Physics2D.IgnoreCollision(ctx.collider2d, hit, passesThru);
         }
     }
+
+    public void HandleHiding()
+    {
+        ctx.isHidden = true;
+    }
     
     /// <summary>
     /// Debugging
@@ -183,7 +235,7 @@ public class CharacterController : MonoBehaviour
     #region input system methods
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (context.started) ctx.pressedJump = true;
+        if (context.started && ctx.avaliableJumps > ctx.jumpCount) ctx.pressedJump = true;
     }
 
     public void OnMovement(InputAction.CallbackContext context)
@@ -193,7 +245,18 @@ public class CharacterController : MonoBehaviour
 
     public void OnDash(InputAction.CallbackContext context)
     {
-        if (context.started) ctx.pressedDash = true;
+        if (context.started && !ctx.isHidden && Time.time >= ctx.nextTimeReady) ctx.pressedDash = true;
+    }
+
+    public void OnInteract(InputAction.CallbackContext context)
+    {
+        if (ctx.isHidden && context.started && Time.time >= ctx.attackNextTimeReady) ctx.isAttacking = true;
+        else if (!ctx.isHidden && ctx.nearestInteractable != null && context.started)
+        {
+            ICharacterInteractable interactable = ctx.nearestInteractable.GetComponent<ICharacterInteractable>();
+
+            interactable.Interact();
+        }
     }
     #endregion
 }
@@ -206,13 +269,17 @@ public class CharacterController : MonoBehaviour
 [Serializable]
 public class PlayerContext
 {
-    [HideInInspector] public Rigidbody2D rb;
-    [HideInInspector] public Transform tr;
+    public Rigidbody2D rb;
+    public Transform tr;
     public GameObject modelGo;
     public SpriteRenderer sr;
-    [HideInInspector] public Collider2D collider2d;
+    public Collider2D collider2d;
     public Animator animator;
-
+    [SerializeField] public PlatformTracker platformTracker;
+    [Header("Player Health Settings")]
+    public float health = 100f;
+    public float maxHealth = 100f;
+    public Slider healthSlider;
     [Header("Player Movement Settings")]
     public float speed = 8f;
     public float startAcceleration = 60f;
@@ -237,22 +304,35 @@ public class PlayerContext
     public float wallJumpTime = 1f;
     public float rightSideOffset = .5f;
     public float leftSideOffset = 1f;
-
+    [Header("Sneak Attack Settings")]
+    public float sneakAttackCooldown = 5f;
+    public float sneakAttackDuration = 0.30f;
+    [Header("Take Damage Settings")]
+    public float damagedDuration = 0.3f;
+    public float knockbackStrenth = 0.4f;
+    public Vector2 damagePos;
+    public GameObject slashGO;
     [Header("Collision & Layers Settings")]
     public string groundTag = "Platform";
     public LayerMask groundLayer;
     public string phaseThruPlatform = "JumpThruPlatform";
     public string wallTag = "Wall";
-
     [Header("Live States")]
     public Vector2 moveInput;
+    public Vector2 currentPos;
     public float nextTimeReady = 0f;
+    public float attackNextTimeReady = 0f;
     public bool isGrounded = false;
     public bool isTouchingWall = false;
     public float wallDirection = 0f;
     public byte jumpCount;
     public bool isRight;
     public float previousWallDirection = 0f;
+    public bool isHidden = false;
+    public bool isAttacking = false;
+    public bool isDamaged = false;
+    public bool isDead = false;
+    public GameObject nearestInteractable;
     [Header("Animations")]
     public string currentAnimState;
     public string idle = "Ninja_Idle";
@@ -266,6 +346,9 @@ public class PlayerContext
     public string dashR = "Ninja_Dash_Right";
     public string wsL = "Ninja_WS_L";
     public string wsR = "Ninja_WS_R";
+    public string sneakAttack = "Ninja_SneakAttack";
+    public string ninjaDamaged = "Ninja_Damaged";
+    public string ninjaDeath = "Ninja_Death";
 
     public void ChangeAnimationState(string newState, bool canPlayAgain)
     {
@@ -279,5 +362,15 @@ public class PlayerContext
     {
         isRight = flip;
         sr.flipX = flip;
+    }
+
+    public void ModifyHealth(float amount)
+    {
+        if (amount < 0) isDamaged = true;
+        health = Mathf.Clamp(health + amount, 0, maxHealth);
+        healthSlider.maxValue = maxHealth;
+        healthSlider.value = health;
+
+        if (health == 0) isDead = true;
     }
 }

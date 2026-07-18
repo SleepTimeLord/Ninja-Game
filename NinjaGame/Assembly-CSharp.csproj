@@ -66,21 +66,51 @@
     <Compile Include="Assets\AdonStuff\Scripts\Platform\PlatformTransition.cs" />
     <Compile Include="Assets\Scripts\JohnStateMachine\JTransitionSequencer.cs" />
     <Compile Include="Assets\AdonStuff\Scripts\Enemy\Core\EnemyMovement.cs" />
+    <Compile Include="Assets\AdonStuff\Scripts\Enemy\Core\EnemyManager.cs" />
     <Compile Include="Assets\AdonStuff\Scripts\Enemy\Core\Enemy.cs" />
+    <Compile Include="Assets\Scripts\Character\ICharacterInteractable.cs" />
     <Compile Include="Assets\AdonStuff\Scripts\Platform\PlatformNavigator.cs" />
+    <Compile Include="Assets\Scripts\UI\DashCooldownUI.cs" />
+    <Compile Include="Assets\Scripts\Character\SlashTrigger.cs" />
     <Compile Include="Assets\AdonStuff\Scripts\Enemy\Core\PlatformTracker.cs" />
     <Compile Include="Assets\AdonStuff\Scripts\Platform\Platform.cs" />
     <Compile Include="Assets\Scripts\JohnStateMachine\JStateMachine.cs" />
     <Compile Include="Assets\AdonStuff\Scripts\Enemy\State Machine\ChaseState.cs" />
+    <Compile Include="Assets\AdonStuff\Scripts\Interactable\EnemyInteractable.cs" />
     <Compile Include="Assets\InputSystem_Actions.cs" />
     <Compile Include="Assets\Scripts\Character\CharacterController.cs" />
-    <Compile Include="Assets\AdonStuff\Scripts\Enemy\State Machine\DeadState.cs" />
     <Compile Include="Assets\AdonStuff\Scripts\Platform\PlatformGraph.cs" />
     <Compile Include="Assets\Scripts\JohnStateMachine\JStateMachineBuilder.cs" />
     <Compile Include="Assets\AdonStuff\Scripts\Enemy\State Machine\EnemyStateMachine.cs" />
     <Compile Include="Assets\AdonStuff\Scripts\Enemy\State Machine\WanderState.cs" />
+    <Compile Include="Assets\AdonStuff\Scripts\Interactable\Trashcan.cs" />
+    <Compile Include="Assets\Scripts\HidingSpots\JTrashcanTrigger.cs" />
     <Compile Include="Assets\AdonStuff\Scripts\Enemy\State Machine\EnemyState.cs" />
     <Compile Include="Assets\Scripts\Character\NinjaRoot.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile-2-Pass.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\SDFFunctions.hlsl" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile SSD.shader" />
+    <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
+    <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
+    <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

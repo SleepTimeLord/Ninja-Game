@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using System.Collections.Generic;
 using System.IO;
+using Unity.GraphToolkit.Editor;
 using UnityEditor;
 using UnityEngine;
 
@@ -9,7 +10,22 @@ using UnityEngine;
 /// </summary>
 public class PlatformNavigator : MonoBehaviour
 {
-    [SerializeField] PlatformGraph graph;
+    /// <summary>
+    /// A reference to the graph the enemy is basing its searches off of
+    /// </summary>
+    private PlatformGraph graph;
+
+
+    /// <summary>
+    /// Sets the reference for the graph
+    /// </summary>
+    public PlatformGraph Graph
+    {
+        set
+        {
+            this.graph = value;
+        }
+    }
 
 
     /// <summary>
@@ -55,8 +71,17 @@ public class PlatformNavigator : MonoBehaviour
             }
         }
 
-        // Once the search is done, the path can be made and returned
-        return MakePath(cameFromSet, currentPlatform, goalPlatform);
+        if (!visitedPlatforms.Contains(goalPlatform))
+        {
+            Debug.LogWarning(
+                $"No path exists from {currentPlatform.name} to {goalPlatform.name}");
+
+            return null;
+        }
+        else
+        {
+            return MakePath(cameFromSet, currentPlatform, goalPlatform);
+        }
     }
 
     /// <summary>

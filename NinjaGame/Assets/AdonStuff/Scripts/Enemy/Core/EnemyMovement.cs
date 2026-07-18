@@ -65,6 +65,20 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Returns whether a special transition is in progress
+    /// </summary>
+    public bool IsInTransition
+    {
+        get
+        {
+            return this.currentPathPlatformStep != null &&
+                (this.currentPathPlatformStep.Transition == 
+                PlatformTransition.TransitionType.JUMP ||
+                 this.currentPathPlatformStep.Transition == PlatformTransition.TransitionType.DROP);
+        }
+    }
+
 
     /// <summary>
     /// Called by the state machine to set a particular path 
@@ -120,7 +134,7 @@ public class EnemyMovement : MonoBehaviour
                  * updated if the enemy isn't already on the platform it needs to be on
                  */
                 case PlatformTransition.TransitionType.WALK:
-                    Debug.Log($"Walking to {baseEnemyTarget}");
+                    //Debug.Log($"Walking to {baseEnemyTarget}");
                     this.UpdateWalk(baseEnemyTarget, speed);
 
                     if (EnemyCloseEnoughToTarget(TargetLeniency, baseEnemyTarget, currentPosition))
@@ -160,7 +174,7 @@ public class EnemyMovement : MonoBehaviour
                     Vector2 newDropPosition = UpdateArc(this.specialTransitionStartPoint,
                         newTransitionPosition, this.transitionProgress, peakHeight);
 
-                    Debug.Log($"Jumping/dropping to {newDropPosition}");
+                    //Debug.Log($"Jumping/dropping to {newDropPosition}");
                     this.transform.position = newDropPosition;
                     return;
             }
@@ -176,18 +190,18 @@ public class EnemyMovement : MonoBehaviour
         }
         else
         {
-            Debug.Log("Finished previous state");
+            Debug.Log("Finished previous path. Moving onto next.");
         }
     }
 
     /// <summary>
     /// Resets each path parameter to be blank, ready for another path
     /// </summary>
-    private void ClearPathParams()
+    public void ClearPathParams()
     {
         this.currentPathPlatformStep = null;
         this.finalDestination = Vector2.zero;
-        this.transitionProgress = -0f;
+        this.transitionProgress = 0f;
         this.specialTransitionStartPoint = Vector2.zero;
     }
 
