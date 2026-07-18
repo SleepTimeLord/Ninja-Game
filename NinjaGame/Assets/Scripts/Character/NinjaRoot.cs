@@ -391,6 +391,7 @@ public class Hidden : JState
         hAnimator = ctx.nearestInteractable.GetComponentInChildren<Animator>();
         hAnimator.Play("Ninja_Hiding");
         OnPlayerHide?.Invoke();
+        ctx.rb.constraints |= RigidbodyConstraints2D.FreezePositionX;
         ctx.sr.enabled = false;
         ctx.rb.linearVelocity = Vector2.zero;
         ctx.tr.SetParent(ctx.nearestInteractable.transform);
@@ -404,6 +405,7 @@ public class Hidden : JState
         // reenables hiding spot and removes player as a child of the hiding spot
         hAnimator.Play("Trash_Reg");
         OnPlayerLeave?.Invoke();
+        ctx.rb.constraints &= ~RigidbodyConstraints2D.FreezePositionX;
         ctx.sr.enabled = true;
         ctx.isHidden = false;
         ctx.tr.SetParent(null);
@@ -564,6 +566,7 @@ public class Death : JState
         if (Time.time < deathEndTime) return null;
 
         // once the timer ends go to death screen
+        SceneController.Instance.NextLevel();
         return null;
     }
 }
