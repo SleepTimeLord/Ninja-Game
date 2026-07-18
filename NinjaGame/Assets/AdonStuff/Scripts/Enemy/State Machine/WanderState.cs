@@ -22,16 +22,24 @@ public class WanderState : EnemyState
     /// </summary>
     private bool isIdle;
 
-    public WanderState(EnemyStateMachine stateMachine, Enemy enemy) 
-        : base(stateMachine, enemy)
+
+    /// <summary>
+    /// Determines whether or not an enemy can get out of the state
+    /// </summary>
+    public override bool CanExit
     {
+        get
+        {
+            return !this.enemy.IsInTransition;
+        }
     }
 
 
-    public override void CheckForTransition()
+    public WanderState(Enemy enemy) 
+        : base(enemy)
     {
-        throw new System.NotImplementedException();
     }
+
 
     /// <summary>
     /// Makes the enemy start to wander to a random place
@@ -40,13 +48,12 @@ public class WanderState : EnemyState
     {
         this.idleTimer = 0f;
         this.isIdle = false;
-        // using a temp. value for wandering. just for now
-        this.enemy.Wander(0f);
+        this.enemy.Wander(this.enemy.searchScale);
     }
 
+    //
     public override void Exit()
     {
-        throw new System.NotImplementedException();
     }
 
     public override void Update()
@@ -54,7 +61,7 @@ public class WanderState : EnemyState
         // First, check whether or not the enemy actually needs to update its movement
         if (this.enemy.HasPath)
         {
-            this.enemy.Tick(true);
+            this.enemy.Tick(true, this.enemy.searchScale);
             return;
         }
 

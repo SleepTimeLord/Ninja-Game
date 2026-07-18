@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using System.Collections.Generic;
 using System.IO;
+using Unity.GraphToolkit.Editor;
 using UnityEditor;
 using UnityEngine;
 
@@ -9,7 +10,22 @@ using UnityEngine;
 /// </summary>
 public class PlatformNavigator : MonoBehaviour
 {
-    [SerializeField] PlatformGraph graph;
+    /// <summary>
+    /// A reference to the graph the enemy is basing its searches off of
+    /// </summary>
+    private PlatformGraph graph;
+
+
+    /// <summary>
+    /// Sets the reference for the graph
+    /// </summary>
+    public PlatformGraph Graph
+    {
+        set
+        {
+            this.graph = value;
+        }
+    }
 
 
     /// <summary>
@@ -38,8 +54,6 @@ public class PlatformNavigator : MonoBehaviour
             {
                 break;
             }
-
-            Debug.Log($"Visiting {current.name}");
 
             // Visit each of the transitions, and jolt them down
             foreach (PlatformTransition transition in this.graph.GetTransitions(current))

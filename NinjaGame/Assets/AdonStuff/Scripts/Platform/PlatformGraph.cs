@@ -21,10 +21,28 @@ public class PlatformGraph : MonoBehaviour
     /// </summary>
     private Dictionary<Platform, List<PlatformTransition>> adjacencyList;
 
+    /// <summary>
+    /// Whether or not the entire graph is loaded in
+    /// </summary>
+    private bool isInitialized;
+
+    
+    /// <summary>
+    /// Returns whether the graph is loaded in yet
+    /// </summary>
+    public bool IsInitialized
+    {
+        get
+        {
+            return this.isInitialized;
+        }
+    }
+
 
     public void Start()
     {
         BuildGraph();
+        this.isInitialized = true;
     }
 
     /// <summary>
@@ -60,7 +78,7 @@ public class PlatformGraph : MonoBehaviour
         this.adjacencyList = new Dictionary<Platform, List<PlatformTransition>>();
 
         GetAdjacencies();
-        PrintGraph();
+        //PrintGraph();
     }
 
     /// <summary>
