@@ -18,9 +18,9 @@ public class EnemyManager : MonoBehaviour
     }
 
     /// <summary>
-    /// A reference to the player
+    /// A reference to the slash the enemy has
     /// </summary>
-    [SerializeField] private CharacterController player;
+    [SerializeField] private SlashTrigger playerSlash;
 
     /// <summary>
     /// The prefab the enemy uses
@@ -117,9 +117,7 @@ public class EnemyManager : MonoBehaviour
     {
         this.activeEnemies = new List<Enemy>();
         this.deadEnemies = new Queue<Enemy>();
-
-        this.player.root.Hidden.OnPlayerHide += OnPlayerHide;
-        this.player.root.Hidden.OnPlayerLeave += OnPlayerLeave;
+        this.playerSlash.EnemyHit += OnEnemyHit;
     }
 
     // Update is called once per frame
@@ -165,6 +163,7 @@ public class EnemyManager : MonoBehaviour
             soonToBeEnemy = Instantiate(this.enemyPrefab, this.gameObject.transform);
         }
 
+        soonToBeEnemy.enabled = true;
         soonToBeEnemy.Initialize(this.platformGraph, IsInWanderState, randomSpawnPoint);
         soonToBeEnemy.gameObject.SetActive(true);
         this.activeEnemies.Add(soonToBeEnemy);
@@ -181,18 +180,15 @@ public class EnemyManager : MonoBehaviour
     }
 
     /// <summary>
-    /// The actions that should take place once the player is hidden in a hiding spot
+    /// The actions to happen once an enemy is hit
     /// </summary>
-    private void OnPlayerHide()
+    /// <param name="enemy">the enemy in question</param>
+    private void OnEnemyHit(Enemy enemy)
     {
-        this.currentGlobalState = GlobalState.WANDER;
-    }
+        this.activeEnemies.Remove(enemy);
 
-    /// <summary>
-    /// The actions that should take place once the player has left a hiding spot
-    /// </summary>
-    private void OnPlayerLeave()
-    {
-        this.currentGlobalState = GlobalState.CHASE;
+        enemy.Die();
+
+        this.deadEnemies.Enqueue(enemy);
     }
 }

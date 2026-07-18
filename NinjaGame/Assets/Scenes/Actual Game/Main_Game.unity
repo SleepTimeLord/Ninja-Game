@@ -12301,7 +12301,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33008b18a26ccd34ea2c21c473ce3d9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyManager
-  player: {fileID: 1739912111}
+  playerSlash: {fileID: 1983481792}
   enemyPrefab: {fileID: 3548780605335652559, guid: 2104ebdc1e5452f4e8f0e0ed2bf7b1aa, type: 3}
   MaxEnemies: 20
   platformGraph: {fileID: 1196225482}
@@ -13086,6 +13086,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c94299fbb5058af46a70b7cd8ca360e9, type: 3}
+--- !u!114 &1983481792 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2032435789231057205, guid: ce2b9af390de48d4dbe19f0de8418742, type: 3}
+  m_PrefabInstance: {fileID: 1083090746}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8b4cebe76f90294d92992ca723700d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SlashTrigger
 --- !u!114 &2001675464 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 190779441202533749, guid: f1ec34501a4ddfa48a8ced6d5af51bed, type: 3}

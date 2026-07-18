@@ -89,6 +89,7 @@
     <Compile Include="Assets\AdonStuff\Scripts\Enemy\State Machine\EnemyState.cs" />
     <Compile Include="Assets\Scripts\Character\NinjaRoot.cs" />
     <Compile Include="Assets\Scripts\SceneController.cs" />
+    <Compile Include="Assets\AdonStuff\Scripts\Gameplay\GameManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
