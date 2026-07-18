@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5908542716110493828}
-  - component: {fileID: 3876496174642352766}
   - component: {fileID: 9094282268699009969}
   - component: {fileID: 123864425781994516}
+  - component: {fileID: 5313916211234184897}
   m_Layer: 0
   m_Name: Ninja
   m_TagString: Player
@@ -36,43 +36,6 @@ Transform:
   - {fileID: 7044706191851465306}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!70 &3876496174642352766
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3751978745742448696}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 128
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0.3320248, y: -1.1698518}
-  m_Size: {x: 2.3038836, y: 5.481757}
-  m_Direction: 0
 --- !u!50 &9094282268699009969
 Rigidbody2D:
   serializedVersion: 5
@@ -112,6 +75,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df05d17709b99ec479e995bb2e5a71bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlatformTracker
+--- !u!61 &5313916211234184897
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3751978745742448696}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 128
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: -0.24845123, y: -1.4207503}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 1.4969025, y: 4.7467065}
+  m_EdgeRadius: 0
 --- !u!1 &7830745649804937880
 GameObject:
   m_ObjectHideFlags: 0
@@ -396,7 +405,7 @@ MonoBehaviour:
     tr: {fileID: 5908542716110493828}
     modelGo: {fileID: 9073268127621710080}
     sr: {fileID: 8300100566897467929}
-    collider2d: {fileID: 3876496174642352766}
+    collider2d: {fileID: 5313916211234184897}
     animator: {fileID: 5194890024714187967}
     platformTracker: {fileID: 123864425781994516}
     health: 100
@@ -406,8 +415,8 @@ MonoBehaviour:
     startAcceleration: 60
     runningAcceleration: 60
     deceleration: 40
-    jumpForce: 9
-    airJumpForce: 7
+    jumpForce: 10
+    airJumpForce: 8
     avaliableJumps: 2
     pressedJump: 0
     dashForce: 20
@@ -417,10 +426,10 @@ MonoBehaviour:
     wallSlideSpeed: 0.5
     wallJumpForce: 10
     wallJumpTime: 0.5
-    rightSideOffset: 0.9
-    leftSideOffset: 0.2
-    sneakAttackCooldown: 1
-    sneakAttackDuration: 0.5
+    rightSideOffset: 0.5
+    leftSideOffset: 1
+    sneakAttackCooldown: 4
+    sneakAttackDuration: 0.6
     damagedDuration: 0.4
     knockbackStrenth: 7
     damagePos: {x: 0, y: 0}
@@ -464,6 +473,8 @@ MonoBehaviour:
     sneakAttack: Ninja_SneakAttack
     ninjaDamaged: Ninja_Damaged
     ninjaDeath: Ninja_Death
+    swordSlash: {fileID: 8300000, guid: 9c46b132d01c6a64a8bd1096b6c58108, type: 3}
+    trashRussling: {fileID: 8300000, guid: b3f591e9736875d4aab49684c1108122, type: 3}
 --- !u!114 &6393667863541152652
 MonoBehaviour:
   m_ObjectHideFlags: 0

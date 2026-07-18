@@ -81,6 +81,7 @@ public class CharacterController : MonoBehaviour
     // {
     //     if (collision.gameObject.CompareTag("Enemy"))
     //     {
+    //         Debug.Log("hit by enemy");
     //         TakeDamage(50, collision.gameObject.transform.position);
     //     }
     // }
@@ -319,20 +320,20 @@ public class PlayerContext
     public string phaseThruPlatform = "JumpThruPlatform";
     public string wallTag = "Wall";
     [Header("Live States")]
-    public Vector2 moveInput;
-    public Vector2 currentPos;
-    public float nextTimeReady = 0f;
-    public float attackNextTimeReady = 0f;
-    public bool isGrounded = false;
-    public bool isTouchingWall = false;
-    public float wallDirection = 0f;
-    public byte jumpCount;
-    public bool isRight;
-    public float previousWallDirection = 0f;
-    public bool isHidden = false;
-    public bool isAttacking = false;
-    public bool isDamaged = false;
-    public bool isDead = false;
+    [HideInInspector]public Vector2 moveInput;
+    [HideInInspector]public Vector2 currentPos;
+    [HideInInspector]public float nextTimeReady = 0f;
+    [HideInInspector]public float attackNextTimeReady = 0f;
+    [HideInInspector]public bool isGrounded = false;
+    [HideInInspector]public bool isTouchingWall = false;
+    [HideInInspector]public float wallDirection = 0f;
+    [HideInInspector]public byte jumpCount;
+    [HideInInspector]public bool isRight;
+    [HideInInspector]public float previousWallDirection = 0f;
+    [HideInInspector]public bool isHidden = false;
+    [HideInInspector]public bool isAttacking = false;
+    [HideInInspector]public bool isDamaged = false;
+    [HideInInspector]public bool isDead = false;
     public GameObject nearestInteractable;
     [Header("Animations")]
     public string currentAnimState;
@@ -350,6 +351,9 @@ public class PlayerContext
     public string sneakAttack = "Ninja_SneakAttack";
     public string ninjaDamaged = "Ninja_Damaged";
     public string ninjaDeath = "Ninja_Death";
+    [Header("Audio")]
+    public AudioClip swordSlash;
+    public AudioClip trashRussling;
 
     public void ChangeAnimationState(string newState, bool canPlayAgain)
     {
@@ -359,7 +363,7 @@ public class PlayerContext
         currentAnimState = newState;
     }
 
-    public void FlipCharacter(bool flip)
+    public void FlipCharacterRight(bool flip)
     {
         isRight = flip;
         sr.flipX = flip;

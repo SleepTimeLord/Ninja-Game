@@ -436,7 +436,7 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 43
+    y: 0
     width: 1920
     height: 36
   m_SerializedDataModeController:
@@ -701,8 +701,8 @@ MonoBehaviour:
     m_TextWithWhitespace: "Game\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 307
-    y: 79
+    x: 308
+    y: 24
     width: 1057
     height: 574
   m_SerializedDataModeController:
@@ -807,7 +807,7 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 79
+    y: 24
     width: 306
     height: 574
   m_SerializedDataModeController:
@@ -874,8 +874,8 @@ MonoBehaviour:
       - m_Data: 96984
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: Ninja
-        m_OriginalName: Ninja
+        m_Name: 
+        m_OriginalName: 
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
@@ -883,10 +883,10 @@ MonoBehaviour:
           width: 0
           height: 0
         m_UserData:
-          m_Data: 96984
+          m_Data: 0
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 0
+        m_OriginalEventType: 11
         m_IsRenamingFilename: 0
         m_TrimLeadingAndTrailingWhitespace: 0
         m_ClientGUIView: {fileID: 8}
@@ -1711,21 +1711,19 @@ MonoBehaviour:
       m_Data: 51682
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 53894
-    - m_Data: 53896
-    - m_Data: 53898
-    - m_Data: 53900
-    - m_Data: 53902
-    - m_Data: 53904
-    - m_Data: 53906
-    - m_Data: 53910
-    - m_Data: 54014
-    - m_Data: 54018
-    - m_Data: 1000000000
+    - m_Data: 53666
+    - m_Data: 53668
+    - m_Data: 53670
+    - m_Data: 53672
+    - m_Data: 53674
+    - m_Data: 53676
+    - m_Data: 53678
+    - m_Data: 53680
+    - m_Data: 53682
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: AdonStuff
-      m_OriginalName: AdonStuff
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
@@ -1733,10 +1731,10 @@ MonoBehaviour:
         width: 0
         height: 0
       m_UserData:
-        m_Data: 54014
+        m_Data: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 1
       m_TrimLeadingAndTrailingWhitespace: 0
       m_ClientGUIView: {fileID: 10}
@@ -1755,15 +1753,15 @@ MonoBehaviour:
       m_Data: 0
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 53894
-    - m_Data: 53896
-    - m_Data: 53898
-    - m_Data: 53900
-    - m_Data: 53902
-    - m_Data: 53904
-    - m_Data: 53906
-    - m_Data: 53908
-    - m_Data: 53910
+    - m_Data: 53666
+    - m_Data: 53668
+    - m_Data: 53670
+    - m_Data: 53672
+    - m_Data: 53674
+    - m_Data: 53676
+    - m_Data: 53678
+    - m_Data: 53680
+    - m_Data: 53682
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1854,7 +1852,7 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 679
+    y: 624
     width: 1365
     height: 355
   m_SerializedDataModeController:
@@ -1891,8 +1889,8 @@ MonoBehaviour:
     m_TextWithWhitespace: "Inspector\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 1366
-    y: 79
+    x: 1367
+    y: 24
     width: 553
     height: 955
   m_SerializedDataModeController:

@@ -54,6 +54,7 @@
     <Compile Include="Assets\AdonStuff\Scripts\Platform\PlatformTransition.cs" />
     <Compile Include="Assets\Scripts\JohnStateMachine\JTransitionSequencer.cs" />
     <Compile Include="Assets\Scripts\UI\CooldownUI.cs" />
+    <Compile Include="Assets\Scripts\SoundMixerManager.cs" />
     <Compile Include="Assets\AdonStuff\Scripts\Enemy\Core\EnemyMovement.cs" />
     <Compile Include="Assets\AdonStuff\Scripts\Enemy\Core\EnemyManager.cs" />
     <Compile Include="Assets\AdonStuff\Scripts\Enemy\Core\Enemy.cs" />
@@ -68,10 +69,12 @@
     <Compile Include="Assets\Scripts\NextScene.cs" />
     <Compile Include="Assets\InputSystem_Actions.cs" />
     <Compile Include="Assets\Scripts\Character\CharacterController.cs" />
+    <Compile Include="Assets\Scripts\SoundFXManager.cs" />
     <Compile Include="Assets\AdonStuff\Scripts\Platform\PlatformGraph.cs" />
     <Compile Include="Assets\Scripts\JohnStateMachine\JStateMachineBuilder.cs" />
     <Compile Include="Assets\AdonStuff\Scripts\Enemy\State Machine\EnemyStateMachine.cs" />
     <Compile Include="Assets\AdonStuff\Scripts\Enemy\State Machine\WanderState.cs" />
+    <Compile Include="Assets\Scripts\SettingsManager.cs" />
     <Compile Include="Assets\AdonStuff\Scripts\Interactable\Trashcan.cs" />
     <Compile Include="Assets\Scripts\HidingSpots\JTrashcanTrigger.cs" />
     <Compile Include="Assets\AdonStuff\Scripts\Enemy\State Machine\EnemyState.cs" />

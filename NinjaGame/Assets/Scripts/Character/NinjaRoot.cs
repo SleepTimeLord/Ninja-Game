@@ -36,11 +36,11 @@ public class Move : JState
         // check if right or left and flip
         if (ctx.moveInput.x > 0.01f || ctx.rb.linearVelocity.x > 0.1f)
         {
-            ctx.FlipCharacter(true);
+            ctx.FlipCharacterRight(true);
         }
         else if (ctx.moveInput.x < -0.01f || ctx.rb.linearVelocity.x < -0.1f)
         {
-            ctx.FlipCharacter(false);
+            ctx.FlipCharacterRight(false);
         }
 
         // play animations for ground and air
@@ -109,7 +109,7 @@ public class Idle : JState
         // when not moving on the ground make sure the character is always
         // facing left to make it accurate to the other art and make it so
         // he is in the idle state
-        if (Parent is Grounded) ctx.FlipCharacter(false); ctx.ChangeAnimationState(ctx.idle, false);
+        if (Parent is Grounded) ctx.FlipCharacterRight(false); ctx.ChangeAnimationState(ctx.idle, false);
     }
 
     protected override void OnUpdate(float deltaTime)
@@ -276,7 +276,7 @@ public class WallCling : JState
         ctx.jumpCount = 1;
         ctx.rb.constraints |= RigidbodyConstraints2D.FreezePositionX;
         ctx.ChangeAnimationState(ctx.wallDirection > 0 ? ctx.wsR : ctx.wsL, false);
-        ctx.FlipCharacter(ctx.wallDirection > 0 ? false : true);
+        ctx.FlipCharacterRight(ctx.wallDirection > 0 ? false : true);
 
         // handles the offset when wall climbing as regular on offset looks weird
         // you can edit this in the PlayerContext
@@ -339,7 +339,7 @@ public class Dash : JState
         // direction that the player is moving (1 == right, -1 left) if the player is
         // inputting nothing then it goes in the direction that the character is facing
         float dir = Mathf.Abs(ctx.moveInput.x) > 0.01f ? Mathf.Sign(ctx.moveInput.x) : (ctx.sr.flipX ? 1f : -1f);
-
+        ctx.FlipCharacterRight(dir > 0 ? true : false);
         ctx.rb.constraints |= RigidbodyConstraints2D.FreezePositionY;
 
         // handles the dashing and changes to do a dash animation
@@ -377,6 +377,7 @@ public class Hidden : JState
     public event Action OnPlayerLeave;
     readonly PlayerContext ctx;
     Animator hAnimator;
+    AudioSource audio;
 
     public Hidden(JStateMachine m, JState parent, PlayerContext ctx) : base (m, parent)
     {
@@ -397,6 +398,7 @@ public class Hidden : JState
         ctx.tr.SetParent(ctx.nearestInteractable.transform);
         ctx.tr.localPosition = new Vector3(.5f,0,0);
         ctx.jumpCount = 0;
+        audio = SoundFXManager.Instance.PlaySFXClip(ctx.trashRussling, ctx.tr, 1f, true);
     }
 
     // only way to exit this state is to jump out or attack
@@ -404,6 +406,7 @@ public class Hidden : JState
     {
         // reenables hiding spot and removes player as a child of the hiding spot
         hAnimator.Play("Trash_Reg");
+        SoundFXManager.Instance.DestroyAudioSource(audio, false);
         OnPlayerLeave?.Invoke();
         ctx.rb.constraints &= ~RigidbodyConstraints2D.FreezePositionX;
         ctx.sr.enabled = true;
@@ -460,8 +463,11 @@ public class SneakAttack : JState
         attackEndTime = Time.time + ctx.sneakAttackDuration;
         // flip character to left to keep it consistant with character model
         // also slightly brings character model to the left so its in line with the hiding spot
-        ctx.FlipCharacter(false);
+        ctx.FlipCharacterRight(false);
         ctx.modelGo.transform.localPosition = new Vector3(0.5f,0f,0);
+
+        // play sound fx
+        SoundFXManager.Instance.PlaySFXClip(ctx.swordSlash, ctx.tr, 1f, false);
     }
 
     protected override void OnExit()
