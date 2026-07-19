@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class SlashTrigger : MonoBehaviour
 {
+    public CharacterController cc;
     /// <summary>
     /// Invoked once the player hits an enemy
     /// </summary>
@@ -16,6 +17,8 @@ public class SlashTrigger : MonoBehaviour
             Debug.Log(confirmedEnemy == null);
 
             this.EnemyHit.Invoke(confirmedEnemy);
+
+            cc.ctx.enemyKillCombo++;
         }
     }
 }

@@ -534,6 +534,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8b4cebe76f90294d92992ca723700d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SlashTrigger
+  cc: {fileID: 6993792183219470962}
 --- !u!1 &9073268127621710080
 GameObject:
   m_ObjectHideFlags: 0
@@ -616,7 +617,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 1000
   m_MaskInteraction: 0
   m_Sprite: {fileID: 8150624914498301763, guid: 79b8db4ddec33a8488010ac7c1a08a4a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -670,7 +671,6 @@ MonoBehaviour:
     modelGo: {fileID: 9073268127621710080}
     sr: {fileID: 8300100566897467929}
     collider2d: {fileID: 5951089279044050390}
-    animator: {fileID: 5194890024714187967}
     platformTracker: {fileID: 123864425781994516}
     health: 100
     maxHealth: 100
@@ -727,7 +727,8 @@ MonoBehaviour:
     isDamaged: 0
     isDead: 0
     nearestInteractable: {fileID: 0}
-    currentAnimState: 
+    enemyKillCombo: 0
+    animator: {fileID: 5194890024714187967}
     idle: Ninja_Idle
     runningL: Ninja_Running_Left
     runningR: Ninja_Running_Right
@@ -742,6 +743,7 @@ MonoBehaviour:
     sneakAttack: Ninja_SneakAttack
     ninjaDamaged: Ninja_Damaged
     ninjaDeath: Ninja_Death
+    currentAnimState: 
     swordSlash: {fileID: 8300000, guid: 9c46b132d01c6a64a8bd1096b6c58108, type: 3}
     trashRussling: {fileID: 8300000, guid: b3f591e9736875d4aab49684c1108122, type: 3}
 --- !u!114 &6393667863541152652

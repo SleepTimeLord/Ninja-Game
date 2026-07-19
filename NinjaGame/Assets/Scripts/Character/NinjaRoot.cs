@@ -509,6 +509,7 @@ public class SneakAttack : JState
         ctx.isAttacking = false;
         ctx.modelGo.transform.localPosition = Vector3.zero;
         ctx.slashGO.SetActive(false); 
+        ctx.enemyKillCombo = 0;
     }
 
     protected override JState GetTransition()

@@ -38,6 +38,8 @@ public class CharacterController : MonoBehaviour
         root = new NinjaRoot(null, ctx);
         var builder = new JStateMachineBuilder(root);
         machine = builder.Build();
+
+        ctx.platformTracker.FindPlatformBelow();
     }
 
     IEnumerator Start()
@@ -294,7 +296,6 @@ public class PlayerContext
     public GameObject modelGo;
     public SpriteRenderer sr;
     public Collider2D collider2d;
-    public Animator animator;
     [SerializeField] public PlatformTracker platformTracker;
     [Header("Player Health Settings")]
     public float health = 100f;
@@ -357,8 +358,9 @@ public class PlayerContext
     [HideInInspector]public bool isDamaged = false;
     [HideInInspector]public bool isDead = false;
     [HideInInspector]public GameObject nearestInteractable;
+    public int enemyKillCombo;
     [Header("Animations")]
-    public string currentAnimState;
+    public Animator animator;
     public string idle = "Ninja_Idle";
     public string runningL = "Ninja_Running_Left";
     public string runningR = "Ninja_Running_Right";
@@ -373,6 +375,7 @@ public class PlayerContext
     public string sneakAttack = "Ninja_SneakAttack";
     public string ninjaDamaged = "Ninja_Damaged";
     public string ninjaDeath = "Ninja_Death";
+    public string currentAnimState;
     [Header("Audio")]
     public AudioClip swordSlash;
     public AudioClip trashRussling;
