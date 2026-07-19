@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5908542716110493828}
   - component: {fileID: 9094282268699009969}
   - component: {fileID: 123864425781994516}
-  - component: {fileID: 5313916211234184897}
+  - component: {fileID: 5951089279044050390}
   m_Layer: 0
   m_Name: Ninja
   m_TagString: Player
@@ -75,8 +75,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df05d17709b99ec479e995bb2e5a71bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlatformTracker
---- !u!61 &5313916211234184897
-BoxCollider2D:
+--- !u!70 &5951089279044050390
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -91,7 +91,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 0
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -109,18 +109,9 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.24845123, y: -1.4207503}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 1.4969025, y: 4.7467065}
-  m_EdgeRadius: 0
+  m_Offset: {x: -0.25404358, y: -1.49438}
+  m_Size: {x: 1.2414322, y: 4.5336742}
+  m_Direction: 0
 --- !u!1 &7830745649804937880
 GameObject:
   m_ObjectHideFlags: 0
@@ -405,7 +396,7 @@ MonoBehaviour:
     tr: {fileID: 5908542716110493828}
     modelGo: {fileID: 9073268127621710080}
     sr: {fileID: 8300100566897467929}
-    collider2d: {fileID: 5313916211234184897}
+    collider2d: {fileID: 5951089279044050390}
     animator: {fileID: 5194890024714187967}
     platformTracker: {fileID: 123864425781994516}
     health: 100
@@ -612,6 +603,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 3a1bcfa8-57c0-4726-936a-fe118f59a4f6
     m_ActionName: 'Player/Dash[/Keyboard/q]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 17eae32d-38f9-475a-96d6-9d5cefcc1650
+    m_ActionName: 'UI/Menu[/Keyboard/escape]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

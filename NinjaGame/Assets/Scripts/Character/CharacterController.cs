@@ -12,6 +12,9 @@ using UnityEngine.UI;
 /// </summary>
 public class CharacterController : MonoBehaviour
 {
+    public TrashcanContainer trashcanContainer;
+    public bool hideInTrash;
+
     public PlayerContext ctx = new PlayerContext();
 
     // debugging collider jazz
@@ -32,6 +35,11 @@ public class CharacterController : MonoBehaviour
         root = new NinjaRoot(null, ctx);
         var builder = new JStateMachineBuilder(root);
         machine = builder.Build();
+    }
+
+    void Start()
+    {
+        if (hideInTrash) SpawnInRandTrashcan();
     }
 
     static string StatePath(JState s)
@@ -76,16 +84,20 @@ public class CharacterController : MonoBehaviour
         }
     }
 
-    // debugging
-    // private void OnCollisionEnter2D(Collision2D collision)
-    // {
-    //     if (collision.gameObject.CompareTag("Enemy"))
-    //     {
-    //         Debug.Log("hit by enemy");
-    //         TakeDamage(50, collision.gameObject.transform.position);
-    //     }
-    // }
+    /// <summary>
+    /// Spawns character in a random trashcan
+    /// </summary>
+    public void SpawnInRandTrashcan()
+    {
+        Trashcan trashcan = trashcanContainer.GetRandomTrashcan();
 
+        ctx.tr.position = trashcan.transform.position;
+
+        ctx.nearestInteractable = trashcan.gameObject;
+        
+        ICharacterInteractable interactable = ctx.nearestInteractable.GetComponent<ICharacterInteractable>();
+        interactable.Interact();
+    }
 
     /// <summary>
     /// Call this from the character controller if you want 
@@ -291,13 +303,11 @@ public class PlayerContext
     public float jumpForce = 5f;
     public float airJumpForce = 5f;
     public byte avaliableJumps = 2;
-    public bool pressedJump = false;
 
     [Header("Dash Settings")]
     public float dashForce = 60f;
     public byte dashCooldown = 1;
     public float dashDuration = 0.15f;
-    public bool pressedDash = false;
 
     [Header("Wall Settings")]
     public float wallSlideSpeed = 1.5f;
@@ -320,6 +330,8 @@ public class PlayerContext
     public string phaseThruPlatform = "JumpThruPlatform";
     public string wallTag = "Wall";
     [Header("Live States")]
+    [HideInInspector]public bool pressedJump = false;
+    [HideInInspector]public bool pressedDash = false;
     [HideInInspector]public Vector2 moveInput;
     [HideInInspector]public Vector2 currentPos;
     [HideInInspector]public float nextTimeReady = 0f;
@@ -334,7 +346,7 @@ public class PlayerContext
     [HideInInspector]public bool isAttacking = false;
     [HideInInspector]public bool isDamaged = false;
     [HideInInspector]public bool isDead = false;
-    public GameObject nearestInteractable;
+    [HideInInspector]public GameObject nearestInteractable;
     [Header("Animations")]
     public string currentAnimState;
     public string idle = "Ninja_Idle";
