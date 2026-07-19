@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using System.Collections;
 // statmachine for the ninja
 
 
@@ -338,6 +339,7 @@ public class Dash : JState
         // if the player is pressing the direction they want to go then it goes to the
         // direction that the player is moving (1 == right, -1 left) if the player is
         // inputting nothing then it goes in the direction that the character is facing
+        ctx.dashTrail.enabled = true;
         float dir = Mathf.Abs(ctx.moveInput.x) > 0.01f ? Mathf.Sign(ctx.moveInput.x) : (ctx.sr.flipX ? 1f : -1f);
         ctx.FlipCharacterRight(dir > 0 ? true : false);
         ctx.rb.constraints |= RigidbodyConstraints2D.FreezePositionY;
@@ -356,6 +358,7 @@ public class Dash : JState
     protected override void OnExit()
     {
         // unfreeze y pos
+        ctx.dashTrail.enabled = false;
         ctx.rb.constraints &= ~RigidbodyConstraints2D.FreezePositionY;
     }
 
@@ -369,7 +372,8 @@ public class Dash : JState
 
 /// <summary>
 /// Hidden state makes you hide in the hiding
-/// spot you interacted with.
+/// spot you interacted with. If you are hiding
+/// for too long you start to take tick damage
 /// </summary>
 public class Hidden : JState
 {
@@ -378,6 +382,8 @@ public class Hidden : JState
     readonly PlayerContext ctx;
     Animator hAnimator;
     AudioSource audio;
+    float hideTimeDamage;
+    float nextTickTime;
 
     public Hidden(JStateMachine m, JState parent, PlayerContext ctx) : base (m, parent)
     {
@@ -399,6 +405,10 @@ public class Hidden : JState
         ctx.tr.localPosition = new Vector3(.5f,0,0);
         ctx.jumpCount = 0;
         audio = SoundFXManager.Instance.PlaySFXClip(ctx.trashRussling, ctx.tr, 1f, true);
+
+
+        hideTimeDamage = Time.time + ctx.hideTime;
+        nextTickTime = hideTimeDamage;
     }
 
     // only way to exit this state is to jump out or attack
@@ -406,16 +416,31 @@ public class Hidden : JState
     {
         // reenables hiding spot and removes player as a child of the hiding spot
         hAnimator.Play("Trash_Reg");
+        ctx.hidingWarning.SetActive(false);
         SoundFXManager.Instance.DestroyAudioSource(audio, false);
         OnPlayerLeave?.Invoke();
         ctx.rb.constraints &= ~RigidbodyConstraints2D.FreezePositionX;
         ctx.sr.enabled = true;
         ctx.isHidden = false;
         ctx.tr.SetParent(null);
+        ctx.dashTrail.enabled = false;
     }
 
     protected override JState GetTransition()
     {
+        // check if the safe hiding time has expired
+        if (Time.time > hideTimeDamage)
+        {
+            ctx.hidingWarning.SetActive(true);
+            
+            // check if enough time has passed since the last tick
+            if (Time.time >= nextTickTime)
+            {
+                ctx.ModifyHealth(-ctx.tickDamage);
+                // set the timestamp for the next time they should take damage
+                nextTickTime = Time.time + ctx.tickRate;
+            }
+        }
         // handles jump and if he did jump then go to the airborne state
         if (ctx.pressedJump)
         {
@@ -435,6 +460,13 @@ public class Hidden : JState
         }
 
         return null;
+    }
+
+    IEnumerator ApplyTickDamage()
+    {
+        yield return new WaitForSeconds(ctx.tickRate);
+
+        ctx.ModifyHealth(-ctx.tickDamage);
     }
 }
 

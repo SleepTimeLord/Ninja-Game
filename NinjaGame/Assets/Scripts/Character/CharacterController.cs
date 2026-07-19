@@ -3,6 +3,9 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using System.Collections;
+using System.Xml.Linq;
+
 
 
 /// <summary>
@@ -37,8 +40,9 @@ public class CharacterController : MonoBehaviour
         machine = builder.Build();
     }
 
-    void Start()
+    IEnumerator Start()
     {
+        yield return new WaitForSeconds(.1f);
         if (hideInTrash) SpawnInRandTrashcan();
     }
 
@@ -89,6 +93,7 @@ public class CharacterController : MonoBehaviour
     /// </summary>
     public void SpawnInRandTrashcan()
     {
+        Debug.Log("Started randTrashspawn");
         Trashcan trashcan = trashcanContainer.GetRandomTrashcan();
 
         ctx.tr.position = trashcan.transform.position;
@@ -107,6 +112,7 @@ public class CharacterController : MonoBehaviour
     /// </summary>
     public void TakeDamage(float amount, Vector2 damagePos)
     {
+        ctx.isDamaged = true;
         ctx.damagePos = damagePos;
         ctx.ModifyHealth(-amount);
     }
@@ -266,6 +272,7 @@ public class CharacterController : MonoBehaviour
         if (ctx.isHidden && context.started && Time.time >= ctx.attackNextTimeReady) ctx.isAttacking = true;
         else if (!ctx.isHidden && ctx.nearestInteractable != null && context.started)
         {
+            ctx.dashTrail.enabled = true;
             ICharacterInteractable interactable = ctx.nearestInteractable.GetComponent<ICharacterInteractable>();
 
             interactable.Interact();
@@ -298,17 +305,20 @@ public class PlayerContext
     public float startAcceleration = 60f;
     public float runningAcceleration = 60f;
     public float deceleration = 40f;
-
     [Header("Jump Settings")]
     public float jumpForce = 5f;
     public float airJumpForce = 5f;
     public byte avaliableJumps = 2;
-
     [Header("Dash Settings")]
     public float dashForce = 60f;
     public byte dashCooldown = 1;
     public float dashDuration = 0.15f;
-
+    public TrailRenderer dashTrail;
+    [Header("Hiding Setting")]
+    public float hideTime;
+    public float tickDamage;
+    public float tickRate;
+    public GameObject hidingWarning;
     [Header("Wall Settings")]
     public float wallSlideSpeed = 1.5f;
     public float wallJumpForce = 1.5f;
@@ -383,7 +393,7 @@ public class PlayerContext
 
     public void ModifyHealth(float amount)
     {
-        if (amount < 0) isDamaged = true;
+        Debug.Log($"modifing Health by {amount}");
         health = Mathf.Clamp(health + amount, 0, maxHealth);
         healthSlider.maxValue = maxHealth;
         healthSlider.value = health;

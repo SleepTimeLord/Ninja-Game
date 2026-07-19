@@ -55,6 +55,7 @@
     <Compile Include="Assets\Scripts\JohnStateMachine\JTransitionSequencer.cs" />
     <Compile Include="Assets\Scripts\UI\CooldownUI.cs" />
     <Compile Include="Assets\Scripts\SoundMixerManager.cs" />
+    <Compile Include="Assets\Scripts\GoToLevel.cs" />
     <Compile Include="Assets\AdonStuff\Scripts\Enemy\Core\EnemyMovement.cs" />
     <Compile Include="Assets\AdonStuff\Scripts\Enemy\Core\EnemyManager.cs" />
     <Compile Include="Assets\AdonStuff\Scripts\Enemy\Core\Enemy.cs" />
