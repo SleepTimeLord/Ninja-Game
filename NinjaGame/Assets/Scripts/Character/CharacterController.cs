@@ -327,7 +327,10 @@ public class PlayerContext
     public float rightSideOffset = .5f;
     public float leftSideOffset = 1f;
     [Header("Sneak Attack Settings")]
-    public float sneakAttackCooldown = 5f;
+    public float initialSneakAttackCooldown = 7f;
+    public float sneakAttackCooldown = 0;
+    public float cooldownRefundPerKill = 1f;
+    public float minsneakAttackCooldown = 2f;
     public float sneakAttackDuration = 0.30f;
     [Header("Take Damage Settings")]
     public float damagedDuration = 0.3f;

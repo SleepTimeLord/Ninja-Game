@@ -461,13 +461,6 @@ public class Hidden : JState
 
         return null;
     }
-
-    IEnumerator ApplyTickDamage()
-    {
-        yield return new WaitForSeconds(ctx.tickRate);
-
-        ctx.ModifyHealth(-ctx.tickDamage);
-    }
 }
 
 /// <summary>
@@ -490,8 +483,7 @@ public class SneakAttack : JState
         // plays slashing animation
         ctx.ChangeAnimationState(ctx.sneakAttack, false);
 
-        // starts the timer for cooldown for dashing
-        ctx.attackNextTimeReady = Time.time + ctx.sneakAttackCooldown;
+        // starts the timer for cooldown for sneak attack
         attackEndTime = Time.time + ctx.sneakAttackDuration;
         // flip character to left to keep it consistant with character model
         // also slightly brings character model to the left so its in line with the hiding spot
@@ -504,6 +496,13 @@ public class SneakAttack : JState
 
     protected override void OnExit()
     {
+        float cooldownRefunded = ctx.cooldownRefundPerKill * ctx.enemyKillCombo;
+        
+        ctx.sneakAttackCooldown = Mathf.Clamp(ctx.initialSneakAttackCooldown - cooldownRefunded, ctx.minsneakAttackCooldown, ctx.initialSneakAttackCooldown);
+        ctx.attackNextTimeReady = Time.time + ctx.sneakAttackCooldown;
+        Debug.Log($"enemy kill combo: {ctx.enemyKillCombo}");
+        Debug.Log($"Your sneak attack cooldown is: {ctx.sneakAttackCooldown}");
+
         // make it resets the model and attack == false 
         // set the slashing GO to false in case animation event doesnt trigger
         ctx.isAttacking = false;

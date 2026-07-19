@@ -464,7 +464,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 4
+  m_SortingOrder: 1001
   m_MaskInteraction: 0
   m_Sprite: {fileID: 8570382345431369309, guid: 06b9b99955b3d9f4a8960830ea23dec2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -695,7 +695,10 @@ MonoBehaviour:
     wallJumpTime: 0.5
     rightSideOffset: 0.5
     leftSideOffset: 1
+    initialSneakAttackCooldown: 8
     sneakAttackCooldown: 4
+    cooldownRefundPerKill: 1.5
+    minsneakAttackCooldown: 1
     sneakAttackDuration: 0.6
     damagedDuration: 0.4
     knockbackStrenth: 7
