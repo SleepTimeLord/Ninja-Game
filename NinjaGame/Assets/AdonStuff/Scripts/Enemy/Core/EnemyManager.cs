@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Unity.Hierarchy;
@@ -18,9 +19,27 @@ public class EnemyManager : MonoBehaviour
     }
 
     /// <summary>
+    /// Invoked when the player hits the enemy AFTER handling the entire process
+    /// </summary>
+    public event Action EnemyHit;
+
+    [Header("Necessary Components")]
+    /// <summary>
+    /// A reference to the graph the platforms use
+    /// </summary>
+    [SerializeField] private PlatformGraph platformGraph;
+
+    /// <summary>
+    /// A reference to the trashcan container the scene uses
+    /// </summary>
+    [SerializeField] private TrashcanContainer trashcanContainer;
+
+    /// <summary>
     /// A reference to the slash the enemy has
     /// </summary>
     [SerializeField] private SlashTrigger playerSlash;
+
+    [Header("Enemy Settings")]
 
     /// <summary>
     /// The prefab the enemy uses
@@ -31,11 +50,6 @@ public class EnemyManager : MonoBehaviour
     /// The number of enemies that are to be on-screen at once
     /// </summary>
     [SerializeField] private int MaxEnemies = 1;
-
-    /// <summary>
-    /// A reference to the graph the platforms use
-    /// </summary>
-    [SerializeField] private PlatformGraph platformGraph;
 
     /// <summary>
     /// A reference to each enemy in the game that's alive
@@ -94,12 +108,12 @@ public class EnemyManager : MonoBehaviour
             /// <summary>
             /// The lowest scale there can possibly be for searching
             /// </summary>
-            const float MinSearchScale = 0.1f;
+            const float MinSearchScale = 0.5f;
 
             /// <summary>
             /// The highest scale there can possibly be for searching
             /// </summary>
-            const float MaxSearchScale = 1.75f;
+            const float MaxSearchScale = 2.75f;
 
             // How empty the screen is overall, calculated as a percentage
             float screenToEnemyEmptiness = 1f - (float)this.activeEnemies.Count / MaxEnemies;
@@ -123,12 +137,6 @@ public class EnemyManager : MonoBehaviour
     // Update is called once per frame
     public void Update()
     {
-        if (!this.platformGraph.IsInitialized)
-        {
-            Debug.Log("Return");
-            return;
-        }
-
         /*
          * The first thing to do is check whether or not there's a sufficient number of enemies 
          * that aren't dead at the moment
@@ -141,7 +149,21 @@ public class EnemyManager : MonoBehaviour
         // Next, update each enemy and feed it the necessary information it needs
         for (int i = this.activeEnemies.Count - 1; i >= 0; i--)
         {
-            this.activeEnemies[i].searchScale = this.SearchScale;
+            Enemy currentEnemy = this.activeEnemies[i];
+
+            if (currentEnemy.IsDying)
+            {
+                if (currentEnemy.IsReadyForDeath)
+                {
+                    this.activeEnemies.Remove(currentEnemy);
+                    currentEnemy.gameObject.SetActive(false);
+                    this.deadEnemies.Enqueue(currentEnemy);
+                }
+
+                continue;
+            }
+
+            currentEnemy.searchScale = this.SearchScale;
         }
     }
 
@@ -153,6 +175,7 @@ public class EnemyManager : MonoBehaviour
         // The first thing to check is whether or not we can just get take a dead enemy
         Enemy soonToBeEnemy;
         Vector2 randomSpawnPoint = GetRandomPoint();
+        Debug.Log($"Random Spawn Point: {randomSpawnPoint}");
 
         /*
          * If there isn't one, we just have to instantiate a new one before actually giving it
@@ -163,9 +186,9 @@ public class EnemyManager : MonoBehaviour
             soonToBeEnemy = Instantiate(this.enemyPrefab, this.gameObject.transform);
         }
 
-        soonToBeEnemy.enabled = true;
-        soonToBeEnemy.Initialize(this.platformGraph, IsInWanderState, randomSpawnPoint);
         soonToBeEnemy.gameObject.SetActive(true);
+        soonToBeEnemy.Initialize(this.platformGraph, this.trashcanContainer, IsInWanderState, 
+            randomSpawnPoint);
         this.activeEnemies.Add(soonToBeEnemy);
     }
 
@@ -185,10 +208,7 @@ public class EnemyManager : MonoBehaviour
     /// <param name="enemy">the enemy in question</param>
     private void OnEnemyHit(Enemy enemy)
     {
-        this.activeEnemies.Remove(enemy);
-
-        enemy.Die();
-
-        this.deadEnemies.Enqueue(enemy);
+        enemy.BeginDeath();
+        this.EnemyHit?.Invoke();
     }
 }

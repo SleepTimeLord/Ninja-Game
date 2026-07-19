@@ -55,6 +55,7 @@ public class Trashcan : MonoBehaviour
     public void Awake()
     {
         PlayerCheck();
+        this.tracker.FindPlatformBelow();
     }
 
 
@@ -65,7 +66,6 @@ public class Trashcan : MonoBehaviour
     {
         foreach (Transform child in this.transform)
         {
-            Debug.Log(child.name);
             if (child.CompareTag("Player"))
             {
                 this.isPlayerInside = true;
@@ -73,7 +73,6 @@ public class Trashcan : MonoBehaviour
             }
         }
 
-        Debug.Log("Player not found");
         this.isPlayerInside = false;
     }
 }

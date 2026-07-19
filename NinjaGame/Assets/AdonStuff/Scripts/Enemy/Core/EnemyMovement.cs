@@ -11,13 +11,18 @@ public class EnemyMovement : MonoBehaviour
     /// <summary>
     /// A reference to the Rigidbody2D the enemy has
     /// </summary>
-    [SerializeField] Rigidbody2D rb;
+    [SerializeField] private Rigidbody2D rb;
 
     [Header("Necessary nodes")]
     ///<summary>
     /// The enemy the movement is assisting with
     /// </summary>
-    [SerializeField] Enemy enemy;
+    [SerializeField] private Enemy enemy;
+
+    /// <summary>
+    /// A sprite to the sprite renderer
+    /// </summary>
+    [SerializeField] private SpriteRenderer sprite;
 
     /// <summary>
     /// The path that the enemy needs to take to get to its destination from its current point
@@ -174,8 +179,13 @@ public class EnemyMovement : MonoBehaviour
                     Vector2 newDropPosition = UpdateArc(this.specialTransitionStartPoint,
                         newTransitionPosition, this.transitionProgress, peakHeight);
 
+                    // Before moving the player, have the enemy actually facing the correct
+                    // way
+                    FaceTowards(newDropPosition);
+
                     //Debug.Log($"Jumping/dropping to {newDropPosition}");
                     this.transform.position = newDropPosition;
+                    ConsiderAnimations(false, true);
                     return;
             }
         }
@@ -229,11 +239,40 @@ public class EnemyMovement : MonoBehaviour
     /// The actions to occur when walking from one location to another
     /// </summary>
     /// <param name="target">the target position to get to</param>
-    /// <param name="speed"></param>
+    /// <param name="speed">how fast the enemy is moving</param>
     private void UpdateWalk(Vector2 target, float speed)
     {
+        FaceTowards(target);
         this.transform.position = Vector2.MoveTowards(
             this.transform.position, target, speed * Time.deltaTime);
+
+        ConsiderAnimations(true, false);
+    }
+
+    /// <summary>
+    /// Checks through all the possible animations that could occur based on this script 
+    /// and sets them
+    /// </summary>
+    /// <param name="isWalking">whether or not the enemy is walking</param>
+    /// <param name="isJumpingOrDropping">whether or not the enemy is jumping or dropping</param>
+    private void ConsiderAnimations(bool isWalking, bool isJumpingOrDropping)
+    {
+        this.enemy.IsWalking = isWalking;
+        this.enemy.IsJumpingDropping = isJumpingOrDropping;
+    }
+
+    /// <summary>
+    /// The logic for when an enemy needs to face a certain direction
+    /// </summary>
+    /// <param name="targetPosition">the place the enemy is trying to go</param>
+    private void FaceTowards(Vector2 targetPosition)
+    {
+        float deltaX = targetPosition.x - this.transform.position.x;
+
+        if (Mathf.Abs(deltaX) < 0.01f)
+            return;
+
+        this.sprite.flipX = deltaX > 0;
     }
 
     /// <summary>

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8115475093516537753}
   - component: {fileID: 3548780605335652559}
   - component: {fileID: 2227252627378684159}
+  - component: {fileID: 8240787192505350598}
   m_Layer: 7
   m_Name: Enemy
   m_TagString: Untagged
@@ -78,7 +79,9 @@ MonoBehaviour:
   movement: {fileID: 2915336073948124020}
   navigator: {fileID: 8346546086120633570}
   stateMachine: {fileID: 2227252627378684159}
-  spriteCollider: {fileID: 1238148435623986577}
+  animationManager: {fileID: 5353456231076809027}
+  spriteCollider: {fileID: 4182121969601603666}
+  searchScale: 0
 --- !u!114 &2227252627378684159
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -92,6 +95,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyStateMachine
   enemy: {fileID: 3548780605335652559}
+--- !u!95 &8240787192505350598
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5228679784376420059}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 42548604d21491d4ebfa563a34ef71ff, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &8545803219910266801
 GameObject:
   m_ObjectHideFlags: 0
@@ -102,10 +127,11 @@ GameObject:
   m_Component:
   - component: {fileID: 298894718414535169}
   - component: {fileID: 2065089001968789026}
-  - component: {fileID: 1238148435623986577}
+  - component: {fileID: 4182121969601603666}
   - component: {fileID: 4775831658779423738}
   - component: {fileID: 2915336073948124020}
   - component: {fileID: 8346546086120633570}
+  - component: {fileID: 5353456231076809027}
   m_Layer: 7
   m_Name: Capsule
   m_TagString: Enemy
@@ -123,8 +149,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 6328634033612185682}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -175,9 +201,9 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
+  m_Sprite: {fileID: -2585424521043192690, guid: 3f5d3150b271916499dda6795bedef32, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -187,8 +213,8 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!70 &1238148435623986577
-CapsuleCollider2D:
+--- !u!61 &4182121969601603666
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -197,7 +223,7 @@ CapsuleCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: f31b1f6aa3e64464ead408011b288eaf, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -222,8 +248,17 @@ CapsuleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 2}
-  m_Direction: 0
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 4.21, y: 6.45}
+    newSize: {x: 1, y: 2}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 4.21, y: 6.34}
+  m_EdgeRadius: 0
 --- !u!114 &4775831658779423738
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -250,6 +285,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyMovement
   rb: {fileID: 8115475093516537753}
   enemy: {fileID: 3548780605335652559}
+  sprite: {fileID: 2065089001968789026}
 --- !u!114 &8346546086120633570
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -262,4 +298,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 817eed545bb6b2a4182375e504658cfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlatformNavigator
-  graph: {fileID: 0}
+--- !u!114 &5353456231076809027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8545803219910266801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 815f021cd1fd31e4dbabe28ea5299dcb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyAnimationManager
+  animator: {fileID: 8240787192505350598}

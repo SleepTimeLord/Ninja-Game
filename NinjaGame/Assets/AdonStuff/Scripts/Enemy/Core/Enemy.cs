@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 /// <summary>
@@ -27,6 +28,11 @@ public class Enemy : MonoBehaviour
     /// </summary>
     [SerializeField] private EnemyStateMachine stateMachine;
 
+    /// <summary>
+    /// A reference to the enemy's animation manager
+    /// </summary>
+    [SerializeField] private EnemyAnimationManager animationManager;
+
     [Header("Sprite & Others")]
     /// <summary>
     /// A reference to an enemy's collider
@@ -38,6 +44,11 @@ public class Enemy : MonoBehaviour
     /// The scale of which the enemy should search
     /// </summary>
     public float searchScale;
+
+    /// <summary>
+    /// An iterative time for the amount of the time it's been since an enemy has officially died
+    /// </summary>
+    private float deathAnimationCounter;
 
     /// <summary>
     /// How fast the enemy is moving while chasing the player
@@ -55,9 +66,15 @@ public class Enemy : MonoBehaviour
     private PlatformGraph currentGraph;
 
     /// <summary>
-    /// A reference to the manager controlling the enemy
+    /// A reference to the manager holding all of the trashcans
     /// </summary>
-    private EnemyManager manager;
+    private TrashcanContainer trashcanContainer;
+
+    /// <summary>
+    /// A reference to the target the enemy currently has
+    /// </summary>
+    /// <remarks>In this case, it can really either be a trashcan or a platform</remarks>
+    private GameObject currentTarget;
 
 
     /// <summary>
@@ -71,6 +88,117 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Returns whether or not an enemy is in the middle of a transition
+    /// </summary>
+    public bool IsInTransition
+    {
+        get
+        {
+            return this.movement.IsInTransition;
+        }
+    }
+
+    /// <summary>
+    /// Returns whether or not the enemy is ready to die
+    /// </summary>
+    public bool IsReadyForDeath
+    {
+        get
+        {
+            if (this.deathAnimationCounter >= 1f)
+            {
+                this.IsDying = false;
+                this.deathAnimationCounter = 0f;
+                return true;
+            }
+            return false;
+        }
+    }
+
+    #region Animation-Related Properties
+    /// <summary>
+    /// Sets whether the enemy is idle
+    /// </summary>
+    public bool IsIdle
+    {
+        set
+        {
+            this.animationManager.IsIdle = value;
+        }
+    }
+
+    /// <summary>
+    /// Sets whether the enemy is walking
+    /// </summary>
+    public bool IsWalking
+    {
+        set
+        {
+            this.animationManager.IsWalking = value;
+        }
+    }
+
+    /// <summary>
+    /// Gets and sets whether the enemy is jumping or dropping
+    /// </summary>
+    public bool IsJumpingDropping
+    {
+        get
+        {
+            return this.animationManager.IsJumpingDropping;
+        }
+        set
+        {
+            this.animationManager.IsJumpingDropping = value;
+        }
+    }
+
+    /// <summary>
+    /// Gets and sets whether the enemy is dying
+    /// </summary>
+    public bool IsDying
+    {
+        get
+        {
+            return this.animationManager.IsDying;
+        }
+        set
+        {
+            this.animationManager.IsDying = value;
+        }
+    }
+
+    /// <summary>
+    /// Gets and sets whether the enemy is punching something or not
+    /// </summary>
+    public bool IsPunching
+    {
+        get
+        {
+            return this.animationManager.IsPunching;
+        }
+        set
+        {
+            this.animationManager.IsPunching = value;
+        }
+    }
+    #endregion
+
+    /// <summary>
+    /// The ultimate target that the enemy has to go for during a route
+    /// </summary>
+    public GameObject CurrentTarget
+    {
+        get
+        {
+            return this.currentTarget;
+        }
+    }
+
+    /// <summary>
+    /// A reference to the sprite collider and its position
+    /// </summary>
     public Collider2D SpriteCollider
     {
         get
@@ -90,17 +218,6 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Returns whether or not an enemy is in the middle of a transition
-    /// </summary>
-    public bool IsInTransition
-    {
-        get
-        {
-            return this.movement.IsInTransition;
-        }
-    }
-
 
     /// <summary>
     /// The actions the prefab should take when it's (re)introduced into the world
@@ -109,16 +226,19 @@ public class Enemy : MonoBehaviour
     /// manager</param>
     /// <param name="isInWanderState">whether or not the initial state for the enemy will consist
     /// of it wandering</param>
-    /// <param name="spawnPosition">The v</param>
-    public void Initialize(PlatformGraph graph, bool isInWanderState, Vector2 spawnPosition)
+    /// <param name="spawnPosition">The place the enemy will start off at</param>
+    /// <param name="trashcanContainer">A reference to the trash can container</param>
+    public void Initialize(PlatformGraph graph, TrashcanContainer trashcanContainer, 
+        bool isInWanderState, Vector2 spawnPosition)
     {
+        this.trashcanContainer = trashcanContainer;
         this.currentGraph = graph;
         this.navigator.Graph = graph;
 
         // The paths are reset and the init spawn position is given BEFORE the state changes
         ResetEnemy(spawnPosition);
 
-        // Then the initial platform is found
+        // Then the initial platform needs to be found
         this.platformTracker.FindPlatformBelow();
 
         // Finally, start the behavior
@@ -133,7 +253,9 @@ public class Enemy : MonoBehaviour
     public void ResetEnemy(Vector2 spawnPosition)
     {
         this.movement.ClearPathParams();
-        this.transform.position = spawnPosition;
+        this.animationManager.ResetAnimation();
+        this.spriteCollider.transform.position = spawnPosition;
+        this.deathAnimationCounter = 0f;
     }
 
     /// <summary>
@@ -150,39 +272,41 @@ public class Enemy : MonoBehaviour
         /// <summary>
         /// The base odds of the enemy searching
         /// </summary>
-        const float BaseSearchChance = 0.35f;
+        const float BaseSearchChance = 0.55f;
 
-        // Clamped so that the chance is never above 100
         float searchChance = Mathf.Clamp01(BaseSearchChance * searchScale);
+
+        /*
+         * Both potential events (searching and not searching) still have the same process of 
+         * finding a target platform and having the location, thus why they're up here instead of 
+         * being local to the if-statement
+         */
+        Platform targetPlatform;
+        Vector2 trueTargetLocation;
 
         if (Random.value <= searchChance)
         {
-            Debug.Log("Search successful");
-            return;
+            Trashcan randomTrashcan = this.trashcanContainer.GetRandomTrashcan();
+
+            targetPlatform = randomTrashcan.CurrentPlatform;
+            trueTargetLocation = randomTrashcan.Position;
+            this.currentTarget = randomTrashcan.gameObject;
+            Debug.Log($"Searching from platform {this.CurrentPlatform} to {targetPlatform.name}; " +
+                $"home of {randomTrashcan.name}");
         }
         else
         {
-            /*
-             * There are (mainly) two parts to wandering: Going to a location, and waiting there.
-             * That will be determined here.
-             */
-            // First, a location to wander to should be calculated
-            Platform targetPlatform = this.currentGraph.GetRandomPlatform();
-            Vector2 trueTargetLocation = targetPlatform.GetValidPoint();
+            targetPlatform = this.currentGraph.GetRandomPlatform();
+            trueTargetLocation = targetPlatform.GetValidPoint();
+            this.currentTarget = targetPlatform.gameObject;
             Debug.Log($"Starting from platform {this.CurrentPlatform} to {targetPlatform.name}");
-
-            if (this.CurrentPlatform == null)
-            {
-                Debug.LogWarning("The current platform is null");
-            }
-
-            // Next, we can use this random platform to create a path
-            List<PlatformTransition> platformPath = this.navigator.SearchPath(this.CurrentPlatform, targetPlatform);
-
-            // Then we set that path for movement to begin
-            this.movement.SetPath(platformPath, trueTargetLocation);
         }
 
+        // Next, we can use this random platform to create a path
+        List<PlatformTransition> platformPath = this.navigator.SearchPath(this.CurrentPlatform, targetPlatform);
+
+        // Then we set that path for movement to begin
+        this.movement.SetPath(platformPath, trueTargetLocation);
         // There isn't any more to do here, as the rest is handled directly in the WanderState
     }
 
@@ -194,6 +318,16 @@ public class Enemy : MonoBehaviour
     public void Tick(bool isInWanderState, float updatedSearchScale)
     {
         this.searchScale = updatedSearchScale;
+        
+        /*
+         * Movement isn't necessary when there's a bigger animation going on. That's handled in 
+         * their own respective scripts
+         */
+        if (IsDying)
+        {
+            this.deathAnimationCounter += Time.deltaTime;
+            return;
+        }
 
         if (isInWanderState)
         {
@@ -208,10 +342,9 @@ public class Enemy : MonoBehaviour
     /// <summary>
     /// The actions to occur once the enemy dies
     /// </summary>
-    public void Die()
+    public void BeginDeath()
     {
         this.movement.ClearPathParams();
-        this.gameObject.SetActive(false);
-        this.enabled = false;
+        this.IsDying = true;
     }
 }

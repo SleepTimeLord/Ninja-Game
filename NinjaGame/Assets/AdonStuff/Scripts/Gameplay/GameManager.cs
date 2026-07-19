@@ -23,11 +23,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private NinjaRoot player;
 
     /// <summary>
-    /// An extra reference to the slash the player has
-    /// </summary>
-    [SerializeField] private SlashTrigger playerSlash;
-
-    /// <summary>
     /// The score that the player has
     /// </summary>
     private int score;
@@ -36,18 +31,16 @@ public class GameManager : MonoBehaviour
     public void Start()
     {
         this.score = 0;
-        this.playerSlash.EnemyHit += OnEnemyHit;
+        this.enemyManager.EnemyHit += OnEnemyHit;
     }
 
 
     /// <summary>
     /// The actions to occur once an enemy gets hit
     /// </summary>
-    /// <param name="enemy">the enemy in question getting hit</param>
-    /// <remarks>Although this isn't ideal for the GameManager to have this as well, it's useful
-    /// for also increasing score</remarks>
-    private void OnEnemyHit(Enemy enemy)
+    private void OnEnemyHit()
     {
         this.score += 150;
+        Debug.Log($"Score increased to {this.score}");
     }
 }
