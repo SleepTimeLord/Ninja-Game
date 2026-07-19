@@ -1,0 +1,741 @@
+fileFormatVersion: 2
+guid: 617853ab36a10fd4aaecfbf78ba0ec0b
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1806269672892864224
+    second: BIOSECpunch_0
+  - first:
+      213: 4163995205663965867
+    second: BIOSECpunch_1
+  - first:
+      213: -7899641243331807195
+    second: BIOSECpunch_2
+  - first:
+      213: -1817711347636563722
+    second: BIOSECpunch_3
+  - first:
+      213: 5003644967043475146
+    second: BIOSECpunch_4
+  - first:
+      213: -3081048824659353480
+    second: BIOSECpunch_5
+  - first:
+      213: -3484918109749422090
+    second: BIOSECpunch_6
+  - first:
+      213: -5472349789388085708
+    second: BIOSECpunch_7
+  - first:
+      213: 2725463490506702249
+    second: BIOSECpunch_8
+  - first:
+      213: 7678990995351879149
+    second: BIOSECpunch_9
+  - first:
+      213: 3409932017046576806
+    second: BIOSECpunch_10
+  - first:
+      213: 8505082259812300763
+    second: BIOSECpunch_11
+  - first:
+      213: 3208000592726488001
+    second: BIOSECpunch_12
+  - first:
+      213: 6903607377980891172
+    second: BIOSECpunch_13
+  - first:
+      213: 8207392139149928575
+    second: BIOSECpunch_14
+  - first:
+      213: 4804747428191208711
+    second: BIOSECpunch_15
+  - first:
+      213: 5412240860106405655
+    second: BIOSECpunch_16
+  - first:
+      213: -8264587827439014465
+    second: BIOSECpunch_17
+  - first:
+      213: -2269345101017263884
+    second: BIOSECpunch_18
+  - first:
+      213: 4620197546387016050
+    second: BIOSECpunch_19
+  - first:
+      213: 7694008984952337636
+    second: BIOSECpunch_20
+  - first:
+      213: -6592523774911761662
+    second: BIOSECpunch_21
+  - first:
+      213: 987595130176681269
+    second: BIOSECpunch_22
+  - first:
+      213: -8844935092385934116
+    second: BIOSECpunch_23
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: BIOSECpunch_0
+      rect:
+        serializedVersion: 2
+        x: 407
+        y: 4016
+        width: 471
+        height: 593
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e6175d82b8211910800000000000000
+      internalID: 1806269672892864224
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECpunch_1
+      rect:
+        serializedVersion: 2
+        x: 1407
+        y: 4016
+        width: 471
+        height: 593
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba2c708e39b79c930800000000000000
+      internalID: 4163995205663965867
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECpunch_2
+      rect:
+        serializedVersion: 2
+        x: 2396
+        y: 4012
+        width: 522
+        height: 565
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 528be2ea426de5290800000000000000
+      internalID: -7899641243331807195
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECpunch_3
+      rect:
+        serializedVersion: 2
+        x: 3396
+        y: 4012
+        width: 522
+        height: 565
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f01de3f82136c6e0800000000000000
+      internalID: -1817711347636563722
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECpunch_4
+      rect:
+        serializedVersion: 2
+        x: 4386
+        y: 4010
+        width: 608
+        height: 560
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac62cca4694807540800000000000000
+      internalID: 5003644967043475146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECpunch_5
+      rect:
+        serializedVersion: 2
+        x: 386
+        y: 3010
+        width: 608
+        height: 560
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8706b860b6aed35d0800000000000000
+      internalID: -3081048824659353480
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECpunch_6
+      rect:
+        serializedVersion: 2
+        x: 1016
+        y: 3024
+        width: 967
+        height: 532
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f75f0d617513afc0800000000000000
+      internalID: -3484918109749422090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECpunch_7
+      rect:
+        serializedVersion: 2
+        x: 2016
+        y: 3024
+        width: 967
+        height: 532
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 436e6dc3cde4e04b0800000000000000
+      internalID: -5472349789388085708
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECpunch_8
+      rect:
+        serializedVersion: 2
+        x: 3151
+        y: 3021
+        width: 790
+        height: 556
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9adb2ffba9ac2d520800000000000000
+      internalID: 2725463490506702249
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECpunch_9
+      rect:
+        serializedVersion: 2
+        x: 4151
+        y: 3021
+        width: 790
+        height: 556
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ded3f5f00a1419a60800000000000000
+      internalID: 7678990995351879149
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECpunch_10
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 2021
+        width: 790
+        height: 556
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6aeda485a13825f20800000000000000
+      internalID: 3409932017046576806
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECpunch_11
+      rect:
+        serializedVersion: 2
+        x: 1151
+        y: 2021
+        width: 790
+        height: 556
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd7b691e04f180670800000000000000
+      internalID: 8505082259812300763
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECpunch_12
+      rect:
+        serializedVersion: 2
+        x: 2151
+        y: 2021
+        width: 790
+        height: 556
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c374b8da8b158c20800000000000000
+      internalID: 3208000592726488001
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECpunch_13
+      rect:
+        serializedVersion: 2
+        x: 3151
+        y: 2021
+        width: 790
+        height: 556
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4202159555a8ecf50800000000000000
+      internalID: 6903607377980891172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECpunch_14
+      rect:
+        serializedVersion: 2
+        x: 4151
+        y: 2021
+        width: 790
+        height: 556
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f786d5a7aa386e170800000000000000
+      internalID: 8207392139149928575
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECpunch_15
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 1021
+        width: 790
+        height: 556
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7050fcc4454eda240800000000000000
+      internalID: 4804747428191208711
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECpunch_16
+      rect:
+        serializedVersion: 2
+        x: 1151
+        y: 1021
+        width: 790
+        height: 556
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7173f7113642c1b40800000000000000
+      internalID: 5412240860106405655
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECpunch_17
+      rect:
+        serializedVersion: 2
+        x: 2151
+        y: 1021
+        width: 790
+        height: 556
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fbdea7a98294e4d80800000000000000
+      internalID: -8264587827439014465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECpunch_18
+      rect:
+        serializedVersion: 2
+        x: 3151
+        y: 1021
+        width: 790
+        height: 556
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f0d71577aaa180e0800000000000000
+      internalID: -2269345101017263884
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECpunch_19
+      rect:
+        serializedVersion: 2
+        x: 4151
+        y: 1021
+        width: 790
+        height: 556
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2798788803d3e1040800000000000000
+      internalID: 4620197546387016050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECpunch_20
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 21
+        width: 790
+        height: 556
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4e47fbe386c96ca60800000000000000
+      internalID: 7694008984952337636
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECpunch_21
+      rect:
+        serializedVersion: 2
+        x: 1151
+        y: 21
+        width: 790
+        height: 556
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 203311f2e86a284a0800000000000000
+      internalID: -6592523774911761662
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECpunch_22
+      rect:
+        serializedVersion: 2
+        x: 2151
+        y: 21
+        width: 790
+        height: 556
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5353614d984a4bd00800000000000000
+      internalID: 987595130176681269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECpunch_23
+      rect:
+        serializedVersion: 2
+        x: 3151
+        y: 21
+        width: 790
+        height: 556
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd413fc556a704580800000000000000
+      internalID: -8844935092385934116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      BIOSECpunch_0: 1806269672892864224
+      BIOSECpunch_1: 4163995205663965867
+      BIOSECpunch_10: 3409932017046576806
+      BIOSECpunch_11: 8505082259812300763
+      BIOSECpunch_12: 3208000592726488001
+      BIOSECpunch_13: 6903607377980891172
+      BIOSECpunch_14: 8207392139149928575
+      BIOSECpunch_15: 4804747428191208711
+      BIOSECpunch_16: 5412240860106405655
+      BIOSECpunch_17: -8264587827439014465
+      BIOSECpunch_18: -2269345101017263884
+      BIOSECpunch_19: 4620197546387016050
+      BIOSECpunch_2: -7899641243331807195
+      BIOSECpunch_20: 7694008984952337636
+      BIOSECpunch_21: -6592523774911761662
+      BIOSECpunch_22: 987595130176681269
+      BIOSECpunch_23: -8844935092385934116
+      BIOSECpunch_3: -1817711347636563722
+      BIOSECpunch_4: 5003644967043475146
+      BIOSECpunch_5: -3081048824659353480
+      BIOSECpunch_6: -3484918109749422090
+      BIOSECpunch_7: -5472349789388085708
+      BIOSECpunch_8: 2725463490506702249
+      BIOSECpunch_9: 7678990995351879149
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

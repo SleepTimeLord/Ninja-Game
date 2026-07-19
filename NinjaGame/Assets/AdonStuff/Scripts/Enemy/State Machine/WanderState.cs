@@ -73,6 +73,9 @@ public class WanderState : EnemyState
         {
             Debug.Log("Bro stopped and needs to have the timer started");
             this.isIdle = true;
+            enemy.IsIdle = true;
+            this.enemy.IsWalking = false;
+            this.enemy.IsJumpingDropping = false;
             this.idleTimer = GetIdleTime();
         }
 
@@ -83,10 +86,11 @@ public class WanderState : EnemyState
         if (this.idleTimer <= 0f)
         {
             this.isIdle = false;
+            this.enemy.IsIdle = false;
 
             // Once again, a temp value here is used
             Debug.Log("Making him wander again");
-            this.enemy.Wander(0f);
+            this.enemy.Wander(this.enemy.searchScale);
         }
     }
 

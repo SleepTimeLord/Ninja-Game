@@ -95,6 +95,15 @@ public class EnemyStateMachine : MonoBehaviour
     }
 
     /// <summary>
+    /// Sets all the states to nothing, ensuring that nothing can happen
+    /// </summary>
+    public void CancelStates()
+    {
+        this.currentState = null;
+        this.pendingState = null;
+    }
+
+    /// <summary>
     /// Tries to complete a transition, if there is one
     /// </summary>
     private void TryCompleteTransition()

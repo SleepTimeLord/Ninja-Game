@@ -52,6 +52,7 @@
     <Compile Include="Assets\Scripts\JohnStateMachine\JState.cs" />
     <Compile Include="Assets\AdonStuff\Scripts\Platform\TransitionalPlatform.cs" />
     <Compile Include="Assets\AdonStuff\Scripts\Platform\PlatformTransition.cs" />
+    <Compile Include="Assets\AdonStuff\Scripts\Enemy\Core\EnemyAnimationManager.cs" />
     <Compile Include="Assets\Scripts\JohnStateMachine\JTransitionSequencer.cs" />
     <Compile Include="Assets\Scripts\UI\CooldownUI.cs" />
     <Compile Include="Assets\Scripts\SoundMixerManager.cs" />
@@ -69,6 +70,7 @@
     <Compile Include="Assets\Scripts\NextScene.cs" />
     <Compile Include="Assets\InputSystem_Actions.cs" />
     <Compile Include="Assets\Scripts\Character\CharacterController.cs" />
+    <Compile Include="Assets\AdonStuff\Scripts\Enemy\Core\AnimationManager.cs" />
     <Compile Include="Assets\AdonStuff\Scripts\Interactable\TrashcanContainer.cs" />
     <Compile Include="Assets\Scripts\SoundFXManager.cs" />
     <Compile Include="Assets\AdonStuff\Scripts\Platform\PlatformGraph.cs" />
