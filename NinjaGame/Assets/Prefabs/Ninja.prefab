@@ -271,7 +271,7 @@ CapsuleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -749,6 +749,7 @@ MonoBehaviour:
     currentAnimState: 
     swordSlash: {fileID: 8300000, guid: 9c46b132d01c6a64a8bd1096b6c58108, type: 3}
     trashRussling: {fileID: 8300000, guid: b3f591e9736875d4aab49684c1108122, type: 3}
+    explosion: {fileID: 8300000, guid: 285f5c2af4bddde49a7f2100e43d3d48, type: 3}
 --- !u!114 &6393667863541152652
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 public class SettingsManager : MonoBehaviour
 {
     public static bool isPaused = false;
+    public bool inGameScene = false;
     public GameObject settingMenuUI;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
@@ -30,6 +31,12 @@ public class SettingsManager : MonoBehaviour
         settingMenuUI.SetActive(false);
         isPaused = false;
         Time.timeScale = 1f;
+        if (inGameScene)
+        {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+
     }
 
     public void Pause()
@@ -37,5 +44,7 @@ public class SettingsManager : MonoBehaviour
         settingMenuUI.SetActive(true);
         isPaused = true;
         Time.timeScale = 0f;
+        Cursor.visible = true; 
+        Cursor.lockState = CursorLockMode.None;
     }
 }

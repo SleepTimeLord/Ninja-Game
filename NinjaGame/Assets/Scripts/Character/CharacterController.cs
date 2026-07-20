@@ -4,9 +4,6 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using System.Collections;
-using System.Xml.Linq;
-
-
 
 /// <summary>
 /// This basically is in charge of all the player related checks
@@ -40,12 +37,17 @@ public class CharacterController : MonoBehaviour
         machine = builder.Build();
 
         ctx.platformTracker.FindPlatformBelow();
+
+        Cursor.visible = false; 
+        Cursor.lockState = CursorLockMode.Locked; 
     }
 
     IEnumerator Start()
     {
         yield return new WaitForSeconds(.1f);
         if (hideInTrash) SpawnInRandTrashcan();
+
+
     }
 
     static string StatePath(JState s)
@@ -382,6 +384,7 @@ public class PlayerContext
     [Header("Audio")]
     public AudioClip swordSlash;
     public AudioClip trashRussling;
+    public AudioClip explosion;
 
     public void ChangeAnimationState(string newState, bool canPlayAgain)
     {

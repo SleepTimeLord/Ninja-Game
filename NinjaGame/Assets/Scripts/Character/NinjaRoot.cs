@@ -1,6 +1,5 @@
 using UnityEngine;
 using System;
-using System.Collections;
 // statmachine for the ninja
 
 
@@ -587,6 +586,7 @@ public class Death : JState
         ctx.rb.simulated = false;
         ctx.rb.transform.localScale = new Vector3(11,11,11);
         // makes the ninja explode
+        SoundFXManager.Instance.PlaySFXClip(ctx.explosion, ctx.tr, 1f, false);
         ctx.ChangeAnimationState(ctx.ninjaDeath, false);
         
         // time before it switches to the lose screen
