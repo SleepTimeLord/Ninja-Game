@@ -3356,6 +3356,9 @@ MonoBehaviour:
     groundLayer:
       serializedVersion: 2
       m_Bits: 64
+    wallLayer:
+      serializedVersion: 2
+      m_Bits: 0
     phaseThruPlatform: JumpThruPlatform
     wallTag: Wall
     moveInput: {x: 0, y: 0}
@@ -5594,6 +5597,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyManager
   player: {fileID: 986108966}
   enemyPrefab: {fileID: 3548780605335652559, guid: 2104ebdc1e5452f4e8f0e0ed2bf7b1aa, type: 3}
+  MaxEnemies: 1
   platformGraph: {fileID: 1283267456}
 --- !u!4 &1580798498
 Transform:

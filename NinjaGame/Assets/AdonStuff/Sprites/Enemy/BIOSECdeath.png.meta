@@ -1,0 +1,1651 @@
+fileFormatVersion: 2
+guid: 3b9c6a286e94fc548b3d27b8f5121499
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -5440741175102664884
+    second: BIOSECdeath_0
+  - first:
+      213: 523977322197944701
+    second: BIOSECdeath_1
+  - first:
+      213: -5005197190496145403
+    second: BIOSECdeath_2
+  - first:
+      213: -6539621692483266355
+    second: BIOSECdeath_3
+  - first:
+      213: -8497930170588203002
+    second: BIOSECdeath_4
+  - first:
+      213: 6695257876290419917
+    second: BIOSECdeath_5
+  - first:
+      213: -5967665449390742553
+    second: BIOSECdeath_6
+  - first:
+      213: 3503825038478432599
+    second: BIOSECdeath_7
+  - first:
+      213: -4051125364972066072
+    second: BIOSECdeath_8
+  - first:
+      213: 8518797925466371249
+    second: BIOSECdeath_9
+  - first:
+      213: -7010232495385999886
+    second: BIOSECdeath_10
+  - first:
+      213: 3547642488568418204
+    second: BIOSECdeath_11
+  - first:
+      213: -1384954795109845685
+    second: BIOSECdeath_12
+  - first:
+      213: -7556850967210356369
+    second: BIOSECdeath_13
+  - first:
+      213: 3875831702675959388
+    second: BIOSECdeath_14
+  - first:
+      213: 5131450522759591691
+    second: BIOSECdeath_15
+  - first:
+      213: 5230551265702532647
+    second: BIOSECdeath_16
+  - first:
+      213: -3564047052564715785
+    second: BIOSECdeath_17
+  - first:
+      213: 7370587202357703971
+    second: BIOSECdeath_18
+  - first:
+      213: -7114606687271442774
+    second: BIOSECdeath_19
+  - first:
+      213: -3277728541460415465
+    second: BIOSECdeath_20
+  - first:
+      213: -5889737977773723016
+    second: BIOSECdeath_21
+  - first:
+      213: -8322011870501190665
+    second: BIOSECdeath_22
+  - first:
+      213: 4677100046332563008
+    second: BIOSECdeath_23
+  - first:
+      213: 7465931066632214960
+    second: BIOSECdeath_24
+  - first:
+      213: 6585927282271618776
+    second: BIOSECdeath_25
+  - first:
+      213: -3078760663678374706
+    second: BIOSECdeath_26
+  - first:
+      213: -7126802048864019273
+    second: BIOSECdeath_27
+  - first:
+      213: -9125891821993825436
+    second: BIOSECdeath_28
+  - first:
+      213: -5601261108892353098
+    second: BIOSECdeath_29
+  - first:
+      213: -7474083791718155933
+    second: BIOSECdeath_30
+  - first:
+      213: 4086708882807243534
+    second: BIOSECdeath_31
+  - first:
+      213: 4505162862098038150
+    second: BIOSECdeath_32
+  - first:
+      213: 2788162008584809701
+    second: BIOSECdeath_33
+  - first:
+      213: -8889611438230027618
+    second: BIOSECdeath_34
+  - first:
+      213: 5087499130886662075
+    second: BIOSECdeath_35
+  - first:
+      213: 2067496733185513444
+    second: BIOSECdeath_36
+  - first:
+      213: -5931697138978839840
+    second: BIOSECdeath_37
+  - first:
+      213: -525032497111911009
+    second: BIOSECdeath_38
+  - first:
+      213: 4247064861552480799
+    second: BIOSECdeath_39
+  - first:
+      213: -1786920939624745654
+    second: BIOSECdeath_40
+  - first:
+      213: -6097157388125999199
+    second: BIOSECdeath_41
+  - first:
+      213: -1905893362895361624
+    second: BIOSECdeath_42
+  - first:
+      213: 5343121459142222765
+    second: BIOSECdeath_43
+  - first:
+      213: -1886647324868165392
+    second: BIOSECdeath_44
+  - first:
+      213: -4935417138281419942
+    second: BIOSECdeath_45
+  - first:
+      213: 5144740960316094285
+    second: BIOSECdeath_46
+  - first:
+      213: 2461604889712185561
+    second: BIOSECdeath_47
+  - first:
+      213: 7787309732664918330
+    second: BIOSECdeath_48
+  - first:
+      213: -5458930247200527602
+    second: BIOSECdeath_49
+  - first:
+      213: 7050318988050415223
+    second: BIOSECdeath_50
+  - first:
+      213: 7709270194566626271
+    second: BIOSECdeath_51
+  - first:
+      213: 7663188938853575259
+    second: BIOSECdeath_52
+  - first:
+      213: -619172043815528381
+    second: BIOSECdeath_53
+  - first:
+      213: -8072603429911869308
+    second: BIOSECdeath_54
+  - first:
+      213: 7092423534631567401
+    second: BIOSECdeath_55
+  - first:
+      213: 4750912353154686473
+    second: BIOSECdeath_56
+  - first:
+      213: -3328917218434496248
+    second: BIOSECdeath_57
+  - first:
+      213: -5967316762907780570
+    second: BIOSECdeath_58
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: BIOSECdeath_0
+      rect:
+        serializedVersion: 2
+        x: 185
+        y: 7015
+        width: 597
+        height: 646
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c4f0a2f3aba9e74b0800000000000000
+      internalID: -5440741175102664884
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECdeath_1
+      rect:
+        serializedVersion: 2
+        x: 1185
+        y: 7015
+        width: 597
+        height: 646
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d7908ff299a854700800000000000000
+      internalID: 523977322197944701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECdeath_2
+      rect:
+        serializedVersion: 2
+        x: 2185
+        y: 7015
+        width: 597
+        height: 646
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 500b1b58ca7f98ab0800000000000000
+      internalID: -5005197190496145403
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECdeath_3
+      rect:
+        serializedVersion: 2
+        x: 3185
+        y: 7015
+        width: 597
+        height: 646
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dc8981618b89e35a0800000000000000
+      internalID: -6539621692483266355
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECdeath_4
+      rect:
+        serializedVersion: 2
+        x: 4185
+        y: 7015
+        width: 597
+        height: 646
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 608f308a889411a80800000000000000
+      internalID: -8497930170588203002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECdeath_5
+      rect:
+        serializedVersion: 2
+        x: 5185
+        y: 7015
+        width: 597
+        height: 646
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dcc3de3c0955aec50800000000000000
+      internalID: 6695257876290419917
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECdeath_6
+      rect:
+        serializedVersion: 2
+        x: 6185
+        y: 7015
+        width: 597
+        height: 646
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e361be44e79e2da0800000000000000
+      internalID: -5967665449390742553
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECdeath_7
+      rect:
+        serializedVersion: 2
+        x: 7185
+        y: 7015
+        width: 597
+        height: 646
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 75950a5fe4610a030800000000000000
+      internalID: 3503825038478432599
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECdeath_8
+      rect:
+        serializedVersion: 2
+        x: 185
+        y: 6015
+        width: 597
+        height: 646
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8eae340c1f287c7c0800000000000000
+      internalID: -4051125364972066072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECdeath_9
+      rect:
+        serializedVersion: 2
+        x: 1185
+        y: 6015
+        width: 597
+        height: 646
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1b4f1c42499d83670800000000000000
+      internalID: 8518797925466371249
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECdeath_10
+      rect:
+        serializedVersion: 2
+        x: 2185
+        y: 6015
+        width: 597
+        height: 646
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f50e9fefa6a6be90800000000000000
+      internalID: -7010232495385999886
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECdeath_11
+      rect:
+        serializedVersion: 2
+        x: 3185
+        y: 6015
+        width: 597
+        height: 646
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c9f04311c02cb3130800000000000000
+      internalID: 3547642488568418204
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECdeath_12
+      rect:
+        serializedVersion: 2
+        x: 4185
+        y: 6015
+        width: 597
+        height: 646
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b45f08f93f6a7cce0800000000000000
+      internalID: -1384954795109845685
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECdeath_13
+      rect:
+        serializedVersion: 2
+        x: 5206
+        y: 6014
+        width: 631
+        height: 716
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f611cde451ca02790800000000000000
+      internalID: -7556850967210356369
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECdeath_14
+      rect:
+        serializedVersion: 2
+        x: 6206
+        y: 6014
+        width: 631
+        height: 716
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c5ea2370668b9c530800000000000000
+      internalID: 3875831702675959388
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECdeath_15
+      rect:
+        serializedVersion: 2
+        x: 7164
+        y: 6014
+        width: 673
+        height: 706
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b07f3971013963740800000000000000
+      internalID: 5131450522759591691
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECdeath_16
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 5014
+        width: 673
+        height: 706
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7265babd9a6a69840800000000000000
+      internalID: 5230551265702532647
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECdeath_17
+      rect:
+        serializedVersion: 2
+        x: 1105
+        y: 5014
+        width: 732
+        height: 730
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f62a1db616f98ec0800000000000000
+      internalID: -3564047052564715785
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECdeath_18
+      rect:
+        serializedVersion: 2
+        x: 2105
+        y: 5014
+        width: 732
+        height: 730
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 325329e6206994660800000000000000
+      internalID: 7370587202357703971
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECdeath_19
+      rect:
+        serializedVersion: 2
+        x: 3206
+        y: 5014
+        width: 631
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa62198a9e6d34d90800000000000000
+      internalID: -7114606687271442774
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECdeath_20
+      rect:
+        serializedVersion: 2
+        x: 4206
+        y: 5014
+        width: 631
+        height: 720
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 71cb718f14b2382d0800000000000000
+      internalID: -3277728541460415465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECdeath_21
+      rect:
+        serializedVersion: 2
+        x: 5164
+        y: 5014
+        width: 673
+        height: 710
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8727baea382734ea0800000000000000
+      internalID: -5889737977773723016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECdeath_22
+      rect:
+        serializedVersion: 2
+        x: 6164
+        y: 5014
+        width: 673
+        height: 710
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f34132bb46428c80800000000000000
+      internalID: -8322011870501190665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECdeath_23
+      rect:
+        serializedVersion: 2
+        x: 7105
+        y: 5014
+        width: 732
+        height: 723
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 04e8d9836b568e040800000000000000
+      internalID: 4677100046332563008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECdeath_24
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 4014
+        width: 732
+        height: 723
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0b99a28bfb05c9760800000000000000
+      internalID: 7465931066632214960
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECdeath_25
+      rect:
+        serializedVersion: 2
+        x: 1206
+        y: 4014
+        width: 631
+        height: 705
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d68a5038f9e56b50800000000000000
+      internalID: 6585927282271618776
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECdeath_26
+      rect:
+        serializedVersion: 2
+        x: 2206
+        y: 4014
+        width: 631
+        height: 705
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ecc21050d7b0645d0800000000000000
+      internalID: -3078760663678374706
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECdeath_27
+      rect:
+        serializedVersion: 2
+        x: 3164
+        y: 4014
+        width: 673
+        height: 705
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7bc1fe4cb43881d90800000000000000
+      internalID: -7126802048864019273
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECdeath_28
+      rect:
+        serializedVersion: 2
+        x: 4164
+        y: 4014
+        width: 673
+        height: 705
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 46b6a6b2db15a5180800000000000000
+      internalID: -9125891821993825436
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECdeath_29
+      rect:
+        serializedVersion: 2
+        x: 5105
+        y: 4014
+        width: 732
+        height: 708
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6bdb24eb2b25442b0800000000000000
+      internalID: -5601261108892353098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECdeath_30
+      rect:
+        serializedVersion: 2
+        x: 6105
+        y: 4014
+        width: 732
+        height: 715
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 369722d0468b64890800000000000000
+      internalID: -7474083791718155933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECdeath_31
+      rect:
+        serializedVersion: 2
+        x: 7203
+        y: 4020
+        width: 638
+        height: 412
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e03c82c9318e6b830800000000000000
+      internalID: 4086708882807243534
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECdeath_32
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 3027
+        width: 611
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 68db2a2f0cd858e30800000000000000
+      internalID: 4505162862098038150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECdeath_33
+      rect:
+        serializedVersion: 2
+        x: 1191
+        y: 3018
+        width: 713
+        height: 352
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5ecefe1139a81b620800000000000000
+      internalID: 2788162008584809701
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECdeath_34
+      rect:
+        serializedVersion: 2
+        x: 2191
+        y: 3018
+        width: 713
+        height: 352
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e92cc010f71c1a480800000000000000
+      internalID: -8889611438230027618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECdeath_35
+      rect:
+        serializedVersion: 2
+        x: 3191
+        y: 3018
+        width: 713
+        height: 354
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb7ab9b318d6a9640800000000000000
+      internalID: 5087499130886662075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECdeath_36
+      rect:
+        serializedVersion: 2
+        x: 4191
+        y: 3018
+        width: 713
+        height: 354
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4e79dc3235931bc10800000000000000
+      internalID: 2067496733185513444
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECdeath_37
+      rect:
+        serializedVersion: 2
+        x: 5191
+        y: 3018
+        width: 713
+        height: 345
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e227fb21e06eada0800000000000000
+      internalID: -5931697138978839840
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECdeath_38
+      rect:
+        serializedVersion: 2
+        x: 6191
+        y: 3018
+        width: 713
+        height: 345
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f95bb12c9b5b6b8f0800000000000000
+      internalID: -525032497111911009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECdeath_39
+      rect:
+        serializedVersion: 2
+        x: 7191
+        y: 3018
+        width: 713
+        height: 352
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f1211ea5dfa90fa30800000000000000
+      internalID: 4247064861552480799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECdeath_40
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 2018
+        width: 713
+        height: 352
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a45b5f77fd49337e0800000000000000
+      internalID: -1786920939624745654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECdeath_41
+      rect:
+        serializedVersion: 2
+        x: 1191
+        y: 2018
+        width: 713
+        height: 354
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1afe91dd8ab826ba0800000000000000
+      internalID: -6097157388125999199
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECdeath_42
+      rect:
+        serializedVersion: 2
+        x: 2191
+        y: 2018
+        width: 713
+        height: 354
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a9e8d49518ec85e0800000000000000
+      internalID: -1905893362895361624
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECdeath_43
+      rect:
+        serializedVersion: 2
+        x: 3191
+        y: 2018
+        width: 713
+        height: 345
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da360f378a4962a40800000000000000
+      internalID: 5343121459142222765
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECdeath_44
+      rect:
+        serializedVersion: 2
+        x: 4191
+        y: 2018
+        width: 713
+        height: 345
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f0cac0014841d5e0800000000000000
+      internalID: -1886647324868165392
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECdeath_45
+      rect:
+        serializedVersion: 2
+        x: 5191
+        y: 2018
+        width: 713
+        height: 352
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a5b6c5ef240e18bb0800000000000000
+      internalID: -4935417138281419942
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECdeath_46
+      rect:
+        serializedVersion: 2
+        x: 6191
+        y: 2018
+        width: 713
+        height: 352
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d47fa0935aac56740800000000000000
+      internalID: 5144740960316094285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECdeath_47
+      rect:
+        serializedVersion: 2
+        x: 7191
+        y: 2018
+        width: 713
+        height: 354
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d0d8a4ea90692220800000000000000
+      internalID: 2461604889712185561
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECdeath_48
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 1018
+        width: 713
+        height: 354
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a314f6361f4121c60800000000000000
+      internalID: 7787309732664918330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECdeath_49
+      rect:
+        serializedVersion: 2
+        x: 1191
+        y: 1018
+        width: 713
+        height: 345
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e0b2af1ecdbfd34b0800000000000000
+      internalID: -5458930247200527602
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECdeath_50
+      rect:
+        serializedVersion: 2
+        x: 2191
+        y: 1018
+        width: 713
+        height: 345
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 77ebfe3f3c3c7d160800000000000000
+      internalID: 7050318988050415223
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECdeath_51
+      rect:
+        serializedVersion: 2
+        x: 3191
+        y: 1018
+        width: 713
+        height: 352
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fdb76a08564dcfa60800000000000000
+      internalID: 7709270194566626271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECdeath_52
+      rect:
+        serializedVersion: 2
+        x: 4191
+        y: 1018
+        width: 713
+        height: 352
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b5ae1131dbd195a60800000000000000
+      internalID: 7663188938853575259
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECdeath_53
+      rect:
+        serializedVersion: 2
+        x: 5191
+        y: 1018
+        width: 713
+        height: 354
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 348d5818e424867f0800000000000000
+      internalID: -619172043815528381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECdeath_54
+      rect:
+        serializedVersion: 2
+        x: 6191
+        y: 1018
+        width: 713
+        height: 354
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 488c08373f958ff80800000000000000
+      internalID: -8072603429911869308
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECdeath_55
+      rect:
+        serializedVersion: 2
+        x: 7191
+        y: 1018
+        width: 713
+        height: 345
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 920c552a0a95d6260800000000000000
+      internalID: 7092423534631567401
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECdeath_56
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 18
+        width: 713
+        height: 345
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 90edcc02d91aee140800000000000000
+      internalID: 4750912353154686473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECdeath_57
+      rect:
+        serializedVersion: 2
+        x: 1191
+        y: 18
+        width: 713
+        height: 352
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 809c78c5d6f4dc1d0800000000000000
+      internalID: -3328917218434496248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECdeath_58
+      rect:
+        serializedVersion: 2
+        x: 2191
+        y: 18
+        width: 713
+        height: 352
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 62ad5a43505df2da0800000000000000
+      internalID: -5967316762907780570
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      BIOSECdeath_0: -5440741175102664884
+      BIOSECdeath_1: 523977322197944701
+      BIOSECdeath_10: -7010232495385999886
+      BIOSECdeath_11: 3547642488568418204
+      BIOSECdeath_12: -1384954795109845685
+      BIOSECdeath_13: -7556850967210356369
+      BIOSECdeath_14: 3875831702675959388
+      BIOSECdeath_15: 5131450522759591691
+      BIOSECdeath_16: 5230551265702532647
+      BIOSECdeath_17: -3564047052564715785
+      BIOSECdeath_18: 7370587202357703971
+      BIOSECdeath_19: -7114606687271442774
+      BIOSECdeath_2: -5005197190496145403
+      BIOSECdeath_20: -3277728541460415465
+      BIOSECdeath_21: -5889737977773723016
+      BIOSECdeath_22: -8322011870501190665
+      BIOSECdeath_23: 4677100046332563008
+      BIOSECdeath_24: 7465931066632214960
+      BIOSECdeath_25: 6585927282271618776
+      BIOSECdeath_26: -3078760663678374706
+      BIOSECdeath_27: -7126802048864019273
+      BIOSECdeath_28: -9125891821993825436
+      BIOSECdeath_29: -5601261108892353098
+      BIOSECdeath_3: -6539621692483266355
+      BIOSECdeath_30: -7474083791718155933
+      BIOSECdeath_31: 4086708882807243534
+      BIOSECdeath_32: 4505162862098038150
+      BIOSECdeath_33: 2788162008584809701
+      BIOSECdeath_34: -8889611438230027618
+      BIOSECdeath_35: 5087499130886662075
+      BIOSECdeath_36: 2067496733185513444
+      BIOSECdeath_37: -5931697138978839840
+      BIOSECdeath_38: -525032497111911009
+      BIOSECdeath_39: 4247064861552480799
+      BIOSECdeath_4: -8497930170588203002
+      BIOSECdeath_40: -1786920939624745654
+      BIOSECdeath_41: -6097157388125999199
+      BIOSECdeath_42: -1905893362895361624
+      BIOSECdeath_43: 5343121459142222765
+      BIOSECdeath_44: -1886647324868165392
+      BIOSECdeath_45: -4935417138281419942
+      BIOSECdeath_46: 5144740960316094285
+      BIOSECdeath_47: 2461604889712185561
+      BIOSECdeath_48: 7787309732664918330
+      BIOSECdeath_49: -5458930247200527602
+      BIOSECdeath_5: 6695257876290419917
+      BIOSECdeath_50: 7050318988050415223
+      BIOSECdeath_51: 7709270194566626271
+      BIOSECdeath_52: 7663188938853575259
+      BIOSECdeath_53: -619172043815528381
+      BIOSECdeath_54: -8072603429911869308
+      BIOSECdeath_55: 7092423534631567401
+      BIOSECdeath_56: 4750912353154686473
+      BIOSECdeath_57: -3328917218434496248
+      BIOSECdeath_58: -5967316762907780570
+      BIOSECdeath_6: -5967665449390742553
+      BIOSECdeath_7: 3503825038478432599
+      BIOSECdeath_8: -4051125364972066072
+      BIOSECdeath_9: 8518797925466371249
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

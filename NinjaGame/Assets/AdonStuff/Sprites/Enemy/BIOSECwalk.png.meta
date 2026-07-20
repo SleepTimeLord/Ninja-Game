@@ -1,0 +1,429 @@
+fileFormatVersion: 2
+guid: 3af4672e80f22354fa77813dbda4c1d2
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -1652696891863908686
+    second: BIOSECwalk_0
+  - first:
+      213: 5656512815278049425
+    second: BIOSECwalk_1
+  - first:
+      213: 5663021499329133563
+    second: BIOSECwalk_2
+  - first:
+      213: 3249443391842371078
+    second: BIOSECwalk_3
+  - first:
+      213: 8002759485858160037
+    second: BIOSECwalk_4
+  - first:
+      213: -5664886289849501059
+    second: BIOSECwalk_5
+  - first:
+      213: 6449448742123193593
+    second: BIOSECwalk_6
+  - first:
+      213: 4840928861268392431
+    second: BIOSECwalk_7
+  - first:
+      213: 7972827159030813502
+    second: BIOSECwalk_8
+  - first:
+      213: 6763872977953688283
+    second: BIOSECwalk_9
+  - first:
+      213: 1488345258989812634
+    second: BIOSECwalk_10
+  - first:
+      213: 492915978956028473
+    second: BIOSECwalk_11
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: BIOSECwalk_0
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 3144
+        width: 672
+        height: 583
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2be3f07eee07019e0800000000000000
+      internalID: -1652696891863908686
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECwalk_1
+      rect:
+        serializedVersion: 2
+        x: 1164
+        y: 3144
+        width: 672
+        height: 583
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 198c71e9f68ff7e40800000000000000
+      internalID: 5656512815278049425
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECwalk_2
+      rect:
+        serializedVersion: 2
+        x: 2164
+        y: 3144
+        width: 672
+        height: 583
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bfbb9e6bc08179e40800000000000000
+      internalID: 5663021499329133563
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECwalk_3
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 2144
+        width: 672
+        height: 583
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 60641807c87581d20800000000000000
+      internalID: 3249443391842371078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECwalk_4
+      rect:
+        serializedVersion: 2
+        x: 1164
+        y: 2009
+        width: 672
+        height: 648
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5ad96791a538f0f60800000000000000
+      internalID: 8002759485858160037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECwalk_5
+      rect:
+        serializedVersion: 2
+        x: 2164
+        y: 2009
+        width: 672
+        height: 648
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d7a3a88eee74261b0800000000000000
+      internalID: -5664886289849501059
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECwalk_6
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 1144
+        width: 672
+        height: 583
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9f4c757d57b018950800000000000000
+      internalID: 6449448742123193593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECwalk_7
+      rect:
+        serializedVersion: 2
+        x: 1164
+        y: 1144
+        width: 672
+        height: 583
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe9b6d6a62f6e2340800000000000000
+      internalID: 4840928861268392431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECwalk_8
+      rect:
+        serializedVersion: 2
+        x: 2164
+        y: 1144
+        width: 672
+        height: 583
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e335e9d2f0c25ae60800000000000000
+      internalID: 7972827159030813502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECwalk_9
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 144
+        width: 672
+        height: 583
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bda0bcc03aa1edd50800000000000000
+      internalID: 6763872977953688283
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECwalk_10
+      rect:
+        serializedVersion: 2
+        x: 1164
+        y: 9
+        width: 672
+        height: 648
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a9b7931a02aa7a410800000000000000
+      internalID: 1488345258989812634
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BIOSECwalk_11
+      rect:
+        serializedVersion: 2
+        x: 2164
+        y: 9
+        width: 672
+        height: 648
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 93ab9c5a87037d600800000000000000
+      internalID: 492915978956028473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      BIOSECwalk_0: -1652696891863908686
+      BIOSECwalk_1: 5656512815278049425
+      BIOSECwalk_10: 1488345258989812634
+      BIOSECwalk_11: 492915978956028473
+      BIOSECwalk_2: 5663021499329133563
+      BIOSECwalk_3: 3249443391842371078
+      BIOSECwalk_4: 8002759485858160037
+      BIOSECwalk_5: -5664886289849501059
+      BIOSECwalk_6: 6449448742123193593
+      BIOSECwalk_7: 4840928861268392431
+      BIOSECwalk_8: 7972827159030813502
+      BIOSECwalk_9: 6763872977953688283
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

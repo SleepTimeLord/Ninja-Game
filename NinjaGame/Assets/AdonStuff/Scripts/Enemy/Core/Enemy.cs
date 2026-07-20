@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 /// <summary>
@@ -27,6 +28,16 @@ public class Enemy : MonoBehaviour
     /// </summary>
     [SerializeField] private EnemyStateMachine stateMachine;
 
+    /// <summary>
+    /// A reference to the enemy's animation manager
+    /// </summary>
+    [SerializeField] private EnemyAnimationManager animationManager;
+
+    /// <summary>
+    /// The attack manager that controls all of the attacks the enemy has
+    /// </summary>
+    [SerializeField] private EnemyAttackManager attackManager;
+
     [Header("Sprite & Others")]
     /// <summary>
     /// A reference to an enemy's collider
@@ -40,14 +51,9 @@ public class Enemy : MonoBehaviour
     public float searchScale;
 
     /// <summary>
-    /// How fast the enemy is moving while chasing the player
+    /// The state the enemy should be at a default
     /// </summary>
-    private const float ChaseSpeed = 5f;
-
-    /// <summary>
-    /// How fast the enemy is moving while wandering to a random spot
-    /// </summary>
-    private const float WanderSpeed = 2f;
+    public EnemyManager.GlobalState defaultState;
 
     /// <summary>
     /// The reference to the current platform graph
@@ -55,9 +61,9 @@ public class Enemy : MonoBehaviour
     private PlatformGraph currentGraph;
 
     /// <summary>
-    /// A reference to the manager controlling the enemy
+    /// A reference to the manager holding all of the trashcans
     /// </summary>
-    private EnemyManager manager;
+    private TrashcanContainer trashcanContainer;
 
 
     /// <summary>
@@ -71,6 +77,20 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Returns whether or not an enemy is in the middle of a transition
+    /// </summary>
+    public bool IsInTransition
+    {
+        get
+        {
+            return this.movement.IsInTransition;
+        }
+    }
+
+    /// <summary>
+    /// A reference to the sprite collider and its position
+    /// </summary>
     public Collider2D SpriteCollider
     {
         get
@@ -90,14 +110,50 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    /*
+     * I know a backing field isn't for this, and I just discovered you can do these, 
+     * thus why this is different
+     */
     /// <summary>
-    /// Returns whether or not an enemy is in the middle of a transition
+    /// A reference to to the current platform the player is standing on
     /// </summary>
-    public bool IsInTransition
+    public Platform PlayerPlatform { get; set; }
+
+    /// <summary>
+    /// A reference to the position the player is at
+    /// </summary>
+    public Vector2 PlayerPosition { get; set; }
+
+    /// <summary>
+    /// A reference to the state machine the enemy has
+    /// </summary>
+    public EnemyStateMachine StateMachine
     {
         get
         {
-            return this.movement.IsInTransition;
+            return this.stateMachine;
+        }
+    }
+
+    /// <summary>
+    /// Returns a reference to the current state the state machine is in
+    /// </summary>
+    public EnemyState CurrentState
+    {
+        get
+        {
+            return this.stateMachine.CurrentState;
+        }
+    }
+
+    /// <summary>
+    /// Returns a reference to the animation manager the enemy uses
+    /// </summary>
+    public EnemyAnimationManager AnimationManager
+    {
+        get
+        {
+            return this.animationManager;
         }
     }
 
@@ -109,99 +165,107 @@ public class Enemy : MonoBehaviour
     /// manager</param>
     /// <param name="isInWanderState">whether or not the initial state for the enemy will consist
     /// of it wandering</param>
-    /// <param name="spawnPosition">The v</param>
-    public void Initialize(PlatformGraph graph, bool isInWanderState, Vector2 spawnPosition)
+    /// <param name="spawnPosition">The place the enemy will start off at</param>
+    /// <param name="trashcanContainer">A reference to the trash can container</param>
+    public void Initialize(PlatformGraph graph, TrashcanContainer trashcanContainer, 
+        bool isInWanderState, Vector2 spawnPosition, CharacterController playerController,
+        Platform playerPlatform, Vector2 playerPosition)
     {
+        this.trashcanContainer = trashcanContainer;
         this.currentGraph = graph;
         this.navigator.Graph = graph;
+        this.attackManager.Controller = playerController;
+        this.PlayerPlatform = playerPlatform;
+        this.PlayerPosition = playerPosition;
 
         // The paths are reset and the init spawn position is given BEFORE the state changes
-        ResetEnemy(spawnPosition);
+        this.transform.position = spawnPosition;
 
-        // Then the initial platform is found
+        // Then the initial platform needs to be found
         this.platformTracker.FindPlatformBelow();
 
         // Finally, start the behavior
-        this.stateMachine.ChangeState(
+        this.stateMachine.TryChangeState(
             isInWanderState ? this.stateMachine.WanderState : this.stateMachine.ChaseState);
     }
 
     /// <summary>
-    /// Ensures that everything is reset to its default values
+    /// The final things that are needed to be done before the enemy goes into the death queue
     /// </summary>
-    /// <param name="spawnPosition">the position to which the enemy</param>
-    public void ResetEnemy(Vector2 spawnPosition)
+    public void CompleteDeath()
     {
         this.movement.ClearPathParams();
-        this.transform.position = spawnPosition;
+        this.attackManager.DisableHitbox();
+        this.stateMachine.ResetState();
+        this.gameObject.SetActive(false);
     }
 
     /// <summary>
-    /// Called by the wander state to kickstart the exclusive process involving wandering
+    /// Clears the path that the enemy currently has
     /// </summary>
-    /// <param name="searchScale">how much lesser/greater the chance that the enemy searches
-    /// an interactable item</param>
-    public void Wander(float searchScale)
+    public void ClearPath()
     {
-        /*
-         * For an enemy to wander it needs to first determine whether it's searching or 
-         * if it's not. This is determined with a random value spin.
-         */
-        /// <summary>
-        /// The base odds of the enemy searching
-        /// </summary>
-        const float BaseSearchChance = 0.35f;
+        this.movement.ClearPathParams();
+    }
 
-        // Clamped so that the chance is never above 100
-        float searchChance = Mathf.Clamp01(BaseSearchChance * searchScale);
+    /// <summary>
+    /// Enables the AttackManagers hitbox
+    /// </summary>
+    public void EnablePunchHitbox()
+    {
+        this.attackManager.EnableHitbox();
+    }
 
-        if (Random.value <= searchChance)
-        {
-            Debug.Log("Search successful");
-            return;
-        }
-        else
-        {
-            /*
-             * There are (mainly) two parts to wandering: Going to a location, and waiting there.
-             * That will be determined here.
-             */
-            // First, a location to wander to should be calculated
-            Platform targetPlatform = this.currentGraph.GetRandomPlatform();
-            Vector2 trueTargetLocation = targetPlatform.GetValidPoint();
-            Debug.Log($"Starting from platform {this.CurrentPlatform} to {targetPlatform.name}");
+    /// <summary>
+    /// Disables the AttackManager's hitbox
+    /// </summary>
+    public void DisablePunchHitbox()
+    {
+        this.attackManager.DisableHitbox();
+    }
 
-            if (this.CurrentPlatform == null)
-            {
-                Debug.LogWarning("The current platform is null");
-            }
+    /// <summary>
+    /// The logic that kickstarts movement of an enemy
+    /// </summary>
+    /// <param name="platform">the platform that the enemy is going to</param>
+    /// <param name="position">the exact position within that platform the enemy 
+    /// is going to</param>
+    public void StartMovementTo(Platform platform, Vector2 position)
+    {
+        Debug.Log($"Starting pathing process to {platform.name}");
 
-            // Next, we can use this random platform to create a path
-            List<PlatformTransition> platformPath = this.navigator.SearchPath(this.CurrentPlatform, targetPlatform);
+        // Get the path
+        List<PlatformTransition> path =
+            this.navigator.SearchPath(CurrentPlatform, platform);
 
-            // Then we set that path for movement to begin
-            this.movement.SetPath(platformPath, trueTargetLocation);
-        }
-
-        // There isn't any more to do here, as the rest is handled directly in the WanderState
+        // Then, have the movement manager take that path into a viable route
+        this.movement.SetPath(path, position);
     }
 
     /// <summary>
     /// Called every frame. Updates the movement algorithm
     /// </summary>
-    /// <param name="isInWanderState">whether or not the enemy is wandering</param>
-    /// <param name="updatedSearchScale">the new search scale that should be reapplied</param>
-    public void Tick(bool isInWanderState, float updatedSearchScale)
+    /// <param name="speed">how fast the enemy should be moving</param>
+    public void TickMovement(float speed)
     {
-        this.searchScale = updatedSearchScale;
+        this.movement.UpdateMovement(speed, this.CurrentPlatform);
+    }
 
-        if (isInWanderState)
-        {
-            this.movement.UpdateMovement(WanderSpeed, this.CurrentPlatform);
-        }
-        else
-        {
-            this.movement.UpdateMovement(ChaseSpeed, this.CurrentPlatform);
-        }
+    /// <summary>
+    /// Finds a random trashcan for the enemy to wander into from the trashcan container
+    /// </summary>
+    /// <returns>a random trashcan</returns>
+    public Trashcan GetRandomTrashcan()
+    {
+        return this.trashcanContainer.GetRandomTrashcan();
+    }
+
+    /// <summary>
+    /// Finds a random platform for the enemy to wander into from the platform container
+    /// </summary>
+    /// <returns>a random platform</returns>
+    public Platform GetRandomPlatform()
+    {
+        return this.currentGraph.GetRandomPlatform();
     }
 }
