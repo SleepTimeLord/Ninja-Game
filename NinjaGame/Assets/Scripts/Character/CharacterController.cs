@@ -14,6 +14,7 @@ public class CharacterController : MonoBehaviour
 {
     public TrashcanContainer trashcanContainer;
     public bool hideInTrash;
+    public PlayerInput playerInput;
 
     public PlayerContext ctx = new PlayerContext();
 
@@ -40,6 +41,9 @@ public class CharacterController : MonoBehaviour
 
         Cursor.visible = false; 
         Cursor.lockState = CursorLockMode.Locked; 
+
+        // Grab the component automatically
+        playerInput = GetComponent<PlayerInput>();
     }
 
     IEnumerator Start()
@@ -49,6 +53,9 @@ public class CharacterController : MonoBehaviour
 
 
         this.ctx.platformTracker.FindPlatformBelow();
+
+        playerInput.actions.Disable();
+        playerInput.actions.FindActionMap("Player").Enable();
     }
 
     static string StatePath(JState s)

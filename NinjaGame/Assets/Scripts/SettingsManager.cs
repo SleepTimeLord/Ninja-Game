@@ -12,6 +12,17 @@ public class SettingsManager : MonoBehaviour
     {
         // start out with pause disabled
         Resume();
+
+        if (inGameScene)
+        {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+        else
+        {
+            Cursor.visible = true; 
+            Cursor.lockState = CursorLockMode.None;
+        }
     } 
 
     public void OnPause(InputAction.CallbackContext context)

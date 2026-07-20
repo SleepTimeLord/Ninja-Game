@@ -5418,6 +5418,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6993792183219470962, guid: ce2b9af390de48d4dbe19f0de8418742, type: 3}
+      propertyPath: playerInput
+      value: 
+      objectReference: {fileID: 808229745}
+    - target: {fileID: 6993792183219470962, guid: ce2b9af390de48d4dbe19f0de8418742, type: 3}
       propertyPath: ctx.healthSlider
       value: 
       objectReference: {fileID: 825252971}
@@ -5425,11 +5429,30 @@ PrefabInstance:
       propertyPath: trashcanContainer
       value: 
       objectReference: {fileID: 825273368}
+    - target: {fileID: 6993792183219470962, guid: ce2b9af390de48d4dbe19f0de8418742, type: 3}
+      propertyPath: ctx.damagedDuration
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6993792183219470962, guid: ce2b9af390de48d4dbe19f0de8418742, type: 3}
+      propertyPath: ctx.knockbackStrenth
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ce2b9af390de48d4dbe19f0de8418742, type: 3}
+--- !u!114 &808229745 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6393667863541152652, guid: ce2b9af390de48d4dbe19f0de8418742, type: 3}
+  m_PrefabInstance: {fileID: 808229744}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.PlayerInput
 --- !u!1001 &817570211
 PrefabInstance:
   m_ObjectHideFlags: 0
