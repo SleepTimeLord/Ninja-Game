@@ -4372,6 +4372,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   enemyManager: {fileID: 1824819057}
   trashcanContainer: {fileID: 825273368}
+  graph: {fileID: 1196225482}
+  playerSlash: {fileID: 1983481792}
 --- !u!4 &741631571
 Transform:
   m_ObjectHideFlags: 0
@@ -6930,11 +6932,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5908542716110493828, guid: ce2b9af390de48d4dbe19f0de8418742, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -31.650604
+      value: -31.84
       objectReference: {fileID: 0}
     - target: {fileID: 5908542716110493828, guid: ce2b9af390de48d4dbe19f0de8418742, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.28279924
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 5908542716110493828, guid: ce2b9af390de48d4dbe19f0de8418742, type: 3}
       propertyPath: m_LocalPosition.z
@@ -11003,7 +11005,7 @@ Transform:
   m_GameObject: {fileID: 1615200571}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -31.650604, y: -0.28279924, z: -10}
+  m_LocalPosition: {x: -31.84, y: -2, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -12350,8 +12352,9 @@ MonoBehaviour:
   platformGraph: {fileID: 1196225482}
   trashcanContainer: {fileID: 825273368}
   playerSlash: {fileID: 1983481792}
+  playerController: {fileID: 1739912111}
   enemyPrefab: {fileID: 3548780605335652559, guid: 2104ebdc1e5452f4e8f0e0ed2bf7b1aa, type: 3}
-  MaxEnemies: 40
+  MaxEnemies: 1
 --- !u!4 &1824819058
 Transform:
   m_ObjectHideFlags: 0

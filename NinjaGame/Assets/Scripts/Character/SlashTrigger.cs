@@ -13,7 +13,6 @@ public class SlashTrigger : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             Enemy confirmedEnemy = collision.GetComponentInParent<Enemy>();
-            Debug.Log(confirmedEnemy == null);
 
             this.EnemyHit.Invoke(confirmedEnemy);
         }

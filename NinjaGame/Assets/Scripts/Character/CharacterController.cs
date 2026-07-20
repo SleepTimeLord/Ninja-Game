@@ -32,6 +32,7 @@ public class CharacterController : MonoBehaviour
         root = new NinjaRoot(null, ctx);
         var builder = new JStateMachineBuilder(root);
         machine = builder.Build();
+        this.ctx.platformTracker.FindPlatformBelow();
     }
 
     static string StatePath(JState s)

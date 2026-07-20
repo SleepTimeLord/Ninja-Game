@@ -67,6 +67,7 @@
     <Compile Include="Assets\AdonStuff\Scripts\Enemy\Core\EnemyAnimationManager.cs" />
     <Compile Include="Assets\Scripts\JohnStateMachine\JTransitionSequencer.cs" />
     <Compile Include="Assets\Scripts\UI\CooldownUI.cs" />
+    <Compile Include="Assets\AdonStuff\Scripts\Enemy\State Machine\PunchState.cs" />
     <Compile Include="Assets\AdonStuff\Scripts\Enemy\Core\EnemyMovement.cs" />
     <Compile Include="Assets\AdonStuff\Scripts\Enemy\Core\EnemyManager.cs" />
     <Compile Include="Assets\AdonStuff\Scripts\Enemy\Core\Enemy.cs" />
@@ -77,10 +78,11 @@
     <Compile Include="Assets\AdonStuff\Scripts\Platform\Platform.cs" />
     <Compile Include="Assets\Scripts\JohnStateMachine\JStateMachine.cs" />
     <Compile Include="Assets\AdonStuff\Scripts\Enemy\State Machine\ChaseState.cs" />
+    <Compile Include="Assets\AdonStuff\Scripts\Enemy\State Machine\DeathState.cs" />
     <Compile Include="Assets\Scripts\NextScene.cs" />
     <Compile Include="Assets\InputSystem_Actions.cs" />
     <Compile Include="Assets\Scripts\Character\CharacterController.cs" />
-    <Compile Include="Assets\AdonStuff\Scripts\Enemy\Core\AnimationManager.cs" />
+    <Compile Include="Assets\AdonStuff\Scripts\Enemy\Core\EnemyAttackManager.cs" />
     <Compile Include="Assets\AdonStuff\Scripts\Interactable\TrashcanContainer.cs" />
     <Compile Include="Assets\AdonStuff\Scripts\Platform\PlatformGraph.cs" />
     <Compile Include="Assets\Scripts\JohnStateMachine\JStateMachineBuilder.cs" />

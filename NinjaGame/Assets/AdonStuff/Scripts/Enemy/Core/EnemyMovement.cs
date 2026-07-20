@@ -20,9 +20,11 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private Enemy enemy;
 
     /// <summary>
-    /// A sprite to the sprite renderer
+    /// A reference to the sprite renderer
     /// </summary>
     [SerializeField] private SpriteRenderer sprite;
+
+    [SerializeField] private Collider2D punchBox;
 
     /// <summary>
     /// The path that the enemy needs to take to get to its destination from its current point
@@ -89,11 +91,10 @@ public class EnemyMovement : MonoBehaviour
     /// Called by the state machine to set a particular path 
     /// </summary>
     /// <param name="path">the path that the enemy is taking</param>
-    /// <param name="finalDestination">a smash reference</param>
-    public void SetPath(List<PlatformTransition> path, Vector2 finalDestination)
+    public void SetPath(List<PlatformTransition> path, Vector2 finalDestinationRoot)
     {
         this.currentPath = new Queue<PlatformTransition>(path);
-        this.finalDestination = finalDestination;
+        this.finalDestination = finalDestinationRoot;
     }
 
     /// <summary>
@@ -106,7 +107,7 @@ public class EnemyMovement : MonoBehaviour
         // How lenient the enemy has to be away from the target before it's considered complete
         const float TargetLeniency = 0.5f;
 
-        Vector2 currentPosition = this.transform.position;
+        Vector2 currentPosition = this.enemy.transform.position;
 
         // First, check whether or not movement is necessarily needed
         if (!HasPath)
@@ -184,7 +185,7 @@ public class EnemyMovement : MonoBehaviour
                     FaceTowards(newDropPosition);
 
                     //Debug.Log($"Jumping/dropping to {newDropPosition}");
-                    this.transform.position = newDropPosition;
+                    this.enemy.transform.position = newDropPosition;
                     ConsiderAnimations(false, true);
                     return;
             }
@@ -213,6 +214,7 @@ public class EnemyMovement : MonoBehaviour
         this.finalDestination = Vector2.zero;
         this.transitionProgress = 0f;
         this.specialTransitionStartPoint = Vector2.zero;
+        this.sprite.flipX = false;
     }
 
     /// <summary>
@@ -243,8 +245,8 @@ public class EnemyMovement : MonoBehaviour
     private void UpdateWalk(Vector2 target, float speed)
     {
         FaceTowards(target);
-        this.transform.position = Vector2.MoveTowards(
-            this.transform.position, target, speed * Time.deltaTime);
+        this.enemy.transform.position = Vector2.MoveTowards(
+            this.enemy.transform.position, target, speed * Time.deltaTime);
 
         ConsiderAnimations(true, false);
     }
@@ -257,8 +259,12 @@ public class EnemyMovement : MonoBehaviour
     /// <param name="isJumpingOrDropping">whether or not the enemy is jumping or dropping</param>
     private void ConsiderAnimations(bool isWalking, bool isJumpingOrDropping)
     {
-        this.enemy.IsWalking = isWalking;
-        this.enemy.IsJumpingDropping = isJumpingOrDropping;
+        if (isWalking)
+        {
+            this.enemy.AnimationManager.PlayWalk();
+            return;
+        }
+        this.enemy.AnimationManager.PlayJumpDrop();
     }
 
     /// <summary>
@@ -267,12 +273,19 @@ public class EnemyMovement : MonoBehaviour
     /// <param name="targetPosition">the place the enemy is trying to go</param>
     private void FaceTowards(Vector2 targetPosition)
     {
-        float deltaX = targetPosition.x - this.transform.position.x;
+        float deltaX = targetPosition.x - this.enemy.transform.position.x;
 
         if (Mathf.Abs(deltaX) < 0.01f)
             return;
 
-        this.sprite.flipX = deltaX > 0;
+        bool facingRight = deltaX > 0;
+
+        this.sprite.flipX = facingRight;
+
+        Vector2 punchPosition = this.punchBox.transform.localPosition;
+        punchPosition.x = Mathf.Abs(punchPosition.x) * (facingRight ? 1 : -1);
+        this.punchBox.transform.localPosition = punchPosition;
+
     }
 
     /// <summary>
