@@ -232,6 +232,7 @@ public class Enemy : MonoBehaviour
     /// is going to</param>
     public void StartMovementTo(Platform platform, Vector2 position)
     {
+        Debug.Log($"player platform name {platform.name}");
         Debug.Log($"Starting pathing process to {platform.name}");
 
         // Get the path

@@ -1,4 +1,5 @@
 using System;
+using TMPro;
 using UnityEngine;
 
 /// <summary>
@@ -37,11 +38,13 @@ public class GameManager : MonoBehaviour
     /// The score that the player has
     /// </summary>
     private int score;
+    public TextMeshProUGUI scoreText;
 
 
     public void Start()
     {
         this.score = 0;
+        this.scoreText.text = "Score: " + score;
         this.wasPlayerHiddenLastFrame = true;
         this.playerSlash.EnemyHit += OnEnemyHit;
     }
@@ -68,6 +71,7 @@ public class GameManager : MonoBehaviour
     private void OnEnemyHit(Enemy enemy)
     {
         this.score += 150;
+        this.scoreText.text = "Score: " + score;
         Debug.Log($"Score increased to {this.score}");
     }
 }
