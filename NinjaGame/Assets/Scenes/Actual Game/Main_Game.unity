@@ -5415,7 +5415,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6993792183219470962, guid: ce2b9af390de48d4dbe19f0de8418742, type: 3}
       propertyPath: hideInTrash
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6993792183219470962, guid: ce2b9af390de48d4dbe19f0de8418742, type: 3}
       propertyPath: ctx.healthSlider
