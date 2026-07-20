@@ -12,7 +12,7 @@ public class EnemyManager : MonoBehaviour
     /// <summary>
     /// The state that each enemy should be in
     /// </summary>
-    private enum GlobalState
+    public enum GlobalState
     {
         WANDER,
         CHASE
@@ -39,8 +39,12 @@ public class EnemyManager : MonoBehaviour
     /// </summary>
     [SerializeField] private SlashTrigger playerSlash;
 
-    [Header("Enemy Settings")]
+    /// <summary>
+    /// A reference to the player
+    /// </summary>
+    [SerializeField] private CharacterController playerController;
 
+    [Header("Enemy Settings")]
     /// <summary>
     /// The prefab the enemy uses
     /// </summary>
@@ -57,6 +61,11 @@ public class EnemyManager : MonoBehaviour
     private List<Enemy> activeEnemies;
 
     /// <summary>
+    /// A reference to the enemies that are in 
+    /// </summary>
+    private List<Enemy> inTransitionEnemies;
+
+    /// <summary>
     /// A reference to each of the enemies that are dead
     /// </summary>
     private Queue<Enemy> deadEnemies;
@@ -67,25 +76,27 @@ public class EnemyManager : MonoBehaviour
     private GlobalState currentGlobalState;
 
 
-    // NOTE: Need a way to get the player's exact position!
-    //public Vector2 PlayerPosition
-    //{
-    //    get
-    //    {
-    //        Transform playerTransform = this.player.Parent.p
+    /// <summary>
+    /// Returns the player's exact position
+    /// </summary>
+    public Vector2 PlayerPosition
+    {
+        get
+        {
+            return this.playerController.transform.position;
+        }
+    }
 
-    //        return this.player.
-    //    }
-    //}
-
-    // NOTE: Need a way to get the player's platform!
-    //public Platform PlayerPlatform
-    //{
-    //    get
-    //    {
-    //        return this.player.CurrentPlatform;
-    //    }
-    //}
+    /// <summary>
+    /// Returns the platform the player is on
+    /// </summary>
+    public Platform PlayerPlatform
+    {
+        get
+        {
+            return this.playerController.ctx.platformTracker.CurrentPlatform;
+        }
+    }
 
     /// <summary>
     /// Returns whether or not the state for each enemy should be for it to wander
@@ -131,6 +142,7 @@ public class EnemyManager : MonoBehaviour
     {
         this.activeEnemies = new List<Enemy>();
         this.deadEnemies = new Queue<Enemy>();
+        this.currentGlobalState = GlobalState.WANDER;
         this.playerSlash.EnemyHit += OnEnemyHit;
     }
 
@@ -151,32 +163,45 @@ public class EnemyManager : MonoBehaviour
         {
             Enemy currentEnemy = this.activeEnemies[i];
 
-            if (currentEnemy.IsDying)
-            {
-                if (currentEnemy.IsReadyForDeath)
-                {
-                    this.activeEnemies.Remove(currentEnemy);
-                    currentEnemy.gameObject.SetActive(false);
-                    this.deadEnemies.Enqueue(currentEnemy);
-                }
-
-                continue;
-            }
-
             currentEnemy.searchScale = this.SearchScale;
+            currentEnemy.defaultState = this.currentGlobalState;
+            currentEnemy.PlayerPlatform = PlayerPlatform;
+            currentEnemy.PlayerPosition = PlayerPosition;
+
+            if (currentEnemy.CurrentState is DeathState confirmedState && 
+                confirmedState.IsDeathComplete)
+            {
+                this.activeEnemies.Remove(currentEnemy);
+                this.deadEnemies.Enqueue(currentEnemy);
+                currentEnemy.CompleteDeath();
+            }
         }
     }
 
     /// <summary>
-    /// The actions taken for when an enemy needs to spawn
+    /// Changes the global enemy state depending on whether the player is hidden or not
+    /// </summary>
+    /// <param name="isHidden">whether or not the player is hidden</param>
+    public void ChangeGlobalEnemyState(bool isHidden)
+    {
+        if (isHidden)
+        {
+            this.currentGlobalState = GlobalState.WANDER;
+            return;
+        }
+        this.currentGlobalState = GlobalState.CHASE;
+    }
+
+    /// <summary>
+    /// The actions taken for when an enemy is about to spawn
     /// </summary>
     private void SpawnEnemy()
     {
         // The first thing to check is whether or not we can just get take a dead enemy
         Enemy soonToBeEnemy;
         Vector2 randomSpawnPoint = GetRandomPoint();
-        Debug.Log($"Random Spawn Point: {randomSpawnPoint}");
 
+        Debug.Log("Got here");
         /*
          * If there isn't one, we just have to instantiate a new one before actually giving it
          * the values it needs to run properly
@@ -185,10 +210,15 @@ public class EnemyManager : MonoBehaviour
         {
             soonToBeEnemy = Instantiate(this.enemyPrefab, this.gameObject.transform);
         }
+        else
+        {
+            Debug.Log("Extracted " + soonToBeEnemy.name);
+        }
 
         soonToBeEnemy.gameObject.SetActive(true);
-        soonToBeEnemy.Initialize(this.platformGraph, this.trashcanContainer, IsInWanderState, 
-            randomSpawnPoint);
+
+        soonToBeEnemy.Initialize(this.platformGraph, this.trashcanContainer, IsInWanderState,
+            randomSpawnPoint, this.playerController, PlayerPlatform, PlayerPosition);
         this.activeEnemies.Add(soonToBeEnemy);
     }
 
@@ -208,7 +238,7 @@ public class EnemyManager : MonoBehaviour
     /// <param name="enemy">the enemy in question</param>
     private void OnEnemyHit(Enemy enemy)
     {
-        enemy.BeginDeath();
         this.EnemyHit?.Invoke();
+        enemy.StateMachine.ForceChangeState(enemy.StateMachine.DeathState);
     }
 }

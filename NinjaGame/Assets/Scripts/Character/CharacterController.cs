@@ -48,6 +48,7 @@ public class CharacterController : MonoBehaviour
         if (hideInTrash) SpawnInRandTrashcan();
 
 
+        this.ctx.platformTracker.FindPlatformBelow();
     }
 
     static string StatePath(JState s)

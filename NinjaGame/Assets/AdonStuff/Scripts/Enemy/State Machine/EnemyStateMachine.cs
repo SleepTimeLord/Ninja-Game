@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 
 /// <summary>
@@ -31,6 +32,27 @@ public class EnemyStateMachine : MonoBehaviour
     /// </summary>
     private WanderState wander;
 
+    /// <summary>
+    /// A reference to a punch state
+    /// </summary>
+    private PunchState punch;
+
+    /// <summary>
+    /// A reference to the death state;
+    /// </summary>
+    private DeathState death;
+
+
+    /// <summary>
+    /// Returns the current state the state machine is in
+    /// </summary>
+    public EnemyState CurrentState
+    {
+        get
+        {
+            return this.currentState;
+        }
+    }
 
     /// <summary>
     /// Returns a reference to the wander state
@@ -54,14 +76,38 @@ public class EnemyStateMachine : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Returns a reference to the active punch state
+    /// </summary>
+    public PunchState PunchState
+    {
+        get
+        {
+            return this.punch;
+        }
+    }
+
+    /// <summary>
+    /// Returns a reference to the active death state
+    /// </summary>
+    public DeathState DeathState
+    {
+        get
+        {
+            return this.death;
+        }
+    }
+
     
     /// <summary>
     /// The actions that occur in the initialization of an enemy
     /// </summary>
     public void Awake()
     {
-        this.chase = new ChaseState(this.enemy);
-        this.wander = new WanderState(this.enemy);
+        this.chase = new ChaseState(this.enemy, this);
+        this.wander = new WanderState(this.enemy, this);
+        this.punch = new PunchState(this.enemy, this);
+        this.death = new DeathState(this.enemy, this);
     }
 
     // Update is called once per frame
@@ -76,10 +122,19 @@ public class EnemyStateMachine : MonoBehaviour
     }
 
     /// <summary>
+    /// Sets the pending and current state to null, being ready for the next iteration
+    /// </summary>
+    public void ResetState()
+    {
+        this.currentState = null;
+        this.pendingState = null;
+    }
+
+    /// <summary>
     /// The actions taken to switch to a new state
     /// </summary>
     /// <param name="toWhichState">the state to be switched into</param>
-    public void ChangeState(EnemyState toWhichState)
+    public void TryChangeState(EnemyState toWhichState)
     {
         // Ensures that, if anything particular to a state is occurring, things don't just exit
         if (this.currentState == null || (this.currentState != null && this.currentState.CanExit))
@@ -95,12 +150,14 @@ public class EnemyStateMachine : MonoBehaviour
     }
 
     /// <summary>
-    /// Sets all the states to nothing, ensuring that nothing can happen
+    /// For when a state needs to be immediately changed to
     /// </summary>
-    public void CancelStates()
+    /// <param name="toWhichState">the state in question</param>
+    public void ForceChangeState(EnemyState toWhichState)
     {
-        this.currentState = null;
-        this.pendingState = null;
+        this.currentState?.Exit();
+        this.currentState = toWhichState;
+        this.currentState.Enter();
     }
 
     /// <summary>
