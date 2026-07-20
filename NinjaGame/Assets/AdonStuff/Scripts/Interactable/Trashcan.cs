@@ -22,7 +22,7 @@ public class Trashcan : MonoBehaviour
     {
         get
         {
-            return this.isPlayerInside;
+            return this.IsPlayerInside;
         }
     }
     

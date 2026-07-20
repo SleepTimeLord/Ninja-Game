@@ -27,7 +27,7 @@ public class PlatformTracker : MonoBehaviour
     /// </summary>
     public void FindPlatformBelow()
     {
-        RaycastHit2D[] hits = Physics2D.RaycastAll(this.transform.position, Vector2.down, 4f);
+        RaycastHit2D[] hits = Physics2D.RaycastAll(this.transform.position, Vector2.down, 2f);
 
         foreach (RaycastHit2D hit in hits)
         {
