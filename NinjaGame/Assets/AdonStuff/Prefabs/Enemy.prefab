@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3548780605335652559}
   - component: {fileID: 2227252627378684159}
   - component: {fileID: 8240787192505350598}
+  - component: {fileID: 6835090237821919066}
   m_Layer: 7
   m_Name: Enemy
   m_TagString: Untagged
@@ -34,6 +35,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 298894718414535169}
+  - {fileID: 2699415063989294015}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &8115475093516537753
@@ -79,9 +81,11 @@ MonoBehaviour:
   movement: {fileID: 2915336073948124020}
   navigator: {fileID: 8346546086120633570}
   stateMachine: {fileID: 2227252627378684159}
-  animationManager: {fileID: 5353456231076809027}
+  animationManager: {fileID: 6835090237821919066}
+  attackManager: {fileID: 5676334797268891117}
   spriteCollider: {fileID: 4182121969601603666}
   searchScale: 0
+  defaultState: 0
 --- !u!114 &2227252627378684159
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -117,6 +121,25 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &6835090237821919066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5228679784376420059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 815f021cd1fd31e4dbabe28ea5299dcb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyAnimationManager
+  animator: {fileID: 8240787192505350598}
+  enemy: {fileID: 3548780605335652559}
+  idleAnimation: Idle
+  walkAnimation: Walk
+  jumpDropAnimation: Jumping-Dropping
+  punchAnimation: Punch
+  deathAnimation: Death
 --- !u!1 &8545803219910266801
 GameObject:
   m_ObjectHideFlags: 0
@@ -131,7 +154,6 @@ GameObject:
   - component: {fileID: 4775831658779423738}
   - component: {fileID: 2915336073948124020}
   - component: {fileID: 8346546086120633570}
-  - component: {fileID: 5353456231076809027}
   m_Layer: 7
   m_Name: Capsule
   m_TagString: Enemy
@@ -286,6 +308,7 @@ MonoBehaviour:
   rb: {fileID: 8115475093516537753}
   enemy: {fileID: 3548780605335652559}
   sprite: {fileID: 2065089001968789026}
+  punchBox: {fileID: 6015387011242436690}
 --- !u!114 &8346546086120633570
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -298,16 +321,95 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 817eed545bb6b2a4182375e504658cfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlatformNavigator
---- !u!114 &5353456231076809027
+--- !u!1 &8887884482346197487
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2699415063989294015}
+  - component: {fileID: 6015387011242436690}
+  - component: {fileID: 5676334797268891117}
+  m_Layer: 0
+  m_Name: Punch Box
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2699415063989294015
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8887884482346197487}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.17, y: 0.22, z: 0}
+  m_LocalScale: {x: 2.4300478, y: 0.69126743, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6328634033612185682}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &6015387011242436690
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8887884482346197487}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
+--- !u!114 &5676334797268891117
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8545803219910266801}
+  m_GameObject: {fileID: 8887884482346197487}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 815f021cd1fd31e4dbabe28ea5299dcb, type: 3}
+  m_Script: {fileID: 11500000, guid: 221e99e1e323c0f42a15320b24092922, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyAnimationManager
-  animator: {fileID: 8240787192505350598}
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyAttackManager
+  punchBox: {fileID: 6015387011242436690}
