@@ -10,30 +10,6 @@ public class TrashcanContainer : MonoBehaviour
     /// </summary>
     private Trashcan[] trashcans;
 
-    /// <summary>
-    /// Returns whether the player can be found in any of the trashcans
-    /// </summary>
-    public bool IsPlayerHidden
-    {
-        get
-        {
-            bool result = false;
-
-            foreach (Trashcan trashcan in this.trashcans)
-            {
-                if (trashcan.IsPlayerInside)
-                {
-                    result = true;
-                    break;
-                }
-            }
-
-            Debug.Log($"Is player hidden? {result}");
-
-            return result;
-        }
-    }
-
 
     /// <summary>
     /// Sets each of the trashcans that are active in the scene
@@ -41,6 +17,7 @@ public class TrashcanContainer : MonoBehaviour
     public void Start()
     {
         this.trashcans = GetComponentsInChildren<Trashcan>();
+        Debug.Log(this.trashcans.Length);
     }
 
 

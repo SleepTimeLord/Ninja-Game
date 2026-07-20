@@ -3,7 +3,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
-
+using System.Collections;
 
 /// <summary>
 /// This basically is in charge of all the player related checks
@@ -12,6 +12,9 @@ using UnityEngine.UI;
 /// </summary>
 public class CharacterController : MonoBehaviour
 {
+    public TrashcanContainer trashcanContainer;
+    public bool hideInTrash;
+
     public PlayerContext ctx = new PlayerContext();
 
     // debugging collider jazz
@@ -32,7 +35,19 @@ public class CharacterController : MonoBehaviour
         root = new NinjaRoot(null, ctx);
         var builder = new JStateMachineBuilder(root);
         machine = builder.Build();
-        this.ctx.platformTracker.FindPlatformBelow();
+
+        ctx.platformTracker.FindPlatformBelow();
+
+        Cursor.visible = false; 
+        Cursor.lockState = CursorLockMode.Locked; 
+    }
+
+    IEnumerator Start()
+    {
+        yield return new WaitForSeconds(.1f);
+        if (hideInTrash) SpawnInRandTrashcan();
+
+
     }
 
     static string StatePath(JState s)
@@ -77,15 +92,21 @@ public class CharacterController : MonoBehaviour
         }
     }
 
-    // debugging
-    // private void OnCollisionEnter2D(Collision2D collision)
-    // {
-    //     if (collision.gameObject.CompareTag("Enemy"))
-    //     {
-    //         TakeDamage(50, collision.gameObject.transform.position);
-    //     }
-    // }
+    /// <summary>
+    /// Spawns character in a random trashcan
+    /// </summary>
+    public void SpawnInRandTrashcan()
+    {
+        Debug.Log("Started randTrashspawn");
+        Trashcan trashcan = trashcanContainer.GetRandomTrashcan();
 
+        ctx.tr.position = trashcan.transform.position;
+
+        ctx.nearestInteractable = trashcan.gameObject;
+        
+        ICharacterInteractable interactable = ctx.nearestInteractable.GetComponent<ICharacterInteractable>();
+        interactable.Interact();
+    }
 
     /// <summary>
     /// Call this from the character controller if you want 
@@ -95,6 +116,7 @@ public class CharacterController : MonoBehaviour
     /// </summary>
     public void TakeDamage(float amount, Vector2 damagePos)
     {
+        ctx.isDamaged = true;
         ctx.damagePos = damagePos;
         ctx.ModifyHealth(-amount);
     }
@@ -254,6 +276,7 @@ public class CharacterController : MonoBehaviour
         if (ctx.isHidden && context.started && Time.time >= ctx.attackNextTimeReady) ctx.isAttacking = true;
         else if (!ctx.isHidden && ctx.nearestInteractable != null && context.started)
         {
+            ctx.dashTrail.enabled = true;
             ICharacterInteractable interactable = ctx.nearestInteractable.GetComponent<ICharacterInteractable>();
 
             interactable.Interact();
@@ -275,7 +298,6 @@ public class PlayerContext
     public GameObject modelGo;
     public SpriteRenderer sr;
     public Collider2D collider2d;
-    public Animator animator;
     [SerializeField] public PlatformTracker platformTracker;
     [Header("Player Health Settings")]
     public float health = 100f;
@@ -286,19 +308,20 @@ public class PlayerContext
     public float startAcceleration = 60f;
     public float runningAcceleration = 60f;
     public float deceleration = 40f;
-
     [Header("Jump Settings")]
     public float jumpForce = 5f;
     public float airJumpForce = 5f;
     public byte avaliableJumps = 2;
-    public bool pressedJump = false;
-
     [Header("Dash Settings")]
     public float dashForce = 60f;
     public byte dashCooldown = 1;
     public float dashDuration = 0.15f;
-    public bool pressedDash = false;
-
+    public TrailRenderer dashTrail;
+    [Header("Hiding Setting")]
+    public float hideTime;
+    public float tickDamage;
+    public float tickRate;
+    public GameObject hidingWarning;
     [Header("Wall Settings")]
     public float wallSlideSpeed = 1.5f;
     public float wallJumpForce = 1.5f;
@@ -306,7 +329,10 @@ public class PlayerContext
     public float rightSideOffset = .5f;
     public float leftSideOffset = 1f;
     [Header("Sneak Attack Settings")]
-    public float sneakAttackCooldown = 5f;
+    public float initialSneakAttackCooldown = 7f;
+    public float sneakAttackCooldown = 0;
+    public float cooldownRefundPerKill = 1f;
+    public float minsneakAttackCooldown = 2f;
     public float sneakAttackDuration = 0.30f;
     [Header("Take Damage Settings")]
     public float damagedDuration = 0.3f;
@@ -320,23 +346,26 @@ public class PlayerContext
     public string phaseThruPlatform = "JumpThruPlatform";
     public string wallTag = "Wall";
     [Header("Live States")]
-    public Vector2 moveInput;
-    public Vector2 currentPos;
-    public float nextTimeReady = 0f;
-    public float attackNextTimeReady = 0f;
-    public bool isGrounded = false;
-    public bool isTouchingWall = false;
-    public float wallDirection = 0f;
-    public byte jumpCount;
-    public bool isRight;
-    public float previousWallDirection = 0f;
-    public bool isHidden = false;
-    public bool isAttacking = false;
-    public bool isDamaged = false;
-    public bool isDead = false;
-    public GameObject nearestInteractable;
+    [HideInInspector]public bool pressedJump = false;
+    [HideInInspector]public bool pressedDash = false;
+    [HideInInspector]public Vector2 moveInput;
+    [HideInInspector]public Vector2 currentPos;
+    [HideInInspector]public float nextTimeReady = 0f;
+    [HideInInspector]public float attackNextTimeReady = 0f;
+    [HideInInspector]public bool isGrounded = false;
+    [HideInInspector]public bool isTouchingWall = false;
+    [HideInInspector]public float wallDirection = 0f;
+    [HideInInspector]public byte jumpCount;
+    [HideInInspector]public bool isRight;
+    [HideInInspector]public float previousWallDirection = 0f;
+    [HideInInspector]public bool isHidden = false;
+    [HideInInspector]public bool isAttacking = false;
+    [HideInInspector]public bool isDamaged = false;
+    [HideInInspector]public bool isDead = false;
+    [HideInInspector]public GameObject nearestInteractable;
+    public int enemyKillCombo;
     [Header("Animations")]
-    public string currentAnimState;
+    public Animator animator;
     public string idle = "Ninja_Idle";
     public string runningL = "Ninja_Running_Left";
     public string runningR = "Ninja_Running_Right";
@@ -351,6 +380,11 @@ public class PlayerContext
     public string sneakAttack = "Ninja_SneakAttack";
     public string ninjaDamaged = "Ninja_Damaged";
     public string ninjaDeath = "Ninja_Death";
+    public string currentAnimState;
+    [Header("Audio")]
+    public AudioClip swordSlash;
+    public AudioClip trashRussling;
+    public AudioClip explosion;
 
     public void ChangeAnimationState(string newState, bool canPlayAgain)
     {
@@ -360,7 +394,7 @@ public class PlayerContext
         currentAnimState = newState;
     }
 
-    public void FlipCharacter(bool flip)
+    public void FlipCharacterRight(bool flip)
     {
         isRight = flip;
         sr.flipX = flip;
@@ -368,7 +402,7 @@ public class PlayerContext
 
     public void ModifyHealth(float amount)
     {
-        if (amount < 0) isDamaged = true;
+        Debug.Log($"modifing Health by {amount}");
         health = Mathf.Clamp(health + amount, 0, maxHealth);
         healthSlider.maxValue = maxHealth;
         healthSlider.value = health;

@@ -36,11 +36,11 @@ public class Move : JState
         // check if right or left and flip
         if (ctx.moveInput.x > 0.01f || ctx.rb.linearVelocity.x > 0.1f)
         {
-            ctx.FlipCharacter(true);
+            ctx.FlipCharacterRight(true);
         }
         else if (ctx.moveInput.x < -0.01f || ctx.rb.linearVelocity.x < -0.1f)
         {
-            ctx.FlipCharacter(false);
+            ctx.FlipCharacterRight(false);
         }
 
         // play animations for ground and air
@@ -109,7 +109,7 @@ public class Idle : JState
         // when not moving on the ground make sure the character is always
         // facing left to make it accurate to the other art and make it so
         // he is in the idle state
-        if (Parent is Grounded) ctx.FlipCharacter(false); ctx.ChangeAnimationState(ctx.idle, false);
+        if (Parent is Grounded) ctx.FlipCharacterRight(false); ctx.ChangeAnimationState(ctx.idle, false);
     }
 
     protected override void OnUpdate(float deltaTime)
@@ -276,7 +276,7 @@ public class WallCling : JState
         ctx.jumpCount = 1;
         ctx.rb.constraints |= RigidbodyConstraints2D.FreezePositionX;
         ctx.ChangeAnimationState(ctx.wallDirection > 0 ? ctx.wsR : ctx.wsL, false);
-        ctx.FlipCharacter(ctx.wallDirection > 0 ? false : true);
+        ctx.FlipCharacterRight(ctx.wallDirection > 0 ? false : true);
 
         // handles the offset when wall climbing as regular on offset looks weird
         // you can edit this in the PlayerContext
@@ -338,8 +338,9 @@ public class Dash : JState
         // if the player is pressing the direction they want to go then it goes to the
         // direction that the player is moving (1 == right, -1 left) if the player is
         // inputting nothing then it goes in the direction that the character is facing
+        ctx.dashTrail.enabled = true;
         float dir = Mathf.Abs(ctx.moveInput.x) > 0.01f ? Mathf.Sign(ctx.moveInput.x) : (ctx.sr.flipX ? 1f : -1f);
-
+        ctx.FlipCharacterRight(dir > 0 ? true : false);
         ctx.rb.constraints |= RigidbodyConstraints2D.FreezePositionY;
 
         // handles the dashing and changes to do a dash animation
@@ -356,6 +357,7 @@ public class Dash : JState
     protected override void OnExit()
     {
         // unfreeze y pos
+        ctx.dashTrail.enabled = false;
         ctx.rb.constraints &= ~RigidbodyConstraints2D.FreezePositionY;
     }
 
@@ -369,7 +371,8 @@ public class Dash : JState
 
 /// <summary>
 /// Hidden state makes you hide in the hiding
-/// spot you interacted with.
+/// spot you interacted with. If you are hiding
+/// for too long you start to take tick damage
 /// </summary>
 public class Hidden : JState
 {
@@ -377,6 +380,9 @@ public class Hidden : JState
     public event Action OnPlayerLeave;
     readonly PlayerContext ctx;
     Animator hAnimator;
+    AudioSource audio;
+    float hideTimeDamage;
+    float nextTickTime;
 
     public Hidden(JStateMachine m, JState parent, PlayerContext ctx) : base (m, parent)
     {
@@ -397,6 +403,11 @@ public class Hidden : JState
         ctx.tr.SetParent(ctx.nearestInteractable.transform);
         ctx.tr.localPosition = new Vector3(.5f,0,0);
         ctx.jumpCount = 0;
+        audio = SoundFXManager.Instance.PlaySFXClip(ctx.trashRussling, ctx.tr, 1f, true);
+
+
+        hideTimeDamage = Time.time + ctx.hideTime;
+        nextTickTime = hideTimeDamage;
     }
 
     // only way to exit this state is to jump out or attack
@@ -404,15 +415,31 @@ public class Hidden : JState
     {
         // reenables hiding spot and removes player as a child of the hiding spot
         hAnimator.Play("Trash_Reg");
+        ctx.hidingWarning.SetActive(false);
+        SoundFXManager.Instance.DestroyAudioSource(audio, false);
         OnPlayerLeave?.Invoke();
         ctx.rb.constraints &= ~RigidbodyConstraints2D.FreezePositionX;
         ctx.sr.enabled = true;
         ctx.isHidden = false;
         ctx.tr.SetParent(null);
+        ctx.dashTrail.enabled = false;
     }
 
     protected override JState GetTransition()
     {
+        // check if the safe hiding time has expired
+        if (Time.time > hideTimeDamage)
+        {
+            ctx.hidingWarning.SetActive(true);
+            
+            // check if enough time has passed since the last tick
+            if (Time.time >= nextTickTime)
+            {
+                ctx.ModifyHealth(-ctx.tickDamage);
+                // set the timestamp for the next time they should take damage
+                nextTickTime = Time.time + ctx.tickRate;
+            }
+        }
         // handles jump and if he did jump then go to the airborne state
         if (ctx.pressedJump)
         {
@@ -455,22 +482,32 @@ public class SneakAttack : JState
         // plays slashing animation
         ctx.ChangeAnimationState(ctx.sneakAttack, false);
 
-        // starts the timer for cooldown for dashing
-        ctx.attackNextTimeReady = Time.time + ctx.sneakAttackCooldown;
+        // starts the timer for cooldown for sneak attack
         attackEndTime = Time.time + ctx.sneakAttackDuration;
         // flip character to left to keep it consistant with character model
         // also slightly brings character model to the left so its in line with the hiding spot
-        ctx.FlipCharacter(false);
+        ctx.FlipCharacterRight(false);
         ctx.modelGo.transform.localPosition = new Vector3(0.5f,0f,0);
+
+        // play sound fx
+        SoundFXManager.Instance.PlaySFXClip(ctx.swordSlash, ctx.tr, 1f, false);
     }
 
     protected override void OnExit()
     {
+        float cooldownRefunded = ctx.cooldownRefundPerKill * ctx.enemyKillCombo;
+        
+        ctx.sneakAttackCooldown = Mathf.Clamp(ctx.initialSneakAttackCooldown - cooldownRefunded, ctx.minsneakAttackCooldown, ctx.initialSneakAttackCooldown);
+        ctx.attackNextTimeReady = Time.time + ctx.sneakAttackCooldown;
+        Debug.Log($"enemy kill combo: {ctx.enemyKillCombo}");
+        Debug.Log($"Your sneak attack cooldown is: {ctx.sneakAttackCooldown}");
+
         // make it resets the model and attack == false 
         // set the slashing GO to false in case animation event doesnt trigger
         ctx.isAttacking = false;
         ctx.modelGo.transform.localPosition = Vector3.zero;
         ctx.slashGO.SetActive(false); 
+        ctx.enemyKillCombo = 0;
     }
 
     protected override JState GetTransition()
@@ -549,6 +586,7 @@ public class Death : JState
         ctx.rb.simulated = false;
         ctx.rb.transform.localScale = new Vector3(11,11,11);
         // makes the ninja explode
+        SoundFXManager.Instance.PlaySFXClip(ctx.explosion, ctx.tr, 1f, false);
         ctx.ChangeAnimationState(ctx.ninjaDeath, false);
         
         // time before it switches to the lose screen

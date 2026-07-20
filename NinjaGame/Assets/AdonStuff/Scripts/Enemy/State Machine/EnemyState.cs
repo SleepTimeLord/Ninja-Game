@@ -10,11 +10,6 @@ public abstract class EnemyState
     /// </summary>
     protected Enemy enemy;
 
-    /// <summary>
-    /// A reference to the state machine that controls the state
-    /// </summary>
-    protected EnemyStateMachine stateMachine;
-
 
     /// <summary>
     /// Whether or not the enemy can exit a state at any given moment
@@ -34,10 +29,9 @@ public abstract class EnemyState
     /// <param name="stateMachine">a reference to the state machine the state will be 
     /// connected to</param>
     /// <param name="enemy">the enemy the state is doing all of this for</param>
-    protected EnemyState(Enemy enemy, EnemyStateMachine stateMachine)
+    protected EnemyState(Enemy enemy)
     {
         this.enemy = enemy;
-        this.stateMachine = stateMachine;
     }
 
 
